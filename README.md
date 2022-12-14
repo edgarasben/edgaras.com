@@ -4,9 +4,10 @@ My personal website and a playground.
 
 ## Stack
 
-- NextJS (React)
-- TailwindCSS
--
+-   ReactJS
+-   TypeScript
+-   NextJS
+-   TailwindCSS
 
 ## Follow
 
