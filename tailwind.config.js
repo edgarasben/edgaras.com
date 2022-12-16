@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
@@ -8,6 +10,10 @@ module.exports = {
                 DEFAULT: '1rem',
                 sm: '2rem',
             },
+        },
+        screens: {
+            xs: '475px',
+            ...defaultTheme.screens,
         },
         colors: {
             transparent: 'transparent',
@@ -23,7 +29,15 @@ module.exports = {
             'bg-primary': 'hsla(var(--color-bg-primary) / <alpha-value>)',
             'on-primary': 'hsla(var(--color-on-primary) / <alpha-value>)',
         },
-        extend: {},
+        extend: {
+            spacing: {
+                // Bottom spacing for iOS Home Indicator
+                'safe-area-inset-bottom': 'env(safe-area-inset-bottom, 24px)',
+            },
+            screens: {
+                standalone: { raw: '(display-mode: standalone)' },
+            },
+        },
     },
     plugins: [],
 }
