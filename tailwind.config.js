@@ -3,6 +3,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+    darkMode: 'class',
     theme: {
         container: {
             center: true,
@@ -19,15 +20,32 @@ module.exports = {
             transparent: 'transparent',
             white: 'white',
             black: 'black',
-            'bg-page': 'hsla(var(--color-bg-page) / <alpha-value>)',
-            'bg-base': 'hsla(var(--color-bg-base) / <alpha-value>)',
-            'bg-neutral-faded': 'hsla(var(--color-bg-neutral-faded) / <alpha-value>)',
-            'fg-neutral': 'hsla(var(--color-fg-neutral) / <alpha-value>)',
-            'fg-neutral-faded': 'hsla(var(--color-fg-neutral-faded) / <alpha-value>)',
-            'border-neutral': 'hsla(var(--color-border-neutral) / <alpha-value>)',
-            'border-neutral-faded': 'hsla(var(--color-border-neutral-faded) / <alpha-value>)',
-            'bg-primary': 'hsla(var(--color-bg-primary) / <alpha-value>)',
-            'on-primary': 'hsla(var(--color-on-primary) / <alpha-value>)',
+            bg: {
+                page: 'hsla(var(--color-bg-page) / <alpha-value>)',
+                base: 'hsla(var(--color-bg-base) / <alpha-value>)',
+                neutral: 'hsla(var(--color-bg-neutral) / <alpha-value>)',
+                'neutral-faded':
+                    'hsla(var(--color-bg-neutral-faded) / <alpha-value>)',
+                primary: 'hsla(var(--color-bg-primary) / <alpha-value>)',
+            },
+            fg: {
+                neutral: 'hsla(var(--color-fg-neutral) / <alpha-value>)',
+                'neutral-faded':
+                    'hsla(var(--color-fg-neutral-faded) / <alpha-value>)',
+            },
+            border: {
+                neutral: 'hsla(var(--color-border-neutral) / <alpha-value>)',
+                'neutral-faded':
+                    'hsla(var(--color-border-neutral-faded) / <alpha-value>)',
+            },
+            on: {
+                primary: 'hsla(var(--color-on-primary) / <alpha-value>)',
+            },
+            accent: {
+                1: 'hsla(var(--color-accent-1) / <alpha-value>)',
+                2: 'hsla(var(--color-accent-2) / <alpha-value>)',
+                3: 'hsla(var(--color-accent-3) / <alpha-value>)',
+            },
         },
         extend: {
             spacing: {
@@ -37,7 +55,17 @@ module.exports = {
             screens: {
                 standalone: { raw: '(display-mode: standalone)' },
             },
+
+            typography: ({ theme }) => ({
+                DEFAULT: {
+                    css: {
+                        '--tw-prose-body': theme('colors.fg.neutral'),
+                        '--tw-prose-headings': theme('colors.fg.neutral'),
+                        /* TODO: fix, not working '--tw-prose-captions': theme('colors.fg.neutral-faded'), */
+                    },
+                },
+            }),
         },
     },
-    plugins: [],
+    plugins: [require('@tailwindcss/typography')],
 }

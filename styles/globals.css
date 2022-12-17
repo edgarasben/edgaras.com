@@ -5,9 +5,10 @@
 @layer base {
     :root {
         /* Color styles */
-        --color-bg-page: 150deg 33.3% 98.8%;
+        --color-bg-page: 160deg 12% 97%;
         --color-bg-base: 0deg 0% 100%;
-        --color-bg-neutral-faded: 160deg 12% 95.1%;
+        --color-bg-neutral: 160deg 12% 95%;
+        --color-bg-neutral-faded: 150deg 33% 99%;
         --color-fg-neutral: 158deg 24.4% 8.8%;
         --color-fg-neutral-faded: 154deg 3.2% 42.9%;
         --color-border-neutral: 154deg 6.1% 77.5%;
@@ -15,21 +16,25 @@
         --color-bg-primary: 143deg 47.4% 45.5%;
         --color-on-primary: 0deg 0% 100%;
 
-        /* Text-size styles */
-        --text-base: 1rem;
-        --text-sm: 0.88rem;
+        --color-accent-1: 246deg 55% 81%;
+        --color-accent-2: 192deg 80% 76%;
+        --color-accent-3: 330deg 46% 73%;
     }
 
-    @media (prefers-color-scheme: dark) {
-        :root {
-            --color-bg-page: 160deg 7% 8.4%;
-            --color-bg-base: 150deg 7.4% 10.6%;
-            --color-bg-neutral-faded: 144deg 7.5% 13.1%;
-            --color-fg-neutral: 150deg 6.1% 87.1%;
-            --color-fg-neutral-faded: 153deg 4.6% 61.8%;
-            --color-fg-primary: 138deg 75.8% 87.1%;
-            --color-bg-primary: 132deg 40.7% 35.7%;
-            --color-on-primary: 0deg 0% 0%;
-        }
+    :root.dark {
+        --color-bg-page: 160deg 7% 8.4%;
+        --color-bg-base: 150deg 7.4% 10.6%;
+        --color-bg-neutral: 144deg 7% 13%;
+        --color-bg-neutral-faded: 144deg 6% 17%;
+        --color-fg-neutral: 150deg 6.1% 87.1%;
+        --color-fg-neutral-faded: 153deg 4.6% 61.8%;
+        --color-border-neutral-faded: 144deg 6% 17%;
+        --color-fg-primary: 138deg 75.8% 87.1%;
+        --color-bg-primary: 138deg 76% 87%;
+        --color-on-primary: 0deg 0% 0%;
+
+        --color-accent-1: 246deg 30% 25%;
+        --color-accent-2: 192deg 30% 12%;
+        --color-accent-3: 330deg 30% 17%;
     }
 }

@@ -16,11 +16,11 @@ export const NavigationBar = () => {
             label: 'Home',
             path: '/',
         },
-        {
+        /*      {
             label: 'Posts',
             path: '/posts',
-        },
-        {
+        }, */
+        /*         {
             label: 'Lab',
             path: '/lab',
         },
@@ -35,7 +35,7 @@ export const NavigationBar = () => {
         {
             label: 'Now',
             path: '/now',
-        },
+        }, */
     ]
 
     const currentPathLabel = links.find((link) => link.path === pathname)?.label
@@ -47,7 +47,7 @@ export const NavigationBar = () => {
 
     return (
         <div className="fixed inset-x-0 bottom-0 flex justify-center p-2 xs:p-4 standalone:pb-safe-area-inset-bottom">
-            <div className="bg-bg-neutral w-full rounded-lg border-t border-t-white/20 bg-black/60 ring-1 ring-black/70 backdrop-blur xs:w-auto">
+            <div className="rounded-lg border-t border-t-white/20 bg-bg-neutral bg-black/60 ring-1 ring-black/70 backdrop-blur xs:w-auto">
                 <ul
                     className={`${
                         showMobileMenu ? 'flex flex-col' : 'hidden'
@@ -74,7 +74,7 @@ export const NavigationBar = () => {
                             )
                     )}
                 </ul>
-                <ul className="flex items-center justify-between space-x-4 px-4">
+                <ul className="flex items-center space-x-4 px-4">
                     <li>
                         <Link
                             onClick={() => setShowMobileMenu(false)}
@@ -113,7 +113,11 @@ export const NavigationBar = () => {
                         </button>
                     </li>
                     <li>
-                        <button aria-label="Change theme" className={linkClasses(null)}>
+                        <button
+                            onClick={toggleTheme}
+                            aria-label="Toggle theme"
+                            className={linkClasses(null)}
+                        >
                             <MoonIcon className="h-5 w-5" />
                         </button>
                     </li>
@@ -121,4 +125,16 @@ export const NavigationBar = () => {
             </div>
         </div>
     )
+}
+
+function toggleTheme() {
+    let darkThemeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    let isSystemDarkTheme = darkThemeMediaQuery.matches
+    let isDarkTheme = document.documentElement.classList.toggle('dark')
+
+    if (isDarkTheme === isSystemDarkTheme) {
+        delete window.localStorage.isDarkTheme
+    } else {
+        window.localStorage.isDarkTheme = isDarkTheme
+    }
 }
