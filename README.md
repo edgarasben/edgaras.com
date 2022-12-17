@@ -2,6 +2,14 @@
 
 My personal website and a playground.
 
+## Todo
+
+-   [x] Initial design+code
+-   [x] Light/dark theme + switcher
+-   [x] Load posts from Notion as a CMS
+-   [ ] Connect Newsletter subscription form to MailerSend API
+-   [ ] Add About, Now pages
+
 ## Stack
 
 -   ReactJS
