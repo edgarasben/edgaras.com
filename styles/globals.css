@@ -4,9 +4,14 @@
 
 @layer base {
     :root {
+        isolation: isolate;
+    }
+
+    :root {
         /* Color styles */
         --color-bg-page: 160deg 12% 97%;
         --color-bg-base: 0deg 0% 100%;
+        --color-bg-elevated: 0deg 0% 100%;
         --color-bg-neutral: 160deg 12% 95%;
         --color-bg-neutral-faded: 150deg 33% 99%;
         --color-fg-neutral: 158deg 24.4% 8.8%;
@@ -24,6 +29,7 @@
     :root.dark {
         --color-bg-page: 160deg 7% 8.4%;
         --color-bg-base: 150deg 7.4% 10.6%;
+        --color-bg-elevated: 150deg 7% 11%;
         --color-bg-neutral: 144deg 7% 13%;
         --color-bg-neutral-faded: 144deg 6% 17%;
         --color-fg-neutral: 150deg 6.1% 87.1%;

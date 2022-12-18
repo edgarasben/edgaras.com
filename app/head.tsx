@@ -87,6 +87,12 @@ export default function Head() {
                 id="theme-script"
                 dangerouslySetInnerHTML={{ __html: themeScript }}
             ></Script>
+            <Script
+                defer
+                id="plausible"
+                data-domain="edgaras.com"
+                src="https://plausible.io/js/script.js"
+            ></Script>
         </>
     )
 }

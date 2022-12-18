@@ -14,19 +14,19 @@ export const NavigationBar = () => {
     const links = [
         {
             label: 'Home',
-            path: '/',
+            path: '/'
         },
-        /*      {
+        {
             label: 'Posts',
-            path: '/posts',
-        }, */
+            path: '/posts'
+        },
+        {
+            label: 'About',
+            path: '/about'
+        }
         /*         {
             label: 'Lab',
             path: '/lab',
-        },
-        {
-            label: 'Uses',
-            path: '/uses',
         },
         {
             label: 'About',

@@ -1,11 +1,18 @@
 import { Client as NotionClient, LogLevel } from '@notionhq/client'
 
 const notion = new NotionClient({
-    auth: process.env.NOTION_TOKEN,
+    auth: process.env.NOTION_TOKEN
     /*     logLevel: LogLevel.DEBUG, */
 })
 
-export async function getPosts() {
+export type Post = {
+    title: string
+    firstPosted: string
+    slug: string
+    summary: string
+}
+
+export async function getPosts(): Promise<Post[]> {
     const response = await notion.databases.query({
         database_id: process.env.NOTION_DATABASE_ID as string,
         filter: {
@@ -13,17 +20,23 @@ export async function getPosts() {
                 {
                     property: 'Post to Blog',
                     checkbox: {
-                        equals: true,
-                    },
+                        equals: true
+                    }
                 },
                 {
                     property: 'Status',
                     status: {
-                        equals: 'Public',
-                    },
-                },
-            ],
+                        equals: 'Public'
+                    }
+                }
+            ]
         },
+        sorts: [
+            {
+                property: 'First posted',
+                direction: 'ascending'
+            }
+        ]
     })
 
     // TODO: Fix the type, can't be "any"
@@ -32,7 +45,7 @@ export async function getPosts() {
             title: result.properties.Name.title[0].plain_text,
             firstPosted: result.properties['First posted'].date.start,
             slug: result.properties.Slug.rich_text[0].plain_text,
-            summary: result.properties.Summary.rich_text[0].plain_text,
+            summary: result.properties.Summary.rich_text[0].plain_text
         }
     })
 
