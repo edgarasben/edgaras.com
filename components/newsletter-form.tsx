@@ -65,13 +65,14 @@ export function NewsletterForm() {
         <>
             <form ref={formRef} onSubmit={handleSubscribe} className="relative flex">
                 <input
+                    autoComplete="off"
                     id="email"
                     name="email"
                     aria-label="Email address"
                     required
                     placeholder="Email address"
                     type="email"
-                    className="w-full rounded-lg border border-transparent bg-bg-neutral p-2.5 outline-none placeholder:text-fg-neutral-faded focus:border-border-neutral-faded focus:bg-bg-neutral"
+                    className="w-full rounded-lg border border-transparent bg-bg-neutral p-2.5 outline-none placeholder:text-fg-neutral-faded focus:border-border-neutral-faded focus:bg-bg-neutral focus:ring-border-neutral-faded"
                 />
                 <div className="absolute inset-y-0 right-0 flex items-center pr-1.5">
                     <Button type="submit" isLoading={isLoading}>
