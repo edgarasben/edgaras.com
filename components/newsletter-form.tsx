@@ -46,7 +46,7 @@ export function NewsletterForm() {
             setModalText({
                 title: 'We are already pals!',
                 description:
-                    "You're already a part of my mailing list. We will stay in touch! 🫶"
+                    "You're already part of the inner circle - my mailing list! I will keep you in a loop. 📬"
             })
 
         formRef.current?.reset()

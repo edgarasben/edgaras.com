@@ -29,7 +29,7 @@ export const Header = () => {
         <header>
             <div className="space-y-8 rounded-xl bg-bg-base p-8 shadow-sm">
                 <div className="flex justify-between">
-                    <div className="flex items-center space-x-4">
+                    <div className="flex flex-col items-start space-y-8 sm:flex-row sm:items-center sm:space-x-4 sm:space-y-0">
                         <img
                             src="/images/edgaras-profile.png"
                             className="h-14 w-14 rounded-full border-2 border-bg-base shadow-md"
