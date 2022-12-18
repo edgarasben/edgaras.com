@@ -1,4 +1,5 @@
 import { formatDate } from '@/lib/format-date'
+import Link from 'next/link'
 
 type CardProps = {
     slug: string
@@ -8,7 +9,7 @@ type CardProps = {
 }
 
 export const Card = ({ data }: { data: CardProps }) => (
-    <a
+    <Link
         href={`/posts/${data.slug}`}
         className="block w-full space-y-4 rounded-xl p-8 transition-colors hover:bg-bg-base"
     >
@@ -19,5 +20,5 @@ export const Card = ({ data }: { data: CardProps }) => (
             </time>
         </div>
         <p className="text-fg-neutral-faded">{data.summary}</p>
-    </a>
+    </Link>
 )
