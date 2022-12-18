@@ -7,18 +7,18 @@ import MailIcon from '@/components/icons/mail-icon'
 
 const socialLinks = [
     {
-        label: 'Twitter',
+        label: 'Follow on Twitter',
         url: 'https://twitter.com/edgarasben',
         icon: <TwitterIcon className="h-5 w-5" />
     },
     {
-        label: 'LinkedIn',
+        label: 'Connect on LinkedIn',
         url: 'https://www.linkedin.com/in/edgarasben/',
 
         icon: <LinkedinIcon className="h-5 w-5" />
     },
     {
-        label: 'Mail',
+        label: 'Send email',
         url: 'mailto:hi@edgaras.com',
         icon: <MailIcon className="h-5 w-5" />
     }
@@ -54,6 +54,7 @@ export const Header = () => {
                         {socialLinks.map((link) => (
                             <li key={link.label}>
                                 <a
+                                    aria-label={link.label}
                                     href={link.url}
                                     className="block p-3.5 hover:text-fg-neutral-faded"
                                 >
