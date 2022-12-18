@@ -10,6 +10,8 @@ interface PostPageProps {
     }
 }
 
+export const revalidate = 30 // revalidate every 30 secs
+
 export default async function PostPage({ params }: PostPageProps) {
     let slug = params.slug.toString()
 
