@@ -28,7 +28,7 @@ export const Header = () => {
     return (
         <header>
             <div className="space-y-8 rounded-xl bg-bg-base p-8 shadow-sm">
-                <div className="flex justify-between">
+                <div className="relative flex justify-between">
                     <div className="flex flex-col items-start space-y-8 sm:flex-row sm:items-center sm:space-x-4 sm:space-y-0">
                         <img
                             src="/images/edgaras-profile.jpg"
@@ -50,7 +50,7 @@ export const Header = () => {
                             </p>
                         </div>
                     </div>
-                    <ul className="flex">
+                    <ul className="absolute right-0 flex">
                         {socialLinks.map((link) => (
                             <li key={link.label}>
                                 <a

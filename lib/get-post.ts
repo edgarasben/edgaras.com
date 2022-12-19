@@ -2,7 +2,7 @@ import { Client as NotionClient, LogLevel } from '@notionhq/client'
 const { NotionToMarkdown } = require('notion-to-md')
 
 const notion = new NotionClient({
-    auth: process.env.NOTION_TOKEN,
+    auth: process.env.NOTION_TOKEN
     /*  logLevel: LogLevel.DEBUG, */
 })
 
@@ -16,23 +16,23 @@ export async function getPost(slug: string) {
                 {
                     property: 'Post to Blog',
                     checkbox: {
-                        equals: true,
-                    },
+                        equals: true
+                    }
                 },
                 {
                     property: 'Status',
                     status: {
-                        equals: 'Public',
-                    },
+                        equals: 'Public'
+                    }
                 },
                 {
                     property: 'Slug',
                     rich_text: {
-                        equals: slug,
-                    },
-                },
-            ],
-        },
+                        equals: slug
+                    }
+                }
+            ]
+        }
     })
 
     const pageId = response.results[0].id
@@ -47,8 +47,8 @@ export async function getPost(slug: string) {
             title: result.properties.Name.title[0].plain_text,
             firstPosted: result.properties['First posted'].date.start,
             slug: result.properties.Slug.rich_text[0].plain_text,
-            summary: result.properties.Summary.rich_text[0].plain_text,
-            content: markdown,
+            summary: result.properties.Summary.rich_text[0]?.plain_text || null,
+            content: markdown
         }
     })
 

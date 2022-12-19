@@ -27,22 +27,22 @@ export function NewsletterForm() {
         const email = target.email.value
         console.log(JSON.stringify(email, null, 2))
 
-        const response = await fetch('/api/post-newsletter-subscriber', {
+        const subsResponse = await fetch('/api/post-newsletter-subscriber', {
             method: 'POST',
             body: JSON.stringify({ email: email })
         })
 
-        const data: any = await response.json()
+        const data: any = await subsResponse.json()
 
         console.log('truth', data)
 
-        if (data.result === 'added')
+        if (data.result === 'subscribed')
             setModalText({
                 title: 'Subscribed!',
                 description: "We'll stay in touch 💌"
             })
 
-        if (data.result === 'exists')
+        if (data.result === 'already-exists')
             setModalText({
                 title: 'We are already pals!',
                 description:

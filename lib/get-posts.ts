@@ -1,8 +1,7 @@
-import { Client as NotionClient, LogLevel } from '@notionhq/client'
+import { Client as NotionClient } from '@notionhq/client'
 
 const notion = new NotionClient({
     auth: process.env.NOTION_TOKEN
-    /*     logLevel: LogLevel.DEBUG, */
 })
 
 export type Post = {
@@ -45,7 +44,7 @@ export async function getPosts(): Promise<Post[]> {
             title: result.properties.Name.title[0].plain_text,
             firstPosted: result.properties['First posted'].date.start,
             slug: result.properties.Slug.rich_text[0].plain_text,
-            summary: result.properties.Summary.rich_text[0].plain_text
+            summary: result.properties.Summary.rich_text[0]?.plain_text || null
         }
     })
 

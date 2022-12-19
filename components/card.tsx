@@ -19,6 +19,6 @@ export const Card = ({ data }: { data: CardProps }) => (
                 {formatDate(data.firstPosted)}
             </time>
         </div>
-        <p className="text-fg-neutral-faded">{data.summary}</p>
+        {data.summary && <p className="text-fg-neutral-faded">{data.summary}</p>}
     </Link>
 )
