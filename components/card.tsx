@@ -13,9 +13,12 @@ export const Card = ({ data }: { data: CardProps }) => (
         href={`/posts/${data.slug}`}
         className="block w-full space-y-4 rounded-xl p-8 transition-colors hover:bg-bg-base"
     >
-        <div className="flex justify-between">
+        <div className="flex flex-col justify-between space-y-2 xs:flex-row xs:space-y-0">
             <h3 className="font-semibold">{data.title}</h3>
-            <time dateTime={data.firstPosted} className="text-fg-neutral-faded">
+            <time
+                dateTime={data.firstPosted}
+                className="text-sm text-fg-neutral-faded xs:text-right xs:text-base"
+            >
                 {formatDate(data.firstPosted)}
             </time>
         </div>
