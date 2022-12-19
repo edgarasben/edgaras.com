@@ -2,9 +2,16 @@
 const nextConfig = {
     experimental: {
         appDir: true,
-        scrollRestoration: true,
-        // runtime: 'experimental-edge',
+        scrollRestoration: true
     },
+    async rewrites() {
+        return [
+            {
+                source: '/images/:slug*',
+                destination: 'https://files3.ams3.cdn.digitaloceanspaces.com/:slug*'
+            }
+        ]
+    }
 }
 
-module.exports = nextConfig
+https: module.exports = nextConfig
