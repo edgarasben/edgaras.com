@@ -2,6 +2,7 @@ import { getPosts } from '@/lib/get-posts'
 import { getPost } from '@/lib/get-post'
 import { formatDate } from '@/lib/format-date'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { Container } from '@/components/container'
 
 interface PostPageProps {
@@ -28,7 +29,9 @@ export default async function PostPage({ params }: PostPageProps) {
                     {formatDate(post.firstPosted)}
                 </time>
                 <div className="pt-16">
-                    <ReactMarkdown>{post.content}</ReactMarkdown>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        {post.content}
+                    </ReactMarkdown>
                 </div>
             </article>
         </Container>

@@ -18,10 +18,10 @@ export function NewsletterForm() {
         description: ''
     })
 
-    const handleSubscribe = async (e: React.SyntheticEvent) => {
-        e.preventDefault()
+    const handleSubscribe = async (event: React.SyntheticEvent) => {
+        event.preventDefault()
         setIsLoading(true)
-        const target = e.target as typeof e.target & {
+        const target = event.target as typeof event.target & {
             email: { value: string }
         }
         const email = target.email.value
