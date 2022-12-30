@@ -1,8 +1,8 @@
 import { getPosts } from '@/lib/get-posts'
 import { getPost } from '@/lib/get-post'
 import { formatDate } from '@/lib/format-date'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
+import { Markdown } from '@/components/markdown'
+
 import { Container } from '@/components/container'
 
 interface PostPageProps {
@@ -20,7 +20,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
     return (
         <Container>
-            <article className="lg:prose-x prose max-w-none prose-h1:text-center">
+            <article className="lg:prose-x prose max-w-none prose-h1:text-center prose-code:break-words prose-code:bg-white">
                 <h1>{post.title}</h1>
                 <time
                     dateTime="2018-07-07"
@@ -29,9 +29,7 @@ export default async function PostPage({ params }: PostPageProps) {
                     {formatDate(post.firstPosted)}
                 </time>
                 <div className="pt-16">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                        {post.content}
-                    </ReactMarkdown>
+                    <Markdown>{post.content}</Markdown>
                 </div>
             </article>
         </Container>

@@ -61,8 +61,21 @@ module.exports = {
                 DEFAULT: {
                     css: {
                         '--tw-prose-body': theme('colors.fg.neutral'),
-                        '--tw-prose-headings': theme('colors.fg.neutral')
+                        '--tw-prose-bold': theme('colors.fg.neutral'),
+                        '--tw-prose-headings': theme('colors.fg.neutral'),
+                        '--tw-prose-links': theme('colors.fg.neutral'),
                         /* TODO: fix, not working '--tw-prose-captions': theme('colors.fg.neutral-faded'), */
+
+                        code: {
+                            display: 'inline-block',
+                            color: 'var(--tw-prose-code)',
+                            fontSize: theme('fontSize.sm')[0],
+                            fontWeight: theme('fontWeight.semibold'),
+                            backgroundColor: 'var(--color-bg-neutral-faded)',
+                            borderRadius: theme('borderRadius.lg'),
+                            paddingLeft: theme('spacing.1'),
+                            paddingRight: theme('spacing.1')
+                        }
                     }
                 }
             })
