@@ -3,7 +3,7 @@ import { Container } from '@/components/container'
 export default function AboutPage() {
     return (
         <Container>
-            <article className="lg:prose-x prose max-w-none prose-h1:text-center">
+            <article className="prose max-w-none prose-h1:text-center lg:prose-xl">
                 <h1>About</h1>
 
                 <div className="pt-16 text-center">

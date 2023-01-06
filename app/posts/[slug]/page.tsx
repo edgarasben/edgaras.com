@@ -20,7 +20,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
     return (
         <Container>
-            <article className="lg:prose-x prose max-w-none prose-h1:text-center prose-code:break-words prose-code:bg-white">
+            <article className="prose max-w-none prose-h1:text-center prose-figcaption:text-fg-neutral-faded prose-code:break-words prose-code:bg-white">
                 <h1>{post.title}</h1>
                 <time
                     dateTime="2018-07-07"

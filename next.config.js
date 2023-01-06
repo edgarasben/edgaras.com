@@ -4,6 +4,16 @@ const nextConfig = {
         appDir: true,
         scrollRestoration: true
     },
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'edgaras.com',
+                port: '',
+                pathname: '/images/**'
+            }
+        ]
+    },
     async rewrites() {
         return [
             {
