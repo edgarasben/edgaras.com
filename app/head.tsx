@@ -38,8 +38,9 @@ const themeScript = `
 export default function Head() {
     return (
         <>
-            <title>Edgaras - Co-Founder, Designer, Coder</title>
             <meta charSet="utf-8" />
+            <title>Edgaras - Co-Founder, Designer, Coder</title>
+            <meta name="robots" content="follow, index" />
             <meta
                 name="viewport"
                 content="width=device-width, initial-scale=1, viewport-fit=cover"
@@ -53,23 +54,22 @@ export default function Head() {
                 content="Edgaras - Co-Founder, Designer, Coder"
             />
             <meta property="og:type" content="website" />
+            <meta property="og:url" content="https://edgaras.com/" />
             <meta
-                property="og:url"
+                property="og:image"
                 content="https://edgaras.com/images/og-main.png"
             />
-            <meta property="og:image" content="" />
-            {/* TODO: add OG*/}
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:site" content="@edgarasben" />
+            <meta name="twitter:creator" content="@edgarasben" />
             <meta
                 name="twitter:title"
                 content="Edgaras - Co-Founder, Designer, Coder"
             />
-            <meta name="twitter:card" content="summary_large_image" />
             <meta
-                property="twitter:url"
+                name="twitter:image"
                 content="https://edgaras.com/images/og-main.png"
             />
-            <meta name="twitter:image" content="" />
-            {/* TODO: add OG*/}
             <link
                 rel="apple-touch-icon"
                 sizes="180x180"
