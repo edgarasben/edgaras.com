@@ -53,7 +53,10 @@ export default function Head() {
                 content="Edgaras - Co-Founder, Designer, Coder"
             />
             <meta property="og:type" content="website" />
-            <meta property="og:url" content="https://edgaras.com" />
+            <meta
+                property="og:url"
+                content="https://edgaras.com/images/og-main.png"
+            />
             <meta property="og:image" content="" />
             {/* TODO: add OG*/}
             <meta
@@ -61,7 +64,10 @@ export default function Head() {
                 content="Edgaras - Co-Founder, Designer, Coder"
             />
             <meta name="twitter:card" content="summary_large_image" />
-            <meta property="twitter:url" content="https://edgaras.com" />
+            <meta
+                property="twitter:url"
+                content="https://edgaras.com/images/og-main.png"
+            />
             <meta name="twitter:image" content="" />
             {/* TODO: add OG*/}
             <link

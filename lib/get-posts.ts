@@ -33,7 +33,7 @@ export async function getPosts(): Promise<Post[]> {
         sorts: [
             {
                 property: 'First posted',
-                direction: 'ascending'
+                direction: 'descending'
             }
         ]
     })

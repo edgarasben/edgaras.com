@@ -66,6 +66,12 @@ module.exports = {
                         '--tw-prose-links': theme('colors.fg.neutral'),
                         /* TODO: fix, not working '--tw-prose-captions': theme('colors.fg.neutral-faded'), */
 
+                        a: {
+                            '&:hover': {
+                                textDecoration: 'none'
+                            }
+                        },
+
                         code: {
                             display: 'inline-block',
                             color: 'var(--tw-prose-code)',
