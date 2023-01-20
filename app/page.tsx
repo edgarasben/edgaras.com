@@ -1,7 +1,7 @@
-import { getPosts } from '@/lib/get-posts'
-import { Posts } from '@/components/posts'
+import { getPosts, Post } from '@/lib/get-posts'
 import { Header } from '@/components/header'
 import { Container } from '@/components/container'
+import { Card } from '@/components/card'
 
 export const revalidate = 30 // revalidate every 30 secs
 
@@ -10,9 +10,19 @@ export default async function IndexPage() {
     return (
         <>
             <Container>
-                <Header />
-                <Posts posts={posts} />
-                {/*  <div className="absolute inset-x-0 -top-40 -z-10 overflow-hidden blur-[200px]">
+                <>
+                    <Header />
+                    <section>
+                        <h2 className="p-8 text-xl font-semibold">Latest posts</h2>
+                        <ul>
+                            <li>
+                                {posts.map((post: Post) => (
+                                    <Card key={post.slug} data={post} />
+                                ))}
+                            </li>
+                        </ul>
+                    </section>
+                    {/*  <div className="absolute inset-x-0 -top-40 -z-10 overflow-hidden blur-[200px]">
                 <svg
                     className="text-accent-1"
                     width="1164"
@@ -48,6 +58,7 @@ export default async function IndexPage() {
                     <path d="M1229.94 -131.57L1144.58 143.185L816.626 234.884L598.373 429.281L466.759 -263.797L1229.94 -131.57Z" />
                 </svg>
             </div> */}
+                </>
             </Container>
         </>
     )

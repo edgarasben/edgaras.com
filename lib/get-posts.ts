@@ -13,7 +13,7 @@ export type Post = {
 
 export async function getPosts(): Promise<Post[]> {
     const response = await notion.databases.query({
-        database_id: process.env.NOTION_DATABASE_ID as string,
+        database_id: process.env.NOTION_POSTS_DATABASE_ID as string,
         filter: {
             and: [
                 {

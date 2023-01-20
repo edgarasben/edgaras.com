@@ -10,7 +10,7 @@ const n2m = new NotionToMarkdown({ notionClient: notion })
 
 export async function getPost(slug: string) {
     const response = await notion.databases.query({
-        database_id: process.env.NOTION_DATABASE_ID as string,
+        database_id: process.env.NOTION_POSTS_DATABASE_ID as string,
         filter: {
             and: [
                 {
@@ -36,6 +36,15 @@ export async function getPost(slug: string) {
     })
 
     const pageId = response.results[0].id
+
+    n2m.setCustomTransformer('callout', async (block: any): Promise<string> => {
+        const { id, has_children } = block
+        let callout_string = ''
+        if (!has_children) {
+            return 'MEH'
+        }
+        return 'HAHA'
+    })
 
     // notice second argument, totalPage.
     const mdblocks = await n2m.pageToMarkdown(pageId, 2)

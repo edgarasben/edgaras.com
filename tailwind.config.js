@@ -64,6 +64,7 @@ module.exports = {
                         '--tw-prose-bold': theme('colors.fg.neutral'),
                         '--tw-prose-headings': theme('colors.fg.neutral'),
                         '--tw-prose-links': theme('colors.fg.neutral'),
+                        '--tw-prose-quotes': theme('colors.fg.neutral'),
                         /* TODO: fix, not working '--tw-prose-captions': theme('colors.fg.neutral-faded'), */
 
                         a: {
