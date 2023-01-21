@@ -17,7 +17,7 @@ export async function getLogs(): Promise<Log[]> {
         sorts: [
             {
                 property: 'Created',
-                direction: 'descending'
+                direction: 'ascending'
             }
         ]
     })
@@ -26,9 +26,9 @@ export async function getLogs(): Promise<Log[]> {
     const results = response.results.map((result: any) => {
         return {
             title: result.properties.Name.title[0]?.plain_text,
-            created: result.properties['Created'].date?.start,
+            created: result.properties['Created'].formula.date.start,
             url: result.properties.URL.url,
-            tag: result.properties.Tags.multi_select[0].name
+            tag: result.properties.Tags.multi_select[0]?.name
         }
     })
 
