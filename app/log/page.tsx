@@ -3,6 +3,8 @@ import { Container } from '@/components/container'
 import React from 'react'
 import LinkIcon from '@/components/icons/link-icon'
 import getWeek from 'date-fns/getWeek'
+import ChevronUpDownIcon from '@/components/icons/chevron-up-down-icon'
+import ChevronDownIcon from '@/components/icons/chevron-down'
 
 export const revalidate = 30 // revalidate every 30 secs
 
@@ -50,69 +52,13 @@ export default async function PostsPage() {
                                     {week.logs.map((logItem: any) =>
                                         logItem.url ? (
                                             <li key={logItem.title + ' ' + logItem.url}>
-                                                <a
-                                                    href={logItem.url}
-                                                    className="group flex items-center justify-between bg-bg-elevated py-2 pl-2 pr-3 hover:bg-bg-neutral"
-                                                >
-                                                    <div className="flex items-center space-x-2">
-                                                        {logItem.tag && (
-                                                            <span
-                                                                className={`y-0.5 rounded px-2 text-black/70 dark:text-white/70 ${
-                                                                    logItem.tag === 'Work'
-                                                                        ? 'bg-accent-1'
-                                                                        : ''
-                                                                }${
-                                                                    logItem.tag ===
-                                                                    'Learn'
-                                                                        ? 'bg-accent-2'
-                                                                        : ''
-                                                                }${
-                                                                    logItem.tag ===
-                                                                    'Discover'
-                                                                        ? 'bg-accent-3'
-                                                                        : ''
-                                                                }`}
-                                                            >
-                                                                {logItem.tag}
-                                                            </span>
-                                                        )}
-                                                        <span className="decoration-fg-neutral/50 underline-offset-4 group-hover:underline">
-                                                            {logItem.title}
-                                                        </span>
-                                                    </div>
-                                                    <LinkIcon className="h-4 w-4 text-fg-neutral-faded" />
+                                                <a href={logItem.url}>
+                                                    <Row item={logItem} />
                                                 </a>
                                             </li>
                                         ) : (
                                             <li key={logItem.title + ' ' + logItem.url}>
-                                                <div className="group flex items-center justify-between bg-bg-elevated py-2 pl-2 pr-3">
-                                                    <div className="flex items-center space-x-2">
-                                                        {logItem.tag && (
-                                                            <span
-                                                                className={`y-0.5 rounded px-2 text-black/70 dark:text-white/70 ${
-                                                                    logItem.tag === 'Work'
-                                                                        ? 'bg-accent-1'
-                                                                        : ''
-                                                                }${
-                                                                    logItem.tag ===
-                                                                    'Learn'
-                                                                        ? 'bg-accent-2'
-                                                                        : ''
-                                                                }${
-                                                                    logItem.tag ===
-                                                                    'Discover'
-                                                                        ? 'bg-accent-3'
-                                                                        : ''
-                                                                }`}
-                                                            >
-                                                                {logItem.tag}
-                                                            </span>
-                                                        )}
-                                                        <span className="decoration-fg-neutral/50 underline-offset-4">
-                                                            {logItem.title}
-                                                        </span>
-                                                    </div>
-                                                </div>
+                                                <Row item={logItem} />
                                             </li>
                                         )
                                     )}
@@ -123,5 +69,51 @@ export default async function PostsPage() {
                 </div>
             </section>
         </Container>
+    )
+}
+
+function Row({ item }: { item: Log }) {
+    return item.content ? (
+        <details className="group flex items-center space-x-2 bg-bg-elevated py-2 pl-2 pr-3 open:bg-bg-neutral hover:bg-bg-neutral">
+            <summary className="flex cursor-pointer items-center justify-between">
+                <RowInner item={item} />
+                <ChevronDownIcon className="h-5 w-5 text-fg-neutral-faded" />
+            </summary>
+            <div className="mt-3 py-4 text-fg-neutral-faded">{item.content}</div>
+        </details>
+    ) : (
+        <div className="group flex items-center space-x-2 bg-bg-elevated py-2 pl-2 pr-3 hover:bg-bg-neutral">
+            <div className="flex items-center justify-between">
+                <RowInner item={item} />
+            </div>
+        </div>
+    )
+}
+
+function RowInner({ item }: { item: Log }) {
+    return (
+        <div className="flex items-center space-x-2">
+            {item.tag && (
+                <span
+                    className={`y-0.5 rounded px-2 text-black/70 dark:text-white/70 ${
+                        item.tag === 'Work' ? 'bg-accent-1' : ''
+                    }${item.tag === 'Learn' ? 'bg-accent-2' : ''}${
+                        item.tag === 'Discover' ? 'bg-accent-3' : ''
+                    }`}
+                >
+                    {item.tag}
+                </span>
+            )}
+            <span
+                className={
+                    item.url
+                        ? 'decoration-fg-neutral/50 underline-offset-4 group-hover:underline'
+                        : ''
+                }
+            >
+                {item.title}
+            </span>
+            {item.url && <LinkIcon className="h-4 w-4 text-fg-neutral-faded" />}
+        </div>
     )
 }
