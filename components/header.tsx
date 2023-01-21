@@ -4,6 +4,7 @@ import { NewsletterForm } from '@/components/newsletter-form'
 import LinkedinIcon from '@/components/icons/linkedin-icon'
 import TwitterIcon from '@/components/icons/twitter-icon'
 import MailIcon from '@/components/icons/mail-icon'
+import Image from 'next/image'
 
 const socialLinks = [
     {
@@ -30,15 +31,15 @@ export const Header = () => {
             <div className="space-y-8 rounded-xl bg-bg-base p-8 shadow-sm">
                 <div className="relative flex justify-between">
                     <div className="flex flex-col items-start space-y-8 sm:flex-row sm:items-center sm:space-x-4 sm:space-y-0">
-                        <img
+                        <Image
                             src="/images/edgaras-profile.jpg"
-                            className="h-14 w-14 rounded-full border-2 border-bg-base shadow-md"
+                            className="rounded-full border-2 border-bg-base shadow-md"
                             alt="Edgaras profile"
+                            width={56}
+                            height={56}
                         />
                         <div className="space-y-1">
-                            <h1 className="font-semibold">
-                                Edgaras Benediktavicius
-                            </h1>
+                            <h1 className="font-semibold">Edgaras Benediktavicius</h1>
                             <p className="text-fg-neutral-faded">
                                 Co-founder at{' '}
                                 <a
@@ -65,8 +66,8 @@ export const Header = () => {
                     </ul>
                 </div>
                 <p className="text-fg-neutral-faded">
-                    I design and code things for the web. Get updates on what I learn
-                    and build by joining my mailing list. Weekly at most.
+                    I design and code things for the web. Get updates on what I learn and
+                    build by joining my mailing list. Weekly at most.
                 </p>
                 <NewsletterForm />
             </div>
