@@ -10,8 +10,8 @@ export default async function PostsPage() {
     const logs = await getLogs()
 
     // Group logs by week number derived from the log date
-    const groupedItems: { week: number; logs: Log[] }[] = logs
-        .reduce((acc: { week: number; logs: Log[] }[], item) => {
+    const groupedItems: { week: number; logs: Log[] }[] = logs.reduce(
+        (acc: { week: number; logs: Log[] }[], item) => {
             const weekNumber = getWeek(new Date(item.created))
             const existingWeek = acc.find((w) => w.week === weekNumber)
             if (existingWeek) {
@@ -20,8 +20,9 @@ export default async function PostsPage() {
                 acc.push({ week: weekNumber, logs: [item] })
             }
             return acc
-        }, [])
-        .reverse()
+        },
+        []
+    )
 
     const weekGroups: { [key: number]: Log[] } = {}
     logs.map((item) => {

@@ -17,7 +17,7 @@ export async function getLogs(): Promise<Log[]> {
         sorts: [
             {
                 property: 'Created',
-                direction: 'ascending'
+                direction: 'descending'
             }
         ]
     })
