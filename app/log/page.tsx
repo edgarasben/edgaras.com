@@ -82,7 +82,11 @@ function Row({ item }: { item: Log }) {
             <div className="mt-3 py-4 text-fg-neutral-faded">{item.content}</div>
         </details>
     ) : (
-        <div className="group flex items-center space-x-2 bg-bg-elevated py-2 pl-2 pr-3 hover:bg-bg-neutral">
+        <div
+            className={`group flex items-center space-x-2 bg-bg-elevated py-2 pl-2 pr-3 ${
+                item.url && 'hover:bg-bg-neutral'
+            }`}
+        >
             <div className="flex items-center justify-between">
                 <RowInner item={item} />
             </div>
