@@ -4,6 +4,7 @@ import { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTransition } from 'react'
 import { Button } from '@/components/button'
+import { usePlausible } from 'next-plausible'
 
 import * as Dialog from '@radix-ui/react-dialog'
 
@@ -17,6 +18,7 @@ export function NewsletterForm() {
         title: '',
         description: ''
     })
+    const plausible = usePlausible()
 
     const handleSubscribe = async (event: React.SyntheticEvent) => {
         event.preventDefault()
@@ -75,16 +77,16 @@ export function NewsletterForm() {
                     className="w-full rounded-lg border border-transparent bg-bg-neutral p-2.5 outline-none placeholder:text-fg-neutral-faded focus:border-border-neutral-faded focus:bg-bg-neutral focus:ring-border-neutral-faded"
                 />
                 <div className="absolute inset-y-0 right-0 flex items-center pr-1.5">
-                    <Button type="submit" isLoading={isLoading}>
+                    <Button
+                        type="submit"
+                        isLoading={isLoading}
+                        onClick={() => plausible('Clicked Subscribe')}
+                    >
                         Subscribe
                     </Button>
                 </div>
             </form>
-            <Modal
-                open={modalOpen}
-                onOpenChange={setModalOpen}
-                modalText={modalText}
-            />
+            <Modal open={modalOpen} onOpenChange={setModalOpen} modalText={modalText} />
         </>
     )
 }
