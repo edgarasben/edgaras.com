@@ -48,7 +48,7 @@ export default async function PostsPage() {
                                     2022 Week {week.week}
                                 </h2>
 
-                                <ul className="overflow-hidden rounded-md">
+                                <ul className="overflow-hidden rounded-md shadow-sm">
                                     {week.logs.map((logItem: any) =>
                                         logItem.url ? (
                                             <li key={logItem.title + ' ' + logItem.url}>
