@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+summary::-webkit-details-marker {
+    @apply hidden;
+}
+
 @layer base {
     :root {
         isolation: isolate;

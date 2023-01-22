@@ -112,16 +112,16 @@ function RowInner({ item }: { item: Log }) {
                 <span
                     className={
                         item.url
-                            ? 'decoration-fg-neutral/50 underline-offset-4 group-hover:underline'
+                            ? 'underline decoration-fg-neutral/20 underline-offset-4'
                             : ''
                     }
                 >
                     {item.title}
                 </span>
             </div>
-            {item.url && (
+            {/*     {item.url && (
                 <LinkIcon className="h-4 w-4 flex-shrink-0 text-fg-neutral-faded" />
-            )}
+            )} */}
         </div>
     )
 }
