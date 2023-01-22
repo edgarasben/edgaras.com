@@ -23,7 +23,7 @@
 
         --color-accent-1: 246deg 55% 81%;
         --color-accent-2: 192deg 80% 76%;
-        --color-accent-3: 330deg 46% 73%;
+        --color-accent-3: 40deg 46% 73%;
     }
 
     :root.dark {
@@ -39,8 +39,8 @@
         --color-bg-primary: 138deg 76% 87%;
         --color-on-primary: 0deg 0% 0%;
 
-        --color-accent-1: 246deg 30% 25%;
-        --color-accent-2: 192deg 30% 12%;
-        --color-accent-3: 330deg 30% 17%;
+        --color-accent-1: 246deg 30% 40%;
+        --color-accent-2: 192deg 30% 35%;
+        --color-accent-3: 40deg 70% 35%;
     }
 }
