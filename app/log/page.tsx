@@ -45,7 +45,7 @@ export default async function PostsPage() {
                         return (
                             <div key={week.week} className="space-y-2">
                                 <h2 className="text-sm uppercase tracking-wider text-fg-neutral-faded">
-                                    2022 Week {week.week}
+                                    2023 Week {week.week}
                                 </h2>
 
                                 <ul className="divide-y divide-border-neutral-faded/50 overflow-hidden rounded-md shadow-sm">
