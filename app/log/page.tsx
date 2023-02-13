@@ -119,9 +119,6 @@ function RowInner({ item }: { item: Log }) {
                     {item.title}
                 </span>
             </div>
-            {/*     {item.url && (
-                <LinkIcon className="h-4 w-4 flex-shrink-0 text-fg-neutral-faded" />
-            )} */}
         </div>
     )
 }

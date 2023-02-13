@@ -40,7 +40,7 @@ const MarkdownComponents: object = {
 
             return (
                 <figure>
-                    <div className={`${aspect} relative overflow-hidden`}>
+                    <div className={`${aspect} not-prose relative overflow-hidden`}>
                         <Image
                             src={image.properties.src}
                             fill
