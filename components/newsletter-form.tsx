@@ -4,7 +4,7 @@ import { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTransition } from 'react'
 import { Button } from '@/components/button'
-import { usePlausible } from 'next-plausible'
+/* import { usePlausible } from 'next-plausible' */
 
 import * as Dialog from '@radix-ui/react-dialog'
 
@@ -18,7 +18,7 @@ export function NewsletterForm() {
         title: '',
         description: ''
     })
-    const plausible = usePlausible()
+    /*     const plausible = usePlausible() */
 
     const handleSubscribe = async (event: React.SyntheticEvent) => {
         event.preventDefault()
@@ -27,7 +27,6 @@ export function NewsletterForm() {
             email: { value: string }
         }
         const email = target.email.value
-        console.log(JSON.stringify(email, null, 2))
 
         const subsResponse = await fetch('/api/post-newsletter-subscriber', {
             method: 'POST',
@@ -35,8 +34,6 @@ export function NewsletterForm() {
         })
 
         const data: any = await subsResponse.json()
-
-        console.log('truth', data)
 
         if (data.result === 'subscribed')
             setModalText({
@@ -80,7 +77,7 @@ export function NewsletterForm() {
                     <Button
                         type="submit"
                         isLoading={isLoading}
-                        onClick={() => plausible('Clicked Subscribe')}
+                        /*             onClick={() => plausible('Clicked Subscribe')} */
                     >
                         Subscribe
                     </Button>
