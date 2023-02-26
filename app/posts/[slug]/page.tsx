@@ -12,7 +12,7 @@ interface PostPageProps {
 
 export const revalidate = 30 // revalidate every 30 secs
 
-export async function generateMetadata({ params }): Promise<Metadata> {
+export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
   const slug = params.slug.toString()
   const post = await getPost(slug)
   return { title: post.title }
