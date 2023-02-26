@@ -2,6 +2,7 @@ import { getPosts } from '@/lib/get-posts'
 import { getPost } from '@/lib/get-post'
 import { formatDate } from '@/lib/format-date'
 import { Container } from '@/components/container'
+import type { Metadata } from 'next'
 
 interface PostPageProps {
   params: {
@@ -11,14 +12,20 @@ interface PostPageProps {
 
 export const revalidate = 30 // revalidate every 30 secs
 
+export async function generateMetadata({ params }): Promise<Metadata> {
+  const slug = params.slug.toString()
+  const post = await getPost(slug)
+  return { title: post.title }
+}
+
 export default async function PostPage({ params }: PostPageProps) {
-  let slug = params.slug.toString()
+  const slug = params.slug.toString()
 
   const post = await getPost(slug)
 
   return (
     <Container>
-      <article className="prose max-w-none break-all prose-h1:text-center prose-figcaption:text-fg-neutral-faded prose-pre:bg-black lg:prose-xl">
+      <article className="prose max-w-none break-all lg:prose-xl prose-h1:text-center prose-figcaption:text-fg-neutral-faded prose-pre:bg-black">
         <h1>{post.title}</h1>
         <time dateTime="2018-07-07" className="block text-center text-fg-neutral-faded">
           {formatDate(post.firstPosted)}
