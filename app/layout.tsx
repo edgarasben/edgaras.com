@@ -63,7 +63,7 @@ export const metadata: Metadata = {
       }
     ]
   },
-  manifest: 'https://nextjs.org/manifest.json'
+  manifest: '/site.webmanifest'
 }
 
 const themeScript = `
