@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // e.g. for "/blog/[slug]" this should be "/blog/post-1"
     await res.revalidate(req.query.path as string)
     console.log(`Revalidated "${req.query.path}"`)
-    return res.json({ revalidated: true })
+    return res.send(`Updated "${req.query.path}"`)
   } catch (err) {
     // If there was an error, Next.js will continue
     // to show the last successfully generated page
