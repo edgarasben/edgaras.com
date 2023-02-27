@@ -25,7 +25,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <Container>
-      <article className="prose max-w-none break-all lg:prose-xl prose-h1:text-center prose-figcaption:text-fg-neutral-faded prose-pre:bg-black">
+      <article className="prose max-w-none break-words lg:prose-xl prose-h1:text-center prose-figcaption:text-fg-neutral-faded prose-pre:bg-black">
         <h1>{post.title}</h1>
         <time dateTime="2018-07-07" className="block text-center text-fg-neutral-faded">
           {formatDate(post.firstPosted)}
