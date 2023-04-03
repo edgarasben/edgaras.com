@@ -13,6 +13,9 @@
 /out/
 /analyze/*
 
+# react-email
+.react-email
+
 # production
 /build
 

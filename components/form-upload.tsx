@@ -4,9 +4,7 @@ import { useState } from 'react'
 
 export function FormUpload() {
     const [image, setImage] = useState<File | null>(null)
-    const [createObjectURL, setCreateObjectURL] = useState<string | undefined>(
-        undefined
-    )
+    const [createObjectURL, setCreateObjectURL] = useState<string | undefined>(undefined)
 
     const uploadToClient = (event: React.FormEvent<HTMLFormElement>) => {
         const target = event.target as HTMLInputElement
@@ -15,7 +13,6 @@ export function FormUpload() {
             setImage(file)
             setCreateObjectURL(URL.createObjectURL(file))
         }
-        console.log('file name is ', file?.name)
     }
 
     const uploadToServer = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -29,8 +26,6 @@ export function FormUpload() {
             method: 'POST',
             body: form
         })
-
-        console.log(response)
     }
 
     return (

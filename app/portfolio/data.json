@@ -1,0 +1,73 @@
+[
+  {
+    "project": "Best Writing",
+    "title": "A platform to find the best writing jobs in one place",
+    "description": "I co-founded Best Writing, an online platform that simplifies the search for the best writing jobs worldwide. Initially the platform was build entirely using no-code tools. As the project evolved we designed and build a custom website using Next.js, Supabase and Tailwind CSS. The platform is currently in beta and we are looking for writers to join the platform.",
+    "image": "/images/bestwriting.jpg",
+    "image2": "",
+    "alt": "Best Writing",
+    "slug": "bestwriting",
+    "meta": {
+      "year": "2023",
+      "role": "Co-Founder, Designer & Developer",
+      "client": "-",
+      "link": {
+        "text": "Website",
+        "url": "https://bestwriting.com/"
+      }
+    }
+  },
+
+  {
+    "project": "Spirii Go",
+    "title": "A mobile app for charging electric cars",
+    "image": "/images/spirii-go.jpg",
+    "image2": "",
+    "alt": "F.C. København",
+    "slug": "fck1",
+    "meta": {
+      "year": "2020",
+      "role": "Mobile App Designer",
+      "client": "Spirii",
+      "link": {
+        "text": "Spirii Go App",
+        "url": "https://spirii.com/en/products/charging-app"
+      }
+    }
+  },
+  {
+    "project": "F.C. Copenhagen",
+    "title": "A club app for F.C. Copenhagen football fans",
+    "description": "I led the design of a fan engagement mobile app for F.C. Copenhagen football club. From gathering stakeholder input to creating experience flows, UI mockups and guiding the development a React Native application. I ensured the app provided live match updates, exclusive news, behind-the-scenes content, and digital stadium tickets. I also created a scalable design system for future football club mobile app development.",
+    "image": "/images/fck.jpg",
+    "image2": "",
+    "alt": "F.C. Copenhagen",
+    "slug": "fck",
+    "meta": {
+      "year": "2022",
+      "role": "Mobile App Designer",
+      "client": "F.C. Copenhagen",
+      "link": {
+        "text": "F.C. Copenhagen App",
+        "url": "https://www.fck.dk/en/fc-copenhagen-app"
+      }
+    }
+  },
+  {
+    "project": "Majestico",
+    "title": "A website to buy and sell luxury villas",
+    "image": "/images/majestico.jpg",
+    "image2": "/images/majestico-2.jpg",
+    "alt": "Majestico",
+    "slug": "majestico",
+    "meta": {
+      "year": "2022",
+      "role": "Web Designer",
+      "client": "Majestico",
+      "link": {
+        "text": "Website",
+        "url": "https://majestico.com/"
+      }
+    }
+  }
+]

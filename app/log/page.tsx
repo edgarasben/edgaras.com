@@ -79,7 +79,7 @@ export default async function PostsPage() {
 
 function Row({ item }: { item: Log }) {
   return item.content ? (
-    <details className="group flex items-center space-x-2 bg-bg-elevated py-2 pl-2 pr-3 open:bg-bg-neutral hover:bg-bg-neutral">
+    <details className="group flex items-center space-x-2 bg-elevated py-2 pl-2 pr-3 open:bg-neutral hover:bg-neutral">
       <summary className="flex cursor-pointer items-start justify-between sm:items-center">
         <RowInner item={item} />
         <ChevronDownIcon className="h-5 w-5 flex-shrink-0 text-fg-neutral-faded" />
@@ -88,8 +88,8 @@ function Row({ item }: { item: Log }) {
     </details>
   ) : (
     <div
-      className={`group flex items-center space-x-2 bg-bg-elevated py-2 pl-2 pr-3 ${
-        item.url && 'hover:bg-bg-neutral'
+      className={`group flex items-center space-x-2 bg-elevated py-2 pl-2 pr-3 ${
+        item.url && 'hover:bg-neutral'
       }`}
     >
       <div className="flex items-center justify-between">

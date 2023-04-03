@@ -4,6 +4,7 @@ import '@/styles/globals.css'
 import { NavigationBar } from '@/components/navigation-bar'
 
 import type { Metadata } from 'next'
+import { Providers } from './Providers'
 
 export const metadata: Metadata = {
   title: {
@@ -65,7 +66,7 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest'
 }
-
+/* 
 const themeScript = `
   let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
@@ -99,25 +100,18 @@ const themeScript = `
     disableTransitionsTemporarily()
     updateMode()
   }
-`
+` */
 
-interface RootLayoutProps {
-  children: React.ReactNode
-}
-
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="bg-bg-page text-fg-neutral">
-      <body>
+    // suppressHydrationWarning is for "next-themes" to not give warnings
+    <html suppressHydrationWarning lang="en" className="h-full bg-page text-fg-neutral">
+      <body className="h-full">
         <>
           <NavigationBar />
-          {children}
+          <Providers>{children}</Providers>
         </>
       </body>
-      <Script
-        id="theme-script"
-        dangerouslySetInnerHTML={{ __html: themeScript }}
-      ></Script>
     </html>
   )
 }
