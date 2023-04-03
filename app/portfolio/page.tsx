@@ -103,20 +103,20 @@ export default function PortfolioPage() {
               className="place-self-center"
             >
               <Image
-                src={'/images/logos/spirii.svg'}
-                width={144}
-                height={65.34}
+                src={'/images/logos/spirii.png'}
+                width={66.74}
+                height={32}
                 alt="Spirii"
-                className="h-8 opacity-50 transition hover:scale-105 hover:opacity-90"
+                className="opacity-50 transition hover:scale-105 hover:opacity-90"
               />
             </a>
             <a href="https://www.motosumo.com/" className="place-self-center">
               <Image
-                src={'/images/logos/motosumo.svg'}
-                width={96}
-                height={60.97}
+                src={'/images/logos/motosumo.png'}
+                width={49}
+                height={32}
                 alt="Motosumo"
-                className="h-8 opacity-50 transition hover:scale-105 hover:opacity-90"
+                className="opacity-50 transition hover:scale-105 hover:opacity-90"
               />
             </a>
             <a
