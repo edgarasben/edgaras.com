@@ -66,7 +66,7 @@ export default function PortfolioPage() {
             <div className="flex flex-col items-center gap-10 sm:flex-row">
               <ButtonCalendar>Book a Call</ButtonCalendar>
               <a
-                href="mailto:hi@edgaras.com?subject=I%20have%20a%20project%20in%20mind&body=To%20help%20me%20better%20understand%20your%20needs%20and%20provide%20an%20accurate%20quote%2C%20please%20provide%20the%20information%20below%20in%20your%20response%3A%0D%0A%0D%0A---%0D%0A%0D%0A1.%20Your%20name%3A%0D%0A2.%20Company%20name%3A%0D%0A3.%20Project%20timeline%20(date%20from%2C%20to)%3A%0D%0A3.%20Project%20budget%3A%0D%0A4.%20Tell%20me%20a%20bit%20more%20what%20you%20are%20looking%20for%3F%3A"
+                href="mailto:hi@edgaras.com?subject=Project%20Inquiry&body=Please%20provide%20the%20information%20below%20to%20help%20me%20understand%20your%20needs%20and%20give%20you%20an%20accurate%20quote%3A---1.%20Your%20name%3A2.%20Company%20name%3A3.%20Project%20timeline%20(date%20from%2C%20to)%3A3.%20Project%20budget%3A4.%20Tell%20me%20a%20bit%20more%20what%20you%20are%20looking%20for%3F%3A"
                 className="text-lg text-fg-neutral-faded underline decoration-fg-neutral-faded/25 underline-offset-8 transition-all hover:decoration-fg-primary hover:underline-offset-8"
               >
                 Or email me
