@@ -28,10 +28,10 @@ export default function PortfolioPage() {
               grow digital 🪴 */}
                 {/* Stategic design, <br />
               functional prototypes, <br /> tangible results. */}
-                <span className="text-fg-neutral xs:whitespace-nowrap">
+                <span className="whitespace-nowrap tracking-tight text-fg-neutral">
                   Your vision, realized
                 </span>{' '}
-                <span className="absolute -translate-y-28 -translate-x-24 -rotate-45 text-fg-primary xs:-translate-y-16 sm:-translate-x-0 sm:-rotate-0">
+                <span className="absolute -translate-y-20 -translate-x-24 -rotate-45 text-fg-primary sm:-translate-y-14 sm:-translate-x-0 sm:-rotate-0">
                   <svg
                     width="68"
                     height="74"
@@ -69,7 +69,7 @@ export default function PortfolioPage() {
               more growth 🪴
             </h1> */}
             <div className="flex flex-col items-center gap-10 sm:flex-row">
-              <ButtonCalendar>Book a Call</ButtonCalendar>
+              <ButtonCalendar>Free 30 min call</ButtonCalendar>
               <a
                 href="mailto:hi@edgaras.com?subject=Project%20Inquiry&body=Please%20provide%20the%20information%20below%20to%20help%20me%20understand%20your%20needs%20and%20give%20you%20an%20accurate%20quote%3A---1.%20Your%20name%3A2.%20Company%20name%3A3.%20Project%20timeline%20(date%20from%2C%20to)%3A3.%20Project%20budget%3A4.%20Tell%20me%20a%20bit%20more%20what%20you%20are%20looking%20for%3F%3A"
                 className="text-lg font-medium text-fg-neutral underline decoration-fg-neutral-faded/25 underline-offset-8 transition-all hover:decoration-fg-primary hover:underline-offset-8"
@@ -188,7 +188,7 @@ export default function PortfolioPage() {
               viewBox="0 0 162 128"
               fill="none"
               aria-hidden="true"
-              className="absolute inset-x-0 -top-48 -z-10 h-32 w-full stroke-fg-neutral-faded/20 "
+              className="absolute inset-x-0 -top-60 -z-10 h-32 w-full stroke-fg-neutral-faded/20 "
             >
               <path
                 id="b56e9dab-6ccb-4d32-ad02-6b4bb5d9bbeb"
@@ -289,8 +289,8 @@ export default function PortfolioPage() {
             </div>
           </div>
         </section>
-        <section className="w-full overflow-hidden pt-32 pb-16 text-4xl tracking-tighter sm:text-6xl md:pt-64 lg:text-8xl">
-          <div className="relative flex -rotate-3 space-x-4">
+        <section className="w-full overflow-hidden pt-32 pb-16 text-5xl tracking-tighter sm:text-6xl md:pt-48 lg:text-8xl">
+          <div className="relative flex -rotate-3 space-x-2 md:space-x-1.5">
             <h2 className="animate-[translateX-0--100_24s_linear_infinite] flex-nowrap space-x-2 whitespace-nowrap font-medium uppercase text-fg-neutral-faded/25 md:space-x-3">
               <span>Featured projects ✲</span>
               <span>Featured projects ✲</span>
@@ -301,7 +301,7 @@ export default function PortfolioPage() {
             </h2>
           </div>
         </section>
-        <section className="mx-auto w-full max-w-screen-xl columns-1 gap-8 px-8 py-16 md:columns-2">
+        <section className="mx-auto w-full max-w-screen-xl columns-1 gap-8 px-8 pt-16 md:columns-2">
           <ul>
             {projects.map((project) => (
               <li key={project.slug}>
@@ -310,8 +310,8 @@ export default function PortfolioPage() {
             ))}
           </ul>
         </section>
-        <section className="mx-auto w-full max-w-screen-xl px-8 py-48">
-          <h2 className="text-center text-5xl font-extrabold text-fg-neutral md:text-left md:text-5xl">
+        <section className="mx-auto w-full max-w-[1376px] pb-24 pt-16 md:px-8">
+          <h2 className="p-8 text-center text-5xl font-extrabold text-fg-neutral md:ml-12 md:px-0 md:text-left">
             What I can help you with
           </h2>
           {/*  <p>
@@ -320,12 +320,14 @@ export default function PortfolioPage() {
           </p> */}
           <AnimateStagger />
         </section>
-        <section className="mx-auto w-full max-w-screen-xl px-8 pb-48 md:pt-24">
-          <h2 className="text-5xl font-extrabold text-fg-neutral">How I work</h2>
+        <section className="mx-auto w-full max-w-screen-xl px-8 pt-8 pb-24 md:pb-48 md:pt-24">
+          <h2 className="text-center text-5xl font-extrabold text-fg-neutral md:text-left">
+            How I work
+          </h2>
           {/*     <p className="pt-4 text-center text-xl text-fg-neutral-faded">
             I focus on fully digital, remote and asynchonious work.
           </p> */}
-          <div className="grid grid-cols-1 gap-16 pt-16 md:grid-cols-2 md:pt-32">
+          <div className="grid grid-cols-1 gap-16 pt-16 md:grid-cols-2 md:pt-20">
             <div className="space-y-4">
               <div className="flex items-center gap-4">
                 <Image
@@ -336,7 +338,7 @@ export default function PortfolioPage() {
                   title="Figma"
                   className="rounded-lg"
                 />
-                <h3 className="text-xl font-bold">Figma</h3>
+                <h3 className="text-2xl font-bold md:text-3xl">Figma</h3>
               </div>
               <p className="text-lg text-fg-neutral">
                 Whether I need to craft a quick <b>visual mockup</b> for a landing page or
@@ -355,7 +357,7 @@ export default function PortfolioPage() {
                   title="Miro"
                   className="rounded-lg"
                 />
-                <h3 className="text-xl font-bold">Miro</h3>
+                <h3 className="text-2xl font-bold md:text-3xl">Miro</h3>
               </div>
               <p className="text-lg text-fg-neutral">
                 When a project requires more UX work, planning and collaboration, I turn
@@ -374,7 +376,7 @@ export default function PortfolioPage() {
                   title="VS Code"
                   className="rounded-lg"
                 />
-                <h3 className="text-xl font-bold">Code</h3>
+                <h3 className="text-2xl font-bold md:text-3xl">Code</h3>
               </div>
               <p className="text-lg text-fg-neutral">
                 Designers don’t have to code, but I do! My go-to tool for coding is{' '}
@@ -397,7 +399,7 @@ export default function PortfolioPage() {
                   title="Make.com"
                   className="rounded-lg"
                 />
-                <h3 className="text-xl font-bold">No-Code</h3>
+                <h3 className="text-2xl font-bold md:text-3xl">No-Code</h3>
               </div>
               <p className="text-lg text-fg-neutral">
                 When I&apos;m working on projects where speed and cost are priorities, I
@@ -422,8 +424,8 @@ export default function PortfolioPage() {
 function Card(data: Project) {
   return (
     <a
-      /* href={`/portfolio/${data.slug}`} */
-      href={data.meta.link.url}
+      href={`/portfolio/${data.slug}`}
+      /*       href={data.meta.link.url} */
       className="group relative mb-20 block w-full md:mb-40 md:first:mt-32"
     >
       <div className="relative aspect-[3/4] overflow-hidden">

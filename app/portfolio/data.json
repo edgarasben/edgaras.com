@@ -10,7 +10,7 @@
     "meta": {
       "year": "2023",
       "role": "Co-Founder, Designer & Developer",
-      "client": "-",
+      "client": "Myself",
       "link": {
         "text": "Website",
         "url": "https://bestwriting.com/"
@@ -58,6 +58,8 @@
     "title": "Website to buy and sell luxury villas",
     "image": "/images/majestico.jpg",
     "image2": "/images/majestico-2.jpg",
+    "image3": "/images/majestico-2.jpg",
+    "image4": "/images/majestico-2.jpg",
     "alt": "Majestico",
     "slug": "majestico",
     "meta": {

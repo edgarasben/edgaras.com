@@ -76,14 +76,14 @@ export function AnimateStagger() {
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ duration: 1, ease: 'easeOut', staggerChildren: 0.5 }} */
       /*  viewport={{ once: true }} */
-      className="grid w-full grid-cols-1 gap-0.5 pt-16 md:grid-cols-2 md:pt-24"
+      className="grid w-full grid-cols-1 gap-0.5 pt-8 md:grid-cols-2 md:pt-12"
     >
       {data.map((service) => (
         <div
           key={service.title}
           /*        variants={item} */
 
-          className="w-full space-y-10 bg-neutral/50 p-8 md:space-y-16 md:p-16"
+          className="w-full space-y-10 bg-neutral/50 py-11 px-8 md:space-y-16 md:px-12 md:pt-16"
         >
           <Image
             src={service.image}
@@ -93,7 +93,7 @@ export function AnimateStagger() {
             className="h-28 w-auto object-cover md:h-auto"
           />
           <div className="space-y-8">
-            <h3 className="text-3xl font-bold">{service.title}</h3>
+            <h3 className="text-2xl font-bold md:text-3xl">{service.title}</h3>
             <p
               dangerouslySetInnerHTML={{ __html: service.description }}
               className="whitespace-pre-wrap text-lg text-fg-neutral"
