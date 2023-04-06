@@ -30,13 +30,13 @@ export default function CasePage({ params }: { params: { slug: string } }) {
         </Link>
         <div className="space-y-4">
           <p className="text-2xl font-medium text-fg-primary">{page?.project}</p>
-          <h1 className="text-4xl font-bold leading-snug md:w-2/3 md:text-5xl">
-            {page?.title}
+          <h1 className="text-4xl font-extrabold leading-snug md:w-2/3 md:text-5xl md:leading-snug">
+            <Balancer>{page?.title}</Balancer>
           </h1>
         </div>
       </header>
 
-      <section className="mx-auto w-full max-w-screen-xl space-y-32 space-x-8 px-8 py-16">
+      <section className="mx-auto w-full max-w-screen-xl space-y-32 space-x-8 px-8 pb-16 pt-12">
         <ul className="grid grid-cols-2 gap-8 md:auto-cols-auto md:grid-flow-col md:grid-cols-none [&>li>p]:text-fg-neutral">
           <li className="space-y-2">
             <h2 className="text-sm uppercase tracking-wider">Role</h2>
@@ -68,30 +68,37 @@ export default function CasePage({ params }: { params: { slug: string } }) {
       </section>
       <section className="relative aspect-video w-full">
         <Image
-          src={page?.image}
-          alt="Edgaras profile"
+          src={page?.coverHorizontal}
+          alt={page?.title}
           fill
           className="object-cover object-top"
         />
       </section>
-      <section className="text-medium mx-auto w-full max-w-screen-xl space-y-32 px-8 py-16 text-xl leading-relaxed md:py-48 md:text-3xl md:leading-loose">
+      <section className="text-medium mx-auto w-full max-w-screen-xl space-y-32 px-8 py-16 text-xl leading-relaxed md:py-48 md:text-3xl md:leading-relaxed">
         <p>
           <Balancer>{page?.description}</Balancer>
         </p>
       </section>
       <section className="mx-auto grid w-full max-w-screen-xl grid-cols-2 gap-8 px-8 pb-24  md:pb-48">
         <div className="relative col-span-2 aspect-video">
-          <Image src={page?.image} alt="test" fill className="object-cover" />
+          <Image src={page?.image1} alt="test" fill className="object-cover" />
         </div>
         <div className="relative aspect-square">
           <Image src={page?.image2} alt="test" fill className="object-cover" />
         </div>
         <div className="relative aspect-square">
-          <Image src={page?.image} alt="test" fill className="object-cover" />
+          <Image src={page?.image3} alt="test" fill className="object-cover" />
         </div>
         <div className="relative col-span-2 aspect-video">
-          <Image src={page?.image2} alt="test" fill className="object-cover" />
+          <Image src={page?.image4} alt="test" fill className="object-cover" />
         </div>
+      </section>
+      <section className="text-medium mx-auto w-full max-w-screen-xl space-y-16 px-8 py-16 md:py-16 md:pb-64">
+        <h2 className="text-5xl font-extrabold">Results</h2>
+        <p
+          className="prose text-3xl leading-relaxed"
+          dangerouslySetInnerHTML={{ __html: page?.results }}
+        ></p>
       </section>
       <PortfolioFooter />
     </div>

@@ -3,8 +3,12 @@
     "project": "Best Writing",
     "title": "Platform to find the best writing jobs in one place",
     "description": "I co-founded Best Writing, an online platform that simplifies the search for the best writing jobs worldwide. Initially the platform was build entirely using no-code tools. As the project evolved we designed and build a custom website using Next.js, Supabase and Tailwind CSS. The platform is currently in beta and we are looking for writers to join the platform.",
-    "image": "/images/bestwriting.jpg",
+    "coverVertical": "/images/bestwriting.jpg",
+    "coverHorizontal": "/images/bestwriting-2.jpg",
+    "image1": "/images/bestwriting.jpg",
     "image2": "",
+    "image3": "/images/fck-3.jpg",
+    "image4": "/images/fck-3.jpg",
     "alt": "Best Writing",
     "slug": "bestwriting",
     "meta": {
@@ -15,14 +19,19 @@
         "text": "Website",
         "url": "https://bestwriting.com/"
       }
-    }
+    },
+    "results": "We have 100+ writers signed up to the platform and we are looking to grow the community to 1000+ writers."
   },
 
   {
     "project": "Spirii Go",
     "title": "Mobile app for charging electric cars",
-    "image": "/images/spirii-go.jpg",
+    "coverVertical": "/images/spirii-go.jpg",
+    "coverHorizontal": "/images/spirii-go.jpg",
+    "image1": "/images/spirii-go.jpg",
     "image2": "",
+    "image3": "/images/fck-3.jpg",
+    "image4": "/images/fck-4.jpg",
     "alt": "F.C. København",
     "slug": "fck1",
     "meta": {
@@ -33,30 +42,38 @@
         "text": "Spirii Go App",
         "url": "https://spirii.com/en/products/charging-app"
       }
-    }
+    },
+    "results": "The website is currently in development and will be launched in 2022."
   },
   {
     "project": "F.C. Copenhagen",
     "title": "Club app for F.C. Copenhagen football fans",
-    "description": "I led the design of a fan engagement mobile app for F.C. Copenhagen football club. From gathering stakeholder input to creating experience flows, UI mockups and guiding the development a React Native application. I ensured the app provided live match updates, exclusive news, behind-the-scenes content, and digital stadium tickets. I also created a scalable design system for future football club mobile app development.",
-    "image": "/images/fck.jpg",
-    "image2": "",
+    "description": "As the lead designer, I spearheaded the development of a mobile app designed to boost fan engagement for the F.C. Copenhagen football club. My tasks involved collecting input from stakeholders, crafting experience flows, designing UI mockups, and steering the creation of a React Native application. The app offered live match updates, exclusive news, behind-the-scenes content, and digital stadium tickets. Furthermore, I developed a scalable design system to guarantee that future mobile app development for football clubs is both streamlined and efficient.",
+    "coverVertical": "/images/fck-cover-vertical.jpg",
+    "coverHorizontal": "/images/fck-cover-horizontal.jpg",
+    "image1": "/images/fck-1.jpg",
+    "image2": "/images/fck-2.jpg",
+    "image3": "/images/fck-3.jpg",
+    "image4": "/images/fck-4.jpg",
     "alt": "F.C. Copenhagen",
     "slug": "fck",
     "meta": {
       "year": "2022",
-      "role": "Mobile App Designer",
+      "role": "Lead App Designer",
       "client": "F.C. Copenhagen",
       "link": {
         "text": "F.C. Copenhagen App",
         "url": "https://www.fck.dk/en/fc-copenhagen-app"
       }
-    }
+    },
+    "results": "The F.C. Copenhagen mobile app was a resounding success, as reflected in the following key performance indicators: \n\n <ol><li>Featured in the App Store: first weeks after the launch, the app was trending as a #1 in the Sports category.</li><li>Increased Fan Engagement: The app saw a significant rise in user engagement. This was attributed to the interactive features and exclusive content, which provided fans with a more immersive experience.</li><li>Higher Ticket Sales: The digital stadium ticketing feature contributed to an increase in online ticket sales over the first season of implementation. This not only made the ticket purchasing process more convenient for fans but also allowed the club to streamline its ticketing operations.</li><li>Enhanced Sponsor Visibility: The app provided new opportunities for sponsor promotion, leading to an increase in sponsorship revenue. The in-app advertisements and exclusive content deals were particularly attractive to sponsors, as they offered targeted visibility to a highly engaged audience.</li><li>Scalable Design System: The development of a scalable design system ensured that future mobile app development for other football</li></ol>"
   },
   {
     "project": "Majestico",
     "title": "Website to buy and sell luxury villas",
-    "image": "/images/majestico.jpg",
+    "coverVertical": "/images/majestico.jpg",
+    "coverHorizontal": "/images/spirii-go.jpg",
+    "image1": "/images/majestico.jpg",
     "image2": "/images/majestico-2.jpg",
     "image3": "/images/majestico-2.jpg",
     "image4": "/images/majestico-2.jpg",
@@ -70,6 +87,7 @@
         "text": "Website",
         "url": "https://majestico.com/"
       }
-    }
+    },
+    "results": "The website is currently in development and will be launched in 2022."
   }
 ]

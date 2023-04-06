@@ -430,7 +430,7 @@ function Card(data: Project) {
     >
       <div className="relative aspect-[3/4] overflow-hidden">
         <Image
-          src={data.image}
+          src={data.coverVertical}
           fill
           alt={data.alt}
           className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
