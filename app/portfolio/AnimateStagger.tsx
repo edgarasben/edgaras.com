@@ -66,11 +66,12 @@ const item = {
 
 export function AnimateStagger() {
   return (
-    <motion.div
-      variants={container}
+    <div
+      /*    variants={container}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true }}
+      viewport={{ once: true }} */
+
       /*     initial={{ y: 16, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ duration: 1, ease: 'easeOut', staggerChildren: 0.5 }} */
@@ -78,9 +79,10 @@ export function AnimateStagger() {
       className="grid w-full grid-cols-1 gap-0.5 pt-16 md:grid-cols-2 md:pt-24"
     >
       {data.map((service) => (
-        <motion.div
+        <div
           key={service.title}
-          variants={item}
+          /*        variants={item} */
+
           className="w-full space-y-10 bg-neutral/50 p-8 md:space-y-16 md:p-16"
         >
           <Image
@@ -94,11 +96,11 @@ export function AnimateStagger() {
             <h3 className="text-3xl font-bold">{service.title}</h3>
             <p
               dangerouslySetInnerHTML={{ __html: service.description }}
-              className="whitespace-pre-wrap text-lg text-fg-neutral-faded"
+              className="whitespace-pre-wrap text-lg text-fg-neutral"
             />
           </div>
-        </motion.div>
+        </div>
       ))}
-    </motion.div>
+    </div>
   )
 }

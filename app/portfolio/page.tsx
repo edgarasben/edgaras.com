@@ -57,8 +57,11 @@ export default function PortfolioPage() {
                   </svg>
                 </span>
               </h1>
-              <p className="text-center text-2xl lg:text-left">
-                From a design concept to a functional product.
+              <p className="max-w-xl text-center text-2xl lg:text-left">
+                {/* Design and development services that help you launch your product with
+                confidence. */}{' '}
+                Design and development services to help you prototype and launch your web
+                or mobile product.
               </p>
             </div>
             {/*    <h1 className="text-6xl font-semibold leading-[4.25rem]">
@@ -69,7 +72,7 @@ export default function PortfolioPage() {
               <ButtonCalendar>Book a Call</ButtonCalendar>
               <a
                 href="mailto:hi@edgaras.com?subject=Project%20Inquiry&body=Please%20provide%20the%20information%20below%20to%20help%20me%20understand%20your%20needs%20and%20give%20you%20an%20accurate%20quote%3A---1.%20Your%20name%3A2.%20Company%20name%3A3.%20Project%20timeline%20(date%20from%2C%20to)%3A3.%20Project%20budget%3A4.%20Tell%20me%20a%20bit%20more%20what%20you%20are%20looking%20for%3F%3A"
-                className="text-lg text-fg-neutral-faded underline decoration-fg-neutral-faded/25 underline-offset-8 transition-all hover:decoration-fg-primary hover:underline-offset-8"
+                className="text-lg font-medium text-fg-neutral underline decoration-fg-neutral-faded/25 underline-offset-8 transition-all hover:decoration-fg-primary hover:underline-offset-8"
               >
                 Or email me
               </a>
@@ -209,7 +212,7 @@ export default function PortfolioPage() {
                   </p>
                 </div>
               </div>
-              <p className="font-medium text-fg-neutral-faded">
+              <p className="text-fg-neutral">
                 Edgaras is an exceptionally creative and professional designer and
                 developer. He always takes a lot of time to analyse everything, discusses
                 smallest details of the project to ensure that the solution is going to be
@@ -232,7 +235,7 @@ export default function PortfolioPage() {
                   </p>
                 </div>
               </div>
-              <p className="font-medium text-fg-neutral-faded">
+              <p className="text-fg-neutral">
                 Edgaras is one of the best digital designers that I know. Knowledgeable of
                 systems, processes, visual design but first and foremost he simply gets
                 how people use technology and interfaces. I would recommend him for any
@@ -255,7 +258,7 @@ export default function PortfolioPage() {
                   </p>
                 </div>
               </div>
-              <p className="font-medium text-fg-neutral-faded">
+              <p className="text-fg-neutral">
                 I’ve been working with Edgaras on the official F.C. Copenhagen app, and
                 from that experience I can say that he is a skilled and talented graphic
                 designer who truly understands the importance of UI, UX, and brand values.
@@ -275,7 +278,7 @@ export default function PortfolioPage() {
                   <p className="text-sm text-fg-neutral-faded">Visual Lead at Kiloo</p>
                 </div>
               </div>
-              <p className="font-medium text-fg-neutral-faded">
+              <p className="text-fg-neutral">
                 Edgaras is rarely satisfied with &ldquo;good enough&rdquo; and does not
                 lightly quit a task when &ldquo;better&rdquo; is a possibility. As a
                 matter of course, he will attack a problem from multiple angles to achieve

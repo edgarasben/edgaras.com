@@ -36,11 +36,11 @@ export default function PortfolioFooter() {
             </a>
           </li>
         </ul>
-        <p className="flex w-full flex-col justify-between gap-2 pt-32 text-center text-fg-neutral-faded md:flex-row">
+        <p className="flex w-full flex-col justify-between gap-2 pt-32 text-center text-lg text-fg-neutral md:flex-row">
           <span>MB Service Intent ✲ Lithuania / Denmark</span>
           <span>
             Design ♡ Code by{' '}
-            <Link href="/" className="font-medium hover:underline">
+            <Link href="/" className="font-medium underline">
               Edgaras Benediktavicius
             </Link>
           </span>

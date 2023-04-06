@@ -22,8 +22,7 @@ async function getPosts() {
       method: 'GET',
       headers: {
         Accept: 'application/vnd.github+json',
-        Authorization:
-          'Bearer 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',
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
         'X-GitHub-Api-Version': '2022-11-28'
       }
     }
@@ -39,8 +38,7 @@ async function getTree() {
       method: 'GET',
       headers: {
         Accept: 'application/vnd.github+json',
-        Authorization:
-          'Bearer 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',
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
         'X-GitHub-Api-Version': '2022-11-28'
       }
     }
