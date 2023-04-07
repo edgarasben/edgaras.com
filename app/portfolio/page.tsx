@@ -1,18 +1,28 @@
 import Image from 'next/image'
 import { AnimateStagger } from './AnimateStagger'
 import PortfolioFooter from './PortfolioFooter'
-import projects from './data.json'
+import projects from '../api/data/data.json'
 import { ButtonCalendar } from './ButtonCalendar'
 import Link from 'next/link'
 import { Button } from '@/components/button'
 import SpinningWheel from './SpinningWheel'
 
-type Project = (typeof projects)[0]
+/* export async function getData() {
+  const res = await fetch('http://localhost:3000/api/data', { next: { revalidate: 3 } })
 
-export default function PortfolioPage() {
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+
+  return res.json()
+}
+ */
+export default async function PortfolioPage() {
+  /*   const projects = await getData() */
+
   return (
     <>
-      <header className="fixed inset-x-0 h-[614px]">
+      <header className="fixed inset-x-0 h-[512px]">
         <div className="relative flex h-full items-center justify-center">
           {/*      <div className="absolute bottom-0 z-20 block translate-x-48 overflow-hidden">
         <div className="fill-mode-forwards relative h-[440px] w-[490px] bg-[url('/images/header-photo-edgaras.png')] bg-cover bg-center bg-no-repeat object-cover dark:bg-[url('/images/header-photo-edgaras-dark-theme.png')]"></div>
@@ -21,62 +31,62 @@ export default function PortfolioPage() {
           <div className="absolute inset-y-0 left-0 -z-10 h-[800px] w-full bg-page lg:w-3/5" />
           <div className="absolute inset-0 -z-20 h-[2000px] bg-[#BFDFB4]" />
 
-          <div className="mx-auto flex w-full max-w-screen-xl flex-col items-center space-y-16 px-8 lg:items-start">
-            <div className="space-y-4">
-              <h1 className="relative text-center text-4xl font-extrabold leading-tight lg:text-left lg:text-5xl lg:leading-tight">
+          <div className="mx-auto flex w-full max-w-screen-xl flex-col items-center space-y-8 px-8 xs:space-y-16 lg:items-start">
+            <div className="flex flex-col items-center justify-center space-y-4 lg:items-start">
+              <svg
+                width="68"
+                height="74"
+                viewBox="0 0 68 74"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+                className="origin-center -rotate-45 text-fg-primary xs:translate-x-24 lg:translate-x-[432px] lg:translate-y-6 lg:rotate-0"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M5.89895 2.63576C5.59895 8.65176 5.29953 14.6678 4.99953 20.6848C4.99953 22.0628 3.79895 23.1268 2.39895 23.0598C0.998949 22.9918 -0.000465393 21.8188 -0.000465393 20.4398C0.299535 14.4138 0.598949 8.38876 0.898949 2.36376C0.998949 0.985757 2.19914 -0.0712432 3.59914 0.00375683C4.89914 0.0787568 5.99895 1.25876 5.89895 2.63576Z"
+                />
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M25.2003 43.0648C35.5003 32.5538 47.1003 23.3958 57.2003 12.6028C58.1003 11.5948 59.7003 11.5408 60.7003 12.4818C61.7003 13.4238 61.7999 15.0078 60.7999 16.0158C50.6999 26.8398 39.0999 36.0278 28.7999 46.5698C27.7999 47.5538 26.2003 47.5678 25.2003 46.5998C24.3003 45.6328 24.2003 44.0488 25.2003 43.0648Z"
+                />
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M44.5995 68.5278C50.9995 66.7318 57.7001 65.8258 64.2001 64.9958C65.6001 64.8218 66.8999 65.7928 66.9999 67.1608C67.1999 68.5298 66.1993 69.7817 64.8993 69.9557C58.5993 70.7547 52.0999 71.6097 45.9999 73.3387C44.6999 73.7137 43.2993 72.9418 42.8993 71.6138C42.4993 70.2868 43.2995 68.9038 44.5995 68.5278Z"
+                />
+              </svg>
+
+              <h1 className="relative text-center text-3xl font-extrabold leading-tight xs:text-4xl lg:text-left lg:text-5xl lg:leading-tight">
                 {/* Design simple, <br />
               grow digital 🪴 */}
                 {/* Stategic design, <br />
               functional prototypes, <br /> tangible results. */}
-                <span className="whitespace-nowrap tracking-tight text-fg-neutral">
+                <span className="tracking-tight text-fg-neutral xs:whitespace-normal">
                   Your vision, realized
-                </span>{' '}
-                <span className="absolute -translate-y-20 -translate-x-24 -rotate-45 text-fg-primary sm:-translate-y-14 sm:-translate-x-0 sm:-rotate-0">
-                  <svg
-                    width="68"
-                    height="74"
-                    viewBox="0 0 68 74"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M5.89895 2.63576C5.59895 8.65176 5.29953 14.6678 4.99953 20.6848C4.99953 22.0628 3.79895 23.1268 2.39895 23.0598C0.998949 22.9918 -0.000465393 21.8188 -0.000465393 20.4398C0.299535 14.4138 0.598949 8.38876 0.898949 2.36376C0.998949 0.985757 2.19914 -0.0712432 3.59914 0.00375683C4.89914 0.0787568 5.99895 1.25876 5.89895 2.63576Z"
-                    />
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M25.2003 43.0648C35.5003 32.5538 47.1003 23.3958 57.2003 12.6028C58.1003 11.5948 59.7003 11.5408 60.7003 12.4818C61.7003 13.4238 61.7999 15.0078 60.7999 16.0158C50.6999 26.8398 39.0999 36.0278 28.7999 46.5698C27.7999 47.5538 26.2003 47.5678 25.2003 46.5998C24.3003 45.6328 24.2003 44.0488 25.2003 43.0648Z"
-                    />
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M44.5995 68.5278C50.9995 66.7318 57.7001 65.8258 64.2001 64.9958C65.6001 64.8218 66.8999 65.7928 66.9999 67.1608C67.1999 68.5298 66.1993 69.7817 64.8993 69.9557C58.5993 70.7547 52.0999 71.6097 45.9999 73.3387C44.6999 73.7137 43.2993 72.9418 42.8993 71.6138C42.4993 70.2868 43.2995 68.9038 44.5995 68.5278Z"
-                    />
-                  </svg>
                 </span>
               </h1>
-              <p className="max-w-xl text-center text-2xl lg:text-left">
+              <p className="max-w-xl text-center text-xl xs:text-2xl lg:text-left">
                 {/* Design and development services that help you launch your product with
                 confidence. */}{' '}
                 Design and development services to help you prototype and launch your web
                 or mobile product.
               </p>
+              <div className="flex flex-col items-center gap-10 pt-8 sm:flex-row">
+                <ButtonCalendar>Free 30 min call</ButtonCalendar>
+                <a
+                  href="mailto:hi@edgaras.com?subject=Project%20Inquiry&body=Please%20provide%20the%20information%20below%20to%20help%20me%20understand%20your%20needs%20and%20give%20you%20an%20accurate%20quote%3A---1.%20Your%20name%3A2.%20Company%20name%3A3.%20Project%20timeline%20(date%20from%2C%20to)%3A3.%20Project%20budget%3A4.%20Tell%20me%20a%20bit%20more%20what%20you%20are%20looking%20for%3F%3A"
+                  className="text-lg font-medium text-fg-neutral underline decoration-fg-neutral-faded/25 underline-offset-8 transition-all hover:decoration-fg-primary hover:underline-offset-8"
+                >
+                  Or email me
+                </a>
+              </div>
             </div>
             {/*    <h1 className="text-6xl font-semibold leading-[4.25rem]">
               Less design, <br />
               more growth 🪴
             </h1> */}
-            <div className="flex flex-col items-center gap-10 sm:flex-row">
-              <ButtonCalendar>Free 30 min call</ButtonCalendar>
-              <a
-                href="mailto:hi@edgaras.com?subject=Project%20Inquiry&body=Please%20provide%20the%20information%20below%20to%20help%20me%20understand%20your%20needs%20and%20give%20you%20an%20accurate%20quote%3A---1.%20Your%20name%3A2.%20Company%20name%3A3.%20Project%20timeline%20(date%20from%2C%20to)%3A3.%20Project%20budget%3A4.%20Tell%20me%20a%20bit%20more%20what%20you%20are%20looking%20for%3F%3A"
-                className="text-lg font-medium text-fg-neutral underline decoration-fg-neutral-faded/25 underline-offset-8 transition-all hover:decoration-fg-primary hover:underline-offset-8"
-              >
-                Or email me
-              </a>
-            </div>
           </div>
         </div>
         {/*     <svg
@@ -95,7 +105,7 @@ export default function PortfolioPage() {
           <SpinningWheel />
         </div>
       </header>
-      <main className="flex w-full translate-y-[1080px] flex-col items-center bg-base pt-24 lg:translate-y-[614px]">
+      <main className="flex w-full translate-y-[1080px] flex-col items-center bg-base pt-0 sm:pt-16 lg:translate-y-[614px] lg:pt-24">
         <div className="pointer-events-none absolute z-20 flex w-full -translate-y-[536px] items-center justify-center overflow-hidden bg-[#BFDFB4] pt-32 lg:inset-x-auto lg:bg-transparent lg:pt-0">
           <div className="absolute inset-y-0 top-0 right-0 -z-20 my-auto scale-[0.8] text-[#9FC193] lg:hidden">
             <SpinningWheel />
@@ -303,7 +313,7 @@ export default function PortfolioPage() {
         </section>
         <section className="mx-auto w-full max-w-screen-xl columns-1 gap-8 px-8 pt-16 md:columns-2">
           <ul>
-            {projects.map((project) => (
+            {projects.map((project: any) => (
               <li key={project.slug}>
                 <Card {...project} />
               </li>
@@ -421,7 +431,7 @@ export default function PortfolioPage() {
   )
 }
 
-function Card(data: Project) {
+function Card(data: any) {
   return (
     <a
       href={`/portfolio/${data.slug}`}

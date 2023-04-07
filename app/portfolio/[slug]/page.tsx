@@ -1,19 +1,24 @@
 import { notFound } from 'next/navigation'
 import PortfolioFooter from '../PortfolioFooter'
-import data from '../data.json'
+import data from '../../api/data/data.json'
 import Image from 'next/image'
 import Link from 'next/link'
 import Balancer from 'react-wrap-balancer'
 
-export function generateStaticParams() {
-  return data.map((item) => ({
+export async function generateStaticParams() {
+  /*   const data = await getData() */
+  return data.map((item: any) => ({
     slug: item.slug
   }))
 }
 
-export default function CasePage({ params }: { params: { slug: string } }) {
+export default async function CasePage({ params }: { params: { slug: string } }) {
   const { slug } = params
-  const page = data.find((page) => page.slug === slug)
+  /*   const data = await getData() */
+  const page = data.find((page: any) => {
+    return page.slug === slug
+  })
+
   if (!page) {
     // not found page here
     return notFound()
@@ -30,7 +35,7 @@ export default function CasePage({ params }: { params: { slug: string } }) {
         </Link>
         <div className="space-y-4">
           <p className="text-2xl font-medium text-fg-primary">{page?.project}</p>
-          <h1 className="text-4xl font-extrabold leading-snug md:w-2/3 md:text-5xl md:leading-snug">
+          <h1 className="text-4xl font-extrabold leading-tight md:w-2/3 md:text-5xl md:leading-snug">
             <Balancer>{page?.title}</Balancer>
           </h1>
         </div>
@@ -70,6 +75,7 @@ export default function CasePage({ params }: { params: { slug: string } }) {
         <Image
           src={page?.coverHorizontal}
           alt={page?.title}
+          priority
           fill
           className="object-cover object-top"
         />
@@ -79,8 +85,8 @@ export default function CasePage({ params }: { params: { slug: string } }) {
           <Balancer>{page?.description}</Balancer>
         </p>
       </section>
-      <section className="mx-auto grid w-full max-w-screen-xl grid-cols-2 gap-8 px-8 pb-24  md:pb-48">
-        <div className="relative col-span-2 aspect-video">
+      <section className="mx-auto grid w-full max-w-screen-xl gap-8 px-8 pb-16 md:grid-cols-2 md:pb-32">
+        <div className="relative aspect-video md:col-span-2">
           <Image src={page?.image1} alt="test" fill className="object-cover" />
         </div>
         <div className="relative aspect-square">
@@ -89,16 +95,20 @@ export default function CasePage({ params }: { params: { slug: string } }) {
         <div className="relative aspect-square">
           <Image src={page?.image3} alt="test" fill className="object-cover" />
         </div>
-        <div className="relative col-span-2 aspect-video">
+        <div className="relative aspect-video md:col-span-2">
           <Image src={page?.image4} alt="test" fill className="object-cover" />
         </div>
       </section>
       <section className="text-medium mx-auto w-full max-w-screen-xl space-y-16 px-8 py-16 md:py-16 md:pb-64">
-        <h2 className="text-5xl font-extrabold">Results</h2>
-        <p
-          className="prose text-3xl leading-relaxed"
-          dangerouslySetInnerHTML={{ __html: page?.results }}
-        ></p>
+        <h2 className="text-3xl font-extrabold md:text-5xl">Results</h2>
+        <p className="text-xl leading-relaxed md:text-3xl">{page.results.intro}</p>
+        <ol className="list-decimal space-y-8 pl-7 text-xl md:text-2xl">
+          {page.results.list.map((item) => (
+            <li key="item" className="pl-2 marker:text-fg-neutral-faded">
+              {item}
+            </li>
+          ))}
+        </ol>
       </section>
       <PortfolioFooter />
     </div>

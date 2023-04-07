@@ -20,9 +20,17 @@
         "url": "https://bestwriting.com/"
       }
     },
-    "results": "We have 100+ writers signed up to the platform and we are looking to grow the community to 1000+ writers."
+    "results": {
+      "intro": "The F.C. Copenhagen mobile app was a resounding success, as reflected in the following key performance indicators.",
+      "list": [
+        "Featured in the App Store: first weeks after the launch, the app was trending as a #1 in the Sports category.",
+        "Increased Fan Engagement: The app saw a significant rise in user engagement. This was attributed to the interactive features and exclusive content, which provided fans with a more immersive experience.",
+        "Higher Ticket Sales: The digital stadium ticketing feature contributed to an increase in online ticket sales over the first season of implementation. This not only made the ticket purchasing process more convenient for fans but also allowed the club to streamline its ticketing operations.",
+        "Enhanced Sponsor Visibility: The app provided new opportunities for sponsor promotion, leading to an increase in sponsorship revenue. The in-app advertisements and exclusive content deals were particularly attractive to sponsors, as they offered targeted visibility to a highly engaged audience",
+        "Scalable Design System: The development of a scalable design system ensured that future mobile app development for other football"
+      ]
+    }
   },
-
   {
     "project": "Spirii Go",
     "title": "Mobile app for charging electric cars",
@@ -43,7 +51,10 @@
         "url": "https://spirii.com/en/products/charging-app"
       }
     },
-    "results": "The website is currently in development and will be launched in 2022."
+    "results": {
+      "intro": "The F.C. Copenhagen mobile app was a resounding success, as reflected in the following key performance indicators.",
+      "list": ["A", "B"]
+    }
   },
   {
     "project": "F.C. Copenhagen",
@@ -66,7 +77,16 @@
         "url": "https://www.fck.dk/en/fc-copenhagen-app"
       }
     },
-    "results": "The F.C. Copenhagen mobile app was a resounding success, as reflected in the following key performance indicators: \n\n <ol><li>Featured in the App Store: first weeks after the launch, the app was trending as a #1 in the Sports category.</li><li>Increased Fan Engagement: The app saw a significant rise in user engagement. This was attributed to the interactive features and exclusive content, which provided fans with a more immersive experience.</li><li>Higher Ticket Sales: The digital stadium ticketing feature contributed to an increase in online ticket sales over the first season of implementation. This not only made the ticket purchasing process more convenient for fans but also allowed the club to streamline its ticketing operations.</li><li>Enhanced Sponsor Visibility: The app provided new opportunities for sponsor promotion, leading to an increase in sponsorship revenue. The in-app advertisements and exclusive content deals were particularly attractive to sponsors, as they offered targeted visibility to a highly engaged audience.</li><li>Scalable Design System: The development of a scalable design system ensured that future mobile app development for other football</li></ol>"
+    "results": {
+      "intro": "The F.C. Copenhagen mobile app was a resounding success, as reflected in the following key performance indicators.",
+      "list": [
+        "Featured in the App Store: first weeks after the launch, the app was trending as a #1 in the Sports category.",
+        "Increased Fan Engagement: The app saw a significant rise in user engagement. This was attributed to the interactive features and exclusive content, which provided fans with a more immersive experience.",
+        "Higher Ticket Sales: The digital stadium ticketing feature contributed to an increase in online ticket sales over the first season of implementation. This not only made the ticket purchasing process more convenient for fans but also allowed the club to streamline its ticketing operations.",
+        "Enhanced Sponsor Visibility: The app provided new opportunities for sponsor promotion, leading to an increase in sponsorship revenue. The in-app advertisements and exclusive content deals were particularly attractive to sponsors, as they offered targeted visibility to a highly engaged audience",
+        "Scalable Design System: The development of a scalable design system ensured that future mobile app development for other football"
+      ]
+    }
   },
   {
     "project": "Majestico",
@@ -88,6 +108,9 @@
         "url": "https://majestico.com/"
       }
     },
-    "results": "The website is currently in development and will be launched in 2022."
+    "results": {
+      "intro": "The F.C. Copenhagen mobile app was a resounding success, as reflected in the following key performance indicators.",
+      "list": ["A", "B"]
+    }
   }
 ]
