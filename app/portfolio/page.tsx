@@ -6,7 +6,6 @@ import { ButtonCalendar } from './ButtonCalendar'
 import Link from 'next/link'
 import { Button } from '@/components/button'
 import SpinningWheel from './SpinningWheel'
-import Balancer from 'react-wrap-balancer'
 
 /* export async function getData() {
   const res = await fetch('http://localhost:3000/api/data', { next: { revalidate: 3 } })
@@ -185,13 +184,11 @@ export default async function PortfolioPage() {
         </section>
         <section className="flex items-center justify-center px-8 pt-24 md:pt-48">
           <p className="max-w-3xl text-center text-2xl leading-relaxed text-fg-neutral md:text-3xl md:leading-normal">
-            <Balancer>
-              Hi! My name is Edgaras, and I am a freelancer specializing in UX/UI Design,
-              No-Code, and JavaScript development. <br className="block md:hidden" />{' '}
-              <br className="block md:hidden" /> I work with clients globally to create
-              engaging websites, functional app prototypes, and automations that enable
-              you to focus on what matters most.
-            </Balancer>
+            Hi! My name is Edgaras, and I am a freelancer specializing in UX/UI Design,
+            No-Code, and JavaScript development. <br className="block md:hidden" />{' '}
+            <br className="block md:hidden" /> I work with clients globally to create
+            engaging websites, functional app prototypes, and automations that enable you
+            to focus on what matters most.
           </p>
         </section>
         {/* Testimonials */}
@@ -324,7 +321,7 @@ export default async function PortfolioPage() {
           </ul>
         </section>
         <section className="mx-auto w-full max-w-[1376px] pb-24 pt-16 md:px-8">
-          <h2 className="p-8 text-center text-5xl font-extrabold text-fg-neutral md:ml-12 md:px-0 md:text-left">
+          <h2 className="p-8 text-5xl font-extrabold text-fg-neutral md:ml-12 md:px-0 md:text-left">
             What I can help you with
           </h2>
           {/*  <p>
@@ -334,7 +331,7 @@ export default async function PortfolioPage() {
           <AnimateStagger />
         </section>
         <section className="mx-auto w-full max-w-screen-xl px-8 pt-8 pb-24 md:pb-48 md:pt-24">
-          <h2 className="text-center text-5xl font-extrabold text-fg-neutral md:text-left">
+          <h2 className="text-5xl font-extrabold text-fg-neutral md:text-left">
             How I work
           </h2>
           {/*     <p className="pt-4 text-center text-xl text-fg-neutral-faded">
@@ -450,10 +447,12 @@ function Card(data: any) {
         />
       </div>
       <div className="absolute -bottom-4 w-5/6 space-y-2 bg-base pr-4 pt-4 transition-transform duration-500 ease-out group-hover:-translate-y-4">
-        <span className="text-lg font-semibold uppercase tracking-wider text-fg-primary">
+        <span className="font-semibold uppercase tracking-wider text-fg-primary xs:text-lg">
           {data.project}
         </span>
-        <h3 className="text-3xl font-bold leading-snug lg:text-4xl">{data.title}</h3>
+        <h3 className="text-xl font-bold xs:text-2xl sm:text-3xl lg:text-4xl lg:leading-snug">
+          {data.title}
+        </h3>
       </div>
     </a>
   )

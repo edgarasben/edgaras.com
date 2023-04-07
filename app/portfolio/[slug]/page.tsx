@@ -26,16 +26,19 @@ export default async function CasePage({ params }: { params: { slug: string } })
 
   return (
     <div className="bg-base">
-      <header className="mx-auto w-full max-w-screen-xl space-y-16 px-8 pt-16 md:space-y-32 md:pb-32">
-        <Link href="/portfolio" className="group flex space-x-2">
-          <span className="block -translate-y-[1px] font-semibold transition-all group-hover:-translate-x-1 group-hover:text-fg-primary">
+      <header className="mx-auto w-full max-w-screen-xl space-y-16 px-8 pt-8 md:space-y-32 md:pb-24">
+        <Link
+          href="/portfolio"
+          className="group inline-flex items-start gap-2 rounded-full border border-transparent bg-neutral px-4 py-2 hover:border-border-neutral-faded hover:bg-transparent"
+        >
+          <span className="-translate-y-[1px] font-semibold transition-all group-hover:-translate-x-1 group-hover:text-fg-primary">
             ←
           </span>
-          <span className="block font-medium">Back to portfolio</span>
+          <span className="font-medium">Back to portfolio</span>
         </Link>
         <div className="space-y-4">
           <p className="text-2xl font-medium text-fg-primary">{page?.project}</p>
-          <h1 className="text-4xl font-extrabold leading-tight md:w-2/3 md:text-5xl md:leading-snug">
+          <h1 className="text-3xl font-extrabold leading-tight xs:text-4xl md:w-2/3 md:text-5xl md:leading-snug">
             <Balancer>{page?.title}</Balancer>
           </h1>
         </div>
@@ -80,11 +83,11 @@ export default async function CasePage({ params }: { params: { slug: string } })
           className="object-cover object-top"
         />
       </section>
-      <section className="text-medium mx-auto w-full max-w-screen-xl space-y-32 px-8 py-16 text-xl leading-relaxed md:py-48 md:text-3xl md:leading-relaxed">
-        <p>
-          <Balancer>{page?.description}</Balancer>
-        </p>
-      </section>
+      {page?.description && (
+        <section className="text-medium mx-auto w-full max-w-screen-xl space-y-32 px-8 py-16 text-xl leading-relaxed md:py-48 md:text-3xl md:leading-relaxed">
+          <p dangerouslySetInnerHTML={{ __html: page?.description }} />
+        </section>
+      )}
       <section className="mx-auto grid w-full max-w-screen-xl gap-8 px-8 pb-16 md:grid-cols-2 md:pb-32">
         <div className="relative aspect-video md:col-span-2">
           <Image src={page?.image1} alt="test" fill className="object-cover" />

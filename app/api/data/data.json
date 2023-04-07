@@ -14,7 +14,7 @@
     "meta": {
       "year": "2023",
       "role": "Co-Founder, Designer & Developer",
-      "client": "Myself",
+      "client": "—",
       "link": {
         "text": "Website",
         "url": "https://bestwriting.com/"
@@ -59,7 +59,7 @@
   {
     "project": "F.C. Copenhagen",
     "title": "Club app for F.C. Copenhagen football fans",
-    "description": "As the lead designer, I spearheaded the development of a mobile app designed to boost fan engagement for the F.C. Copenhagen football club. My tasks involved collecting input from stakeholders, crafting experience flows, designing UI mockups, and steering the creation of a React Native application. The app offered live match updates, exclusive news, behind-the-scenes content, and digital stadium tickets. Furthermore, I developed a scalable design system to guarantee that future mobile app development for football clubs is both streamlined and efficient.",
+    "description": "As the lead designer, I spearheaded the design of a mobile app aimed to boost fan engagement for the F.C. Copenhagen football club. My tasks involved collecting input from stakeholders, crafting experience flows, designing UI mockups, and steering the development of a React Native application. <br/><br/>The app offers live match updates, exclusive news, behind-the-scenes content, and digital stadium tickets. Additionally, I developed a scalable design system to guarantee that future mobile app development for football clubs is both streamlined and efficient.",
     "coverVertical": "/images/fck-cover-vertical.jpg",
     "coverHorizontal": "/images/fck-cover-horizontal.jpg",
     "image1": "/images/fck-1.jpg",
