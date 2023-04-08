@@ -7,7 +7,7 @@ export default function PortfolioFooter() {
     <footer className="w-full bg-page px-8 py-24 pb-8">
       <div className="mx-auto flex max-w-screen-xl flex-col items-center space-y-16">
         <h2 className="text-center text-5xl font-extrabold">Get in touch</h2>
-        <p className="max-w-screen-sm text-center text-xl text-fg-neutral">
+        <p className="max-w-screen-sm text-center text-2xl text-fg-neutral">
           <Balancer>
             Ready for a digital upgrade? Let&apos;s talk app design and web development!
             No pressure, just a quick chat to see how I can help.

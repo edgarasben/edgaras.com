@@ -44,7 +44,7 @@ export default async function CasePage({ params }: { params: { slug: string } })
         </div>
       </header>
 
-      <section className="mx-auto w-full max-w-screen-xl space-y-32 space-x-8 px-8 pb-16 pt-12">
+      <section className="mx-auto w-full max-w-screen-xl space-x-8 space-y-32 px-8 pb-16 pt-12">
         <ul className="grid grid-cols-2 gap-8 md:auto-cols-auto md:grid-flow-col md:grid-cols-none [&>li>p]:text-fg-neutral">
           <li className="space-y-2">
             <h2 className="text-sm uppercase tracking-wider">Role</h2>
@@ -74,45 +74,52 @@ export default async function CasePage({ params }: { params: { slug: string } })
           </li>
         </ul>
       </section>
-      <section className="relative aspect-video w-full">
-        <Image
-          src={page?.coverHorizontal}
-          alt={page?.title}
-          priority
-          fill
-          className="object-cover object-top"
-        />
-      </section>
+      {page?.coverHorizontal && (
+        <section className="relative aspect-video w-full">
+          <Image
+            src={page?.coverHorizontal}
+            alt={page?.title}
+            priority
+            fill
+            className="object-cover object-top"
+          />
+        </section>
+      )}
       {page?.description && (
         <section className="text-medium mx-auto w-full max-w-screen-xl space-y-32 px-8 py-16 text-xl leading-relaxed md:py-48 md:text-3xl md:leading-relaxed">
           <p dangerouslySetInnerHTML={{ __html: page?.description }} />
         </section>
       )}
-      <section className="mx-auto grid w-full max-w-screen-xl gap-8 px-8 pb-16 md:grid-cols-2 md:pb-32">
-        <div className="relative aspect-video md:col-span-2">
-          <Image src={page?.image1} alt="test" fill className="object-cover" />
-        </div>
-        <div className="relative aspect-square">
-          <Image src={page?.image2} alt="test" fill className="object-cover" />
-        </div>
-        <div className="relative aspect-square">
-          <Image src={page?.image3} alt="test" fill className="object-cover" />
-        </div>
-        <div className="relative aspect-video md:col-span-2">
-          <Image src={page?.image4} alt="test" fill className="object-cover" />
-        </div>
-      </section>
-      <section className="text-medium mx-auto w-full max-w-screen-xl space-y-16 px-8 py-16 md:py-16 md:pb-64">
-        <h2 className="text-3xl font-extrabold md:text-5xl">Results</h2>
-        <p className="text-xl leading-relaxed md:text-3xl">{page.results.intro}</p>
-        <ol className="list-decimal space-y-8 pl-7 text-xl md:text-2xl">
-          {page.results.list.map((item) => (
-            <li key="item" className="pl-2 marker:text-fg-neutral-faded">
-              {item}
-            </li>
-          ))}
-        </ol>
-      </section>
+      {page?.image1 && (
+        <section className="mx-auto grid w-full max-w-screen-xl gap-8 px-8 pb-16 md:grid-cols-2 md:pb-32">
+          <div className="relative aspect-video md:col-span-2">
+            <Image src={page?.image1} alt="test" fill className="object-cover" />
+          </div>
+          <div className="relative aspect-square">
+            <Image src={page?.image2} alt="test" fill className="object-cover" />
+          </div>
+          <div className="relative aspect-square">
+            <Image src={page?.image3} alt="test" fill className="object-cover" />
+          </div>
+          <div className="relative aspect-video md:col-span-2">
+            <Image src={page?.image4} alt="test" fill className="object-cover" />
+          </div>
+        </section>
+      )}
+      {page?.results && (
+        <section className="text-medium mx-auto w-full max-w-screen-xl space-y-16 px-8 py-16 md:py-16 md:pb-64">
+          <h2 className="text-3xl font-extrabold md:text-5xl">Results</h2>
+          <p className="text-xl leading-relaxed md:text-3xl">{page.results.intro}</p>
+          <ol className="list-decimal space-y-8 pl-7 text-xl md:text-2xl">
+            {page.results.list &&
+              page.results.list.map((item) => (
+                <li key="item" className="pl-2 marker:text-fg-neutral-faded">
+                  {item}
+                </li>
+              ))}
+          </ol>
+        </section>
+      )}
       <PortfolioFooter />
     </div>
   )

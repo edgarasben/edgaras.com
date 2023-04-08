@@ -2,8 +2,12 @@
   {
     "project": "Best Writing",
     "title": "Platform to find quality writing jobs in one place",
-    "description": "I co-founded Best Writing, an online platform that simplifies the search for the best writing jobs worldwide. Initially the platform was build entirely using no-code tools. As the project evolved we designed and build a custom website using Next.js, Supabase and Tailwind CSS. The platform is currently in beta and we are looking for writers to join the platform. <br/></br>More info coming soon.",
+    "description": "I co-founded Best Writing, an online platform that simplifies the search for the best writing jobs worldwide. Initially the platform was build entirely using no-code tools. As the project evolved we designed and build a custom website using Next.js, Supabase and Tailwind CSS. The platform is currently in beta and we are looking for writers to join the platform.",
     "coverVertical": "/images/bestwriting-vertical.jpg",
+    "image1": "/images/bestwriting-1.jpg",
+    "image2": "/images/bestwriting-2.jpg",
+    "image3": "/images/bestwriting-3.jpg",
+    "image4": "/images/bestwriting-4.jpg",
     "alt": "Best Writing",
     "slug": "bestwriting",
     "meta": {
@@ -14,6 +18,16 @@
         "text": "Website",
         "url": "https://bestwriting.com/"
       }
+    },
+    "results": {
+      "intro": "The F.C. Copenhagen mobile app was a resounding success, as reflected in the following key performance indicators.",
+      "list": [
+        "Featured in the App Store: first weeks after the launch, the app was trending as a #1 in the Sports category.",
+        "Increased Fan Engagement: The app saw a significant rise in user engagement. This was attributed to the interactive features and exclusive content, which provided fans with a more immersive experience.",
+        "Higher Ticket Sales: The digital stadium ticketing feature contributed to an increase in online ticket sales over the first season of implementation. This not only made the ticket purchasing process more convenient for fans but also allowed the club to streamline its ticketing operations.",
+        "Enhanced Sponsor Visibility: The app provided new opportunities for sponsor promotion, leading to an increase in sponsorship revenue. The in-app advertisements and exclusive content deals were particularly attractive to sponsors, as they offered targeted visibility to a highly engaged audience",
+        "Scalable Design System: The development of a scalable design system ensured that future mobile app development for other football"
+      ]
     }
   },
   {
@@ -35,6 +49,10 @@
         "text": "Spirii Go App",
         "url": "https://spirii.com/en/products/charging-app"
       }
+    },
+    "results": {
+      "intro": "",
+      "list": ["A", "B"]
     }
   },
   {
@@ -72,7 +90,7 @@
   {
     "project": "Majestico",
     "title": "Marketplace to buy and sell dream luxury villas",
-    "description": "Coming soon",
+    "description": "Website design project. Starting out with south of spain around Costa del Sol (?) short period, choosing the pictures that represent the area for example xx. Filtering system based on xx parameters, image gallery, engaging landing page that represents diffe. Multiple other pages to represent servies etc. The goal of the website was to generate leads who would contact for buying/selling villa or other services related to the process when purchasing or a villa.",
     "coverVertical": "/images/majestico-horizontal.jpg",
     "coverHorizontal": "/images/majestico-horizontal.jpg",
     "image1": "/images/majestico-1.jpg",
@@ -89,6 +107,9 @@
         "text": "Website",
         "url": "https://majestico.com/"
       }
+    },
+    "results": {
+      "intro": "Delivered a website design quikly in xx weeks. As no development guidance was requested, I organized Figma in a way that all was self explanatory."
     }
   }
 ]
