@@ -25,8 +25,8 @@ export const NavigationBar = () => {
       path: '/log'
     },
     {
-      label: 'About',
-      path: '/about'
+      label: 'Portfolio',
+      path: '/portfolio'
     }
     /*         {
             label: 'Lab',
