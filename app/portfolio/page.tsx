@@ -224,9 +224,10 @@ export default async function PortfolioPage() {
               </div>
               <p className="text-fg-neutral">
                 Edgaras is an exceptionally creative and professional designer and
-                developer. He always takes a lot of time to analyse everything, discusses
-                smallest details of the project to ensure that the solution is going to be
-                bullet-proof and executed with best practise in mind.
+                developer. With multidisciplinary experience and service-focused
+                intuition, he examines everything from the tiniest details to the outcomes
+                for end users and business owners to ensure that the solution is
+                bullet-proof and executed with best practices in mind.
               </p>
             </div>
             <div className="flex flex-col space-y-4">
@@ -311,15 +312,13 @@ export default async function PortfolioPage() {
             </h2>
           </div>
         </section>
-        <section className="mx-auto w-full max-w-screen-xl columns-1 gap-8 px-8 pt-16 md:columns-2">
-          <ul>
-            {projects.map((project: any) => (
-              <li key={project.slug}>
-                <Card {...project} />
-              </li>
-            ))}
-          </ul>
-        </section>
+        <ul className="mx-auto w-full max-w-screen-xl columns-1 gap-8 px-8 pt-16 md:columns-2">
+          {projects.map((project: any) => (
+            <li key={project.slug}>
+              <Card {...project} />
+            </li>
+          ))}
+        </ul>
         <section className="mx-auto w-full max-w-[1376px] pb-24 pt-16 md:px-8">
           <h2 className="p-8 text-5xl font-extrabold text-fg-neutral md:ml-12 md:px-0 md:text-left">
             What I can help you with
@@ -436,7 +435,7 @@ function Card(data: any) {
     <a
       href={`/portfolio/${data.slug}`}
       /*       href={data.meta.link.url} */
-      className="group relative mb-20 block w-full md:mb-40 md:first:mt-32"
+      className="group relative block w-full pb-4 xs:pb-8 md:pb-0 md:first:mt-32"
     >
       <div className="relative aspect-[3/4] overflow-hidden">
         <Image
@@ -446,7 +445,7 @@ function Card(data: any) {
           className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
       </div>
-      <div className="absolute -bottom-4 w-5/6 space-y-2 bg-base pr-4 pt-4 transition-transform duration-500 ease-out group-hover:-translate-y-4">
+      <div className="relative -mt-28 w-5/6 space-y-2 bg-base pb-8 pr-4 pt-4 transition-transform duration-500 ease-out group-hover:-translate-y-4">
         <span className="font-semibold uppercase tracking-wider text-fg-primary xs:text-lg">
           {data.project}
         </span>
