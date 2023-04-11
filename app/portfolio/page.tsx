@@ -76,7 +76,7 @@ export default async function PortfolioPage() {
               <div className="flex flex-col items-center gap-10 pt-8 sm:flex-row">
                 <ButtonCalendar>Free 30 min call</ButtonCalendar>
                 <a
-                  href="mailto:hi@edgaras.com?subject=Project%20Inquiry&body=Please%20provide%20the%20information%20below%20to%20help%20me%20understand%20your%20needs%20and%20give%20you%20an%20accurate%20quote%3A---1.%20Your%20name%3A2.%20Company%20name%3A3.%20Project%20timeline%20(date%20from%2C%20to)%3A3.%20Project%20budget%3A4.%20Tell%20me%20a%20bit%20more%20what%20you%20are%20looking%20for%3F%3A"
+                  href="mailto:hi@edgaras.com?subject=Project%20request&body=To%20better%20understand%20your%20needs%2C%20please%20provide%20me%20with%20the%20following%20information%20about%20the%20project%3A%0D%0A%0D%0A1.%20Your%20name%3A%0D%0A2.%20Company%20name%3A%0D%0A3.%20Period%20(months)%3A%0D%0A4.%20Start%20date%3A%0D%0A5.%20What%20challenges%2Fneeds%20are%20you%20looking%20to%20solve%3F%0D%0A6.%20Budget%3A"
                   className="text-lg font-medium text-fg-neutral underline decoration-fg-neutral-faded/25 underline-offset-8 transition-all hover:decoration-fg-primary hover:underline-offset-8"
                 >
                   Or email me
@@ -107,7 +107,7 @@ export default async function PortfolioPage() {
       </header>
       <main className="flex w-full translate-y-[1080px] flex-col items-center bg-base pt-0 sm:pt-16 lg:translate-y-[614px] lg:pt-24">
         <div className="pointer-events-none absolute z-20 flex w-full -translate-y-[536px] items-center justify-center overflow-hidden bg-[#BFDFB4] pt-32 lg:inset-x-auto lg:bg-transparent lg:pt-0">
-          <div className="absolute inset-y-0 top-0 right-0 -z-20 my-auto scale-[0.8] text-[#9FC193] lg:hidden">
+          <div className="absolute inset-y-0 right-0 top-0 -z-20 my-auto scale-[0.8] text-[#9FC193] lg:hidden">
             <SpinningWheel />
           </div>
           <div className="relative -left-1/4 h-[440px] w-[490px] bg-[url('/images/header-photo-edgaras.png')] bg-contain bg-bottom bg-no-repeat dark:bg-[url('/images/header-photo-edgaras-dark-theme.png')] lg:-right-[17%] lg:left-auto" />
@@ -299,7 +299,7 @@ export default async function PortfolioPage() {
             </div>
           </div>
         </section>
-        <section className="w-full overflow-hidden pt-32 pb-16 text-5xl tracking-tighter sm:text-6xl md:pt-48 lg:text-8xl">
+        <section className="w-full overflow-hidden pb-16 pt-32 text-5xl tracking-tighter sm:text-6xl md:pt-48 lg:text-8xl">
           <div className="relative flex -rotate-3 space-x-2 md:space-x-1.5">
             <h2 className="animate-[translateX-0--100_24s_linear_infinite] flex-nowrap space-x-2 whitespace-nowrap font-medium uppercase text-fg-neutral-faded/25 md:space-x-3">
               <span>Featured projects ✲</span>
@@ -330,7 +330,7 @@ export default async function PortfolioPage() {
           </p> */}
           <AnimateStagger />
         </section>
-        <section className="mx-auto w-full max-w-screen-xl px-8 pt-8 pb-24 md:pb-48 md:pt-24">
+        <section className="mx-auto w-full max-w-screen-xl px-8 pb-24 pt-8 md:pb-48 md:pt-24">
           <h2 className="text-5xl font-extrabold text-fg-neutral md:text-left">
             How I work
           </h2>
