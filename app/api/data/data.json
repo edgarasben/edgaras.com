@@ -2,7 +2,7 @@
   {
     "project": "Best Writing",
     "title": "Platform to find quality writing jobs in one place",
-    "description": "I co-founded Best Writing, an online platform that simplifies the search for the best writing jobs worldwide. Initially the platform was build entirely using no-code tools. As the project evolved we designed and build a custom website using Next.js, Supabase and Tailwind CSS. The platform is currently in beta and we are looking for writers to join the platform. <br/></br>More info coming soon.",
+    "description": "I co-founded Best Writing, an online platform that simplifies the search for the best writing jobs worldwide. Initially the platform was build entirely using no-code tools. As the project evolved we designed and build a custom website using Next.js, Supabase and Tailwind CSS. The platform is currently in beta and we are looking for writers to join the platform. <br/></br>More info coming soon...",
     "coverVertical": "/images/bestwriting-vertical.jpg",
     "coverHorizontal": "/images/bestwriting-horizontal.jpg",
     "image1": "/images/bestwriting-1.jpg",
@@ -81,7 +81,7 @@
   {
     "project": "Majestico",
     "title": "Marketplace to buy and sell dream luxury villas",
-    "description": "Coming soon",
+    "description": "More info coming soon...",
     "coverVertical": "/images/majestico-horizontal.jpg",
     "coverHorizontal": "/images/majestico-horizontal.jpg",
     "image1": "/images/majestico-1.jpg",
