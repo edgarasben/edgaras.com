@@ -355,6 +355,9 @@ export default async function PortfolioPage() {
                 collaboration features and intuitive interface, I can work seamlessly with
                 others and accelerate the design process.
               </p>
+              <div className="relative aspect-video">
+                <Image src={'/images/figma.jpg'} fill alt="Figma editor" />
+              </div>
             </div>
             <div className="space-y-4">
               <div className="flex items-center gap-4">
@@ -374,6 +377,9 @@ export default async function PortfolioPage() {
                 <b>organizing research data</b>, <b>user journeys</b>, and{' '}
                 <b>wireframes</b>, and simplify collaborative <b>design thinking</b>.
               </p>
+              <div className="relative aspect-video">
+                <Image src={'/images/miro.jpg'} fill alt="Miro whiteboard" />
+              </div>
             </div>
             <div className="space-y-4">
               <div className="flex items-center gap-4">
@@ -397,6 +403,9 @@ export default async function PortfolioPage() {
                 not only enables me to build Minimal Viable Products, but also makes it
                 easier for me to communicate and collaborate with other developers.
               </p>
+              <div className="relative aspect-video">
+                <Image src={'/images/code.jpg'} fill alt="Code editor" />
+              </div>
             </div>
             <div className="space-y-4">
               <div className="flex items-center gap-4">
@@ -421,6 +430,9 @@ export default async function PortfolioPage() {
                 me to quickly bootstrap apps and automate processes, before diving into
                 writing more resilient code or disrupting other developers.
               </p>
+              <div className="relative aspect-video">
+                <Image src={'/images/no-code.jpg'} fill alt="Make no-code automation" />
+              </div>
             </div>
           </div>
         </section>
@@ -430,11 +442,13 @@ export default async function PortfolioPage() {
   )
 }
 
-function Card(data: any) {
+type Data = (typeof projects)[0]
+
+function Card(data: Data) {
   return (
     <a
       href={`/portfolio/${data.slug}`}
-      /*       href={data.meta.link.url} */
+      /* href={data.meta.link.url} */
       className="group relative block w-full pb-4 xs:pb-8 md:pb-0 md:first:mt-32"
     >
       <div className="relative aspect-[3/4] overflow-hidden">
