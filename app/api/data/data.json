@@ -4,6 +4,11 @@
     "title": "Platform to find quality writing jobs in one place",
     "description": "I co-founded Best Writing, an online platform that simplifies the search for the best writing jobs worldwide. Initially the platform was build entirely using no-code tools. As the project evolved we designed and build a custom website using Next.js, Supabase and Tailwind CSS. The platform is currently in beta and we are looking for writers to join the platform. <br/></br>More info coming soon.",
     "coverVertical": "/images/bestwriting-vertical.jpg",
+    "coverHorizontal": "/images/bestwriting-horizontal.jpg",
+    "image1": "/images/bestwriting-1.jpg",
+    "image2": "/images/bestwriting-2.jpg",
+    "image3": "/images/bestwriting-3.jpg",
+    "image4": "/images/bestwriting-4.jpg",
     "alt": "Best Writing",
     "slug": "bestwriting",
     "meta": {
