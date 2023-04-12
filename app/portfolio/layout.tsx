@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: 'https://edgaras.com/images/og-portfolio.jpg',
-        alt: 'Edgaras — Co-Founder, Designer, Coder',
+        alt: 'Edgaras — Software Designer and Developer',
         width: 1200,
         height: 630
       }
@@ -25,13 +25,13 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     creator: '@edgarasben',
     site: '@edgarasben',
-    title: 'Edgaras — Co-Founder, Designer, Coder',
+    title: 'Edgaras — Software Designer and Developer',
     description:
       'Design and development services to help you prototype and launch your web or mobile product.',
     images: [
       {
         url: 'https://edgaras.com/images/og-portfolio.jpg',
-        alt: 'Edgaras — Co-Founder, Designer, Coder',
+        alt: 'Edgaras — Software Designer and Developer',
         width: 1200,
         height: 630
       }
