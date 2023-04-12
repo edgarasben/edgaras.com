@@ -221,12 +221,9 @@ export default async function PortfolioPage() {
                   </p>
                 </div>
               </div>
-              <p className="text-fg-neutral">
+              <p className="text-lg text-fg-neutral">
                 Edgaras is an exceptionally creative and professional designer and
-                developer. With multidisciplinary experience and service-focused
-                intuition, he examines everything from the tiniest details to the outcomes
-                for end users and business owners to ensure that the solution is
-                bullet-proof and executed with best practices in mind.
+                developer.
               </p>
             </div>
             <div className="flex flex-col space-y-4">
@@ -245,11 +242,9 @@ export default async function PortfolioPage() {
                   </p>
                 </div>
               </div>
-              <p className="text-fg-neutral">
-                Edgaras is one of the best digital designers that I know. Knowledgeable of
-                systems, processes, visual design but first and foremost he simply gets
-                how people use technology and interfaces. I would recommend him for any
-                project involving design, both web, games and apps more broadly.
+              <p className="text-lg text-fg-neutral">
+                Knowledgeable of systems, processes, visual design but first and foremost
+                he simply gets how people use technology and interfaces.
               </p>
             </div>
             <div className="flex flex-col space-y-4">
@@ -268,13 +263,12 @@ export default async function PortfolioPage() {
                   </p>
                 </div>
               </div>
-              <p className="text-fg-neutral">
-                I’ve been working with Edgaras on the official F.C. Copenhagen app, and
-                from that experience I can say that he is a skilled and talented graphic
-                designer who truly understands the importance of UI, UX, and brand values.
+              <p className="text-lg text-fg-neutral">
+                He is a skilled and talented graphic designer who truly understands the
+                importance of UI, UX, and brand values.
               </p>
             </div>
-            <div className="flex flex-col justify-between space-y-4">
+            <div className="flex flex-col space-y-4">
               <div className="flex items-start gap-4 md:min-h-[64px]">
                 <Image
                   src={'/images/rasmus.jpg'}
@@ -288,13 +282,9 @@ export default async function PortfolioPage() {
                   <p className="text-sm text-fg-neutral-faded">Visual Lead at Kiloo</p>
                 </div>
               </div>
-              <p className="text-fg-neutral">
+              <p className="text-lg text-fg-neutral">
                 Edgaras is rarely satisfied with &ldquo;good enough&rdquo; and does not
-                lightly quit a task when &ldquo;better&rdquo; is a possibility. As a
-                matter of course, he will attack a problem from multiple angles to achieve
-                a final result which is not only communicatively functional and
-                aesthetically utmost pleasing, but also optimal in keeping backwards
-                consistency and measuring to his own, ever growing standards.
+                lightly quit a task when &ldquo;better&rdquo; is a possibility.
               </p>
             </div>
           </div>
