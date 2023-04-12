@@ -43,7 +43,11 @@
       }
     },
     "results": {
-      "intro": "Our client expressed their satisfaction with the rapid pace of the design and development process, as it took us less than three months to redesign and create their new app. The improved digital service received a warm welcome from users who granted it an impressive 4.5-star rating on the App Store. Furthermore, the app's outstanding performance took it up to the #9 position in the Navigation category of Top Free Apps in Denmark."
+      "intro": "Our client expressed their satisfaction with the rapid pace of the design and development process, as it took us less than three months to redesign and create their new app. ",
+      "list": [
+        "The improved digital service received a warm welcome from users who granted it an impressive 4.5-star rating on the App Store.",
+        "The app's great performance took it up to the #9 position in the Navigation category of Top Free Apps in Denmark."
+      ]
     }
   },
   {
