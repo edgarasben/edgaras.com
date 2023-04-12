@@ -185,10 +185,9 @@ export default async function PortfolioPage() {
         <section className="flex items-center justify-center px-8 pt-24 md:pt-48">
           <p className="max-w-3xl text-center text-2xl leading-relaxed text-fg-neutral md:text-3xl md:leading-normal">
             Hi! My name is Edgaras, and I am a freelancer specializing in UX/UI Design,
-            No-Code, and JavaScript development. <br className="block md:hidden" />{' '}
-            <br className="block md:hidden" /> I work with clients globally to create
-            engaging websites, functional app prototypes, and automations that enable you
-            to focus on what matters most.
+            No-Code, and JavaScript development. <br /> <br className="block md:hidden" />{' '}
+            I work with clients globally to create engaging websites, functional app
+            prototypes, and automations that enable you to focus on what matters most.
           </p>
         </section>
         {/* Testimonials */}
