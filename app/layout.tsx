@@ -1,5 +1,6 @@
 import Script from 'next/script'
 import '@/styles/globals.css'
+import PlausibleProvider from 'next-plausible'
 
 import { NavigationBar } from '@/components/navigation-bar'
 
@@ -106,6 +107,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     // suppressHydrationWarning is for "next-themes" to not give warnings
     <html suppressHydrationWarning lang="en" className="h-full bg-page text-fg-neutral">
+      <head>
+        <PlausibleProvider domain="edgaras.com" />
+      </head>
       <body className="h-full">
         <>
           <NavigationBar />
