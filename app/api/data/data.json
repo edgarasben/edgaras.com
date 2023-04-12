@@ -19,6 +19,7 @@
   {
     "project": "Spirii Go",
     "title": "Mobile app for convienient electic car charging",
+    "description": "Spirii was looking to expand the number of chargers and customers rapidly over the next 6-9 months. To support their growth we provided a more effective app out in the market and a new backend system. <br/><br/> The application for charging is one of the key components of Spirii vehicle charging service. The purpose of application is to provide a service without any additional support from the provider. However, with the previous app Spirii was receiving a lot of customer calls and emails requesting for help or even complaining about bad service. <br/><br/> Two focus areas emerged — a confusing sign up process and charging process which was not very well explained in the previous application.",
     "coverVertical": "/images/spirii-go-vertical.jpg",
     "coverHorizontal": "/images/spirii-go-horizontal.jpg",
     "image1": "/images/spirii-go-1.png",
@@ -35,6 +36,9 @@
         "text": "Spirii Go App",
         "url": "https://spirii.com/en/products/charging-app"
       }
+    },
+    "results": {
+      "intro": "Our client expressed their satisfaction with the rapid pace of the design and development process, as it took us less than three months to redesign and create their new app. The improved digital service received a warm welcome from users who granted it an impressive 4.5-star rating on the App Store. Furthermore, the app's outstanding performance took it up to the #9 position in the Navigation category of Top Free Apps in Denmark."
     }
   },
   {

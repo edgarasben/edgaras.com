@@ -109,7 +109,9 @@ export default async function CasePage({ params }: { params: { slug: string } })
       {page?.results && (
         <section className="text-medium mx-auto w-full max-w-screen-xl space-y-16 px-8 py-16 md:py-16 md:pb-64">
           <h2 className="text-3xl font-extrabold md:text-5xl">Results</h2>
-          <p className="text-xl leading-relaxed md:text-3xl">{page.results.intro}</p>
+          <p className="text-xl leading-relaxed md:text-3xl md:leading-relaxed">
+            {page.results.intro}
+          </p>
           <ol className="list-decimal space-y-8 pl-7 text-xl md:text-2xl">
             {page.results.list &&
               page.results.list.map((item) => (
