@@ -67,6 +67,8 @@ export default async function CasePage({ params }: { params: { slug: string } })
               <a
                 className="font-medium text-fg-primary underline"
                 href={page?.meta?.link?.url}
+                rel="noopener noreferrer"
+                target="_blank"
               >
                 {page?.meta?.link?.text}
               </a>
