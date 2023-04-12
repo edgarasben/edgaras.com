@@ -8,7 +8,25 @@ const satoshi = localFont({
 })
 
 export const metadata: Metadata = {
-  title: 'Portfolio'
+  title: 'Portfolio',
+  openGraph: {
+    description:
+      'Design and development services to help you prototype and launch your web or mobile product.',
+    images: [
+      {
+        url: 'https://edgaras.com/images/og-portfolio.jpg'
+      }
+    ]
+  },
+  twitter: {
+    description:
+      'Design and development services to help you prototype and launch your web or mobile product.',
+    images: [
+      {
+        url: 'https://edgaras.com/images/og-portfolio.jpg'
+      }
+    ]
+  }
 }
 
 export default function PortfolioLayout({ children }: { children: React.ReactNode }) {
