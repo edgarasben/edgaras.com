@@ -9,5 +9,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
   // Don't apply theme to portfolio page
   if (pathname?.includes('/portfolio')) return <>{children}</>
 
-  return <ThemeProvider attribute="class">{children}</ThemeProvider>
+  /*  return <ThemeProvider attribute="class">{children}</ThemeProvider> */
+  return <>{children}</>
 }
