@@ -123,7 +123,7 @@ export default async function PortfolioPage() {
                 width={160}
                 height={41.75}
                 alt="Kiloo"
-                className="w-16 opacity-50 transition hover:scale-105 hover:opacity-90 lg:w-24"
+                className="w-16 opacity-50 transition hover:scale-105 hover:opacity-90 lg:w-20"
               />
             </a>
             <a href="https://www.fck.dk/" className="shrink-0">
@@ -132,7 +132,7 @@ export default async function PortfolioPage() {
                 width={96}
                 height={96}
                 alt="F.C. København"
-                className="w-8 opacity-50 transition hover:scale-105 hover:opacity-90 lg:w-12"
+                className="w-11 opacity-50 transition hover:scale-105 hover:opacity-90 lg:w-14"
               />
             </a>
             <a href="https://www.ergosign.de/" className="shrink-0">
