@@ -6,6 +6,7 @@ import { ButtonCalendar } from './ButtonCalendar'
 import Link from 'next/link'
 import { Button } from '@/components/button'
 import SpinningWheel from './SpinningWheel'
+import BookHoursForm from './BookHoursForm'
 
 /* export async function getData() {
   const res = await fetch('http://localhost:3000/api/data', { next: { revalidate: 3 } })
@@ -422,6 +423,51 @@ export default async function PortfolioPage() {
               <div className="relative aspect-video">
                 <Image src={'/images/no-code.jpg'} fill alt="Make no-code automation" />
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto w-full max-w-screen-xl space-y-20 px-8 pb-24 md:pb-96 md:pt-24">
+          <h2 className="text-5xl font-extrabold text-fg-neutral md:text-left">
+            Payment Options
+          </h2>
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+            <div className="flex flex-col justify-between gap-10 rounded-[32px] bg-neutral p-12">
+              <div className="space-y-4">
+                <h3 className="text-4xl">
+                  <strong>€70</strong> / hour
+                </h3>
+                <span className="block font-semibold uppercase tracking-wider text-fg-primary">
+                  Pre-paid hours
+                </span>
+              </div>
+              <p className="h-full text-xl">
+                Flexible design partner services for one-time or ongoing projects without
+                long-term commitment.
+              </p>
+              <div className="flex gap-4">
+                <BookHoursForm />
+              </div>
+            </div>
+            <div className="flex flex-col gap-10 rounded-[32px] bg-primary p-12 text-white">
+              <div className="space-y-4">
+                <h3 className="text-4xl">
+                  <strong>€3500</strong> / month
+                </h3>
+                <span className="block font-bold uppercase tracking-wider opacity-90">
+                  Subscription
+                </span>
+              </div>
+              <p className="h-full text-xl">
+                Reliable design partner services for a fixed monthly fee, ensuring
+                consistent and efficient support for all your design needs.
+              </p>
+              <a
+                href="https://buy.stripe.com/4gw02sgqGe5Ce0U5kk"
+                className="place-self-start rounded-full bg-white px-8 py-4 text-xl font-bold tracking-wide text-fg-primary transition-transform hover:rotate-2 hover:scale-105"
+              >
+                Subscribe
+              </a>
             </div>
           </div>
         </section>

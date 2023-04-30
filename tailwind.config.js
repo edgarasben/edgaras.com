@@ -38,7 +38,8 @@ module.exports = {
       },
       border: {
         neutral: 'hsla(var(--color-border-neutral) / <alpha-value>)',
-        'neutral-faded': 'hsla(var(--color-border-neutral-faded) / <alpha-value>)'
+        'neutral-faded': 'hsla(var(--color-border-neutral-faded) / <alpha-value>)',
+        primary: 'hsla(var(--color-border-primary) / <alpha-value>)'
       },
       on: {
         primary: 'hsla(var(--color-on-primary) / <alpha-value>)'
