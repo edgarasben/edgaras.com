@@ -25,6 +25,15 @@ const nextConfig = {
         destination: 'https://files.edgaras.com/images/:slug*'
       }
     ]
+  },
+  async redirects() {
+    return [
+      {
+        source: 'https://serviceintent.com/:slug*',
+        destination: '/portfolio/:slug*',
+        permanent: false
+      }
+    ]
   }
 }
 
