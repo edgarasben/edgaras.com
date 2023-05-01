@@ -1,4 +1,4 @@
-import { getLogs, Log } from '@/lib/get-logs'
+import { getLogs, getLogTags, Log } from '@/lib/get-logs'
 import { Container } from '@/components/container'
 import React from 'react'
 import LinkIcon from '@/components/icons/link-icon'
@@ -6,6 +6,8 @@ import getWeek from 'date-fns/getWeek'
 import ChevronUpDownIcon from '@/components/icons/chevron-up-down-icon'
 import ChevronDownIcon from '@/components/icons/chevron-down'
 import type { Metadata } from 'next'
+import { Search } from './Search'
+import LogTags from './LogTags'
 
 export const revalidate = 30 // revalidate every 30 secs
 
@@ -13,8 +15,23 @@ export const metadata: Metadata = {
   title: 'Log'
 }
 
-export default async function PostsPage() {
-  const logs = await getLogs()
+export default async function LogsPage({
+  searchParams
+}: {
+  [key: string]: string | string[] | undefined
+}) {
+  /*   const search = searchParams.search?.toString() */
+  let currentTag: string | undefined
+
+  if (typeof searchParams === 'object' && searchParams !== null) {
+    const params = searchParams as { tag?: string }
+
+    currentTag = params.tag?.toString()
+  } else {
+    currentTag = undefined
+  }
+  const logs = await getLogs({ tag: currentTag ?? '' })
+  const logTags = await getLogTags()
 
   // Group logs by week number derived from the log date
   const groupedItems: { week: number; logs: Log[] }[] = logs.reduce(
@@ -41,11 +58,19 @@ export default async function PostsPage() {
     weekGroups[week].push(item)
   })
 
+  /*  if (search) {
+    console.log(search)
+  }
+ */
   return (
     <Container>
       <section>
         <h2 className="py-8 text-xl font-semibold">Log</h2>
+
+        <LogTags data={logTags} />
+
         <div className="space-y-8">
+          {/*           <Search initialValue={search} /> */}
           {groupedItems.map((week) => {
             return (
               <div key={week.week} className="space-y-2">
@@ -103,15 +128,15 @@ function RowInner({ item }: { item: Log }) {
   return (
     <div className="flex items-start space-x-2 sm:items-center">
       <div>
-        {item.tag && (
+        {item.category && (
           <span
             className={`y-0.5 mr-1.5 inline-flex rounded px-2 text-black/70 dark:text-white/70 ${
-              item.tag === 'Work' ? 'bg-accent-1/50' : ''
-            }${item.tag === 'Learn' ? 'bg-accent-2/50' : ''}${
-              item.tag === 'Discover' ? 'bg-accent-3/50' : ''
+              item.category === 'Work' ? 'bg-accent-1/50' : ''
+            }${item.category === 'Learn' ? 'bg-accent-2/50' : ''}${
+              item.category === 'Discover' ? 'bg-accent-3/50' : ''
             }`}
           >
-            {item.tag}
+            {item.category}
           </span>
         )}
         <span

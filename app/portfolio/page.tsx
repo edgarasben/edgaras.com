@@ -459,7 +459,7 @@ export default async function PortfolioPage() {
                 </span>
               </div>
               <p className="h-full text-xl">
-                Reliable design partner services for a fixed monthly fee, ensuring
+                Dedicated design partner services for a fixed monthly fee, ensuring
                 consistent and efficient support for all your design needs.
               </p>
               <a
