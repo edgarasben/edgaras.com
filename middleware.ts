@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export const config = {
-  matcher: ['/portfolio']
+  matcher: ['/admin']
 }
 
 export function middleware(req: NextRequest) {
@@ -12,7 +12,7 @@ export function middleware(req: NextRequest) {
     const authValue = basicAuth.split(' ')[1]
     const [user, pwd] = Buffer.from(authValue, 'base64').toString().split(':')
 
-    if (user === '4dmin' && pwd === 'testpwd123333') {
+    if (user === '4dmin' && pwd === process.env.ADMIN_PASS) {
       return NextResponse.next()
     }
   }
