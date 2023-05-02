@@ -15,22 +15,12 @@ export const metadata: Metadata = {
   title: 'Log'
 }
 
-export default async function LogsPage({
-  searchParams
-}: {
-  [key: string]: string | string[] | undefined
-}) {
+export default async function LogsPage({ searchParams }: any) {
   /*   const search = searchParams.search?.toString() */
-  let currentTag: string | undefined
 
-  if (typeof searchParams === 'object' && searchParams !== null) {
-    const params = searchParams as { tag?: string }
+  const currentTag = searchParams.tag?.toString()
 
-    currentTag = params.tag?.toString()
-  } else {
-    currentTag = undefined
-  }
-  const logs = await getLogs({ tag: currentTag ?? '' })
+  const logs = await getLogs({ tag: currentTag })
   const logTags = await getLogTags()
 
   // Group logs by week number derived from the log date
