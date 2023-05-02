@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default async function LogsPage({ searchParams }: any) {
   /*   const search = searchParams.search?.toString() */
 
-  const currentTag = searchParams.tag?.toString()
+  const currentTag = searchParams.tag?.toString() ?? ''
 
   const logs = await getLogs({ tag: currentTag })
   const logTags = await getLogTags()
