@@ -23,6 +23,16 @@ const nextConfig = {
       {
         source: '/images/:slug*',
         destination: 'https://files.edgaras.com/images/:slug*'
+      },
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'serviceintent.com'
+          }
+        ],
+        destination: '/portfolio/:path*'
       }
     ]
   }
