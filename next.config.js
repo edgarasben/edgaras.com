@@ -18,10 +18,6 @@ const nextConfig = {
     return {
       beforeFiles: [
         {
-          source: '/images/:slug*',
-          destination: 'https://files.edgaras.com/images/:slug*'
-        },
-        {
           source: '/:path*',
           has: [
             {
@@ -30,6 +26,10 @@ const nextConfig = {
             }
           ],
           destination: '/portfolio/:path*'
+        },
+        {
+          source: '/images/:slug*',
+          destination: 'https://files.edgaras.com/images/:slug*'
         }
       ]
     }
