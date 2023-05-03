@@ -15,22 +15,32 @@ const nextConfig = {
     ]
   },
   async rewrites() {
-    return {
-      beforeFiles: [
-        // if the host is `app.acme.com`,
-        // this rewrite will be applied
-        {
-          source: '/:path*',
-          has: [
-            {
-              type: 'host',
-              value: 'serviceintent.com'
-            }
-          ],
-          destination: '/portfolio/:path*'
-        }
-      ]
-    }
+    return (
+      {
+        beforeFiles: [
+          // if the host is `app.acme.com`,
+          // this rewrite will be applied
+          {
+            source: '/:path*',
+            has: [
+              {
+                type: 'host',
+                value: 'serviceintent.com'
+              }
+            ],
+            destination: '/portfolio/:path*'
+          }
+        ]
+      },
+      /*     {
+        source: '/images/:slug*',
+        destination: 'https://files3.ams3.cdn.digitaloceanspaces.com/:slug*'
+      } */
+      {
+        source: '/images/:slug*',
+        destination: 'https://files.edgaras.com/images/:slug*'
+      }
+    )
   }
 }
 
