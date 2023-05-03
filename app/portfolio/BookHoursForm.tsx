@@ -14,7 +14,7 @@ export default function BookHoursForm() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        /*         successUrl: 'http://edgaras.com/success', */
+     successUrl: 'http://edgaras.com/portfolio',
         cancelUrl: 'http://edgaras.com/portfolio',
         quantity: hours,
         priceId: 'price_1N14dsKjHyqMsSjZZtLsv8ax'
