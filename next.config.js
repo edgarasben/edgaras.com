@@ -15,29 +15,27 @@ const nextConfig = {
     ]
   },
   async rewrites() {
-    return {
+    return [
       /*     {
         source: '/images/:slug*',
         destination: 'https://files3.ams3.cdn.digitaloceanspaces.com/:slug*'
       } */
 
-      beforeFiles: [
-        {
-          source: '/:slug*',
-          has: [
-            {
-              type: 'host',
-              value: 'serviceintent.com'
-            }
-          ],
-          destination: '/portfolio/:slug*'
-        },
-        {
-          source: '/images/:slug*',
-          destination: 'https://files.edgaras.com/images/:slug*'
-        }
-      ]
-    }
+      {
+        source: '/:slug*',
+        has: [
+          {
+            type: 'host',
+            value: 'serviceintent.com'
+          }
+        ],
+        destination: '/portfolio/:slug*'
+      },
+      {
+        source: '/images/:slug*',
+        destination: 'https://files.edgaras.com/images/:slug*'
+      }
+    ]
   }
 }
 
