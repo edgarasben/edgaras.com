@@ -15,24 +15,22 @@ const nextConfig = {
     ]
   },
   async rewrites() {
-    return {
-      beforeFiles: [
-        {
-          source: '/:path*',
-          has: [
-            {
-              type: 'host',
-              value: 'serviceintent.com'
-            }
-          ],
-          destination: '/portfolio/:path*'
-        },
-        {
-          source: '/images/:slug*',
-          destination: 'https://files.edgaras.com/images/:slug*'
-        }
-      ]
-    }
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'serviceintent.com'
+          }
+        ],
+        destination: '/portfolio/:path*'
+      },
+      {
+        source: '/images/:slug*',
+        destination: 'https://files.edgaras.com/images/:slug*'
+      }
+    ]
   }
 }
 
