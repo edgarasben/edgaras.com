@@ -14,7 +14,7 @@ const nextConfig = {
       }
     ]
   },
-  async rewrites() {
+  async redirects() {
     return [
       {
         source: '/:path*',
@@ -25,7 +25,11 @@ const nextConfig = {
           }
         ],
         destination: '/portfolio/:path*'
-      },
+      }
+    ]
+  },
+  async rewrites() {
+    return [
       {
         source: '/images/:slug*',
         destination: 'https://files.edgaras.com/images/:slug*'
