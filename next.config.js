@@ -29,7 +29,7 @@ const nextConfig = {
             value: 'serviceintent.com'
           }
         ],
-        destination: '/portfolio/:slug*'
+        destination: 'serviceintent.com/:slug*'
       },
       {
         source: '/images/:slug*',
