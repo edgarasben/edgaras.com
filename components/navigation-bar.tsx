@@ -20,10 +20,10 @@ export const NavigationBar = () => {
       label: 'Posts',
       path: '/posts'
     },
-    {
+    /*   {
       label: 'Log',
       path: '/log'
-    },
+    }, */
     {
       label: 'Portfolio',
       path: '/portfolio'
