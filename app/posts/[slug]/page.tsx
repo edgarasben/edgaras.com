@@ -3,6 +3,7 @@ import { getPost } from '@/lib/get-post'
 import { formatDate } from '@/lib/format-date'
 import { Container } from '@/components/container'
 import type { Metadata } from 'next'
+import { MDXRemote } from 'next-mdx-remote/rsc'
 
 interface PostPageProps {
   params: {
@@ -30,7 +31,9 @@ export default async function PostPage({ params }: PostPageProps) {
         <time dateTime="2018-07-07" className="block text-center text-fg-neutral-faded">
           {formatDate(post.firstPosted)}
         </time>
-        <div className="pt-16" dangerouslySetInnerHTML={{ __html: post.html }}></div>
+        <div className="pt-16">
+          <MDXRemote source={post.markdown.parent} />
+        </div>
       </article>
     </Container>
   )

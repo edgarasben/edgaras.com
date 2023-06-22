@@ -1,6 +1,5 @@
 import { Client as NotionClient } from '@notionhq/client'
 const { NotionToMarkdown } = require('notion-to-md')
-import { markdownToHtml } from './markdown-to-html'
 
 const notion = new NotionClient({
   auth: process.env.NOTION_TOKEN
@@ -48,7 +47,6 @@ export async function getPost(slug: string) {
 
   const mdblocks = await n2m.pageToMarkdown(pageId, 2) // Second argument is totalPage
   const markdown = n2m.toMarkdownString(mdblocks)
-  const html = await markdownToHtml(markdown)
 
   // TODO: Fix the type, can't be "any"
   const results = response.results.map((result: any) => {
@@ -57,7 +55,7 @@ export async function getPost(slug: string) {
       firstPosted: result.properties['First posted'].date.start,
       slug: result.properties.Slug.rich_text[0].plain_text,
       summary: result.properties.Summary.rich_text[0]?.plain_text || null,
-      html: html
+      markdown: markdown
     }
   })
 

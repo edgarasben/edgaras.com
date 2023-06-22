@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    appDir: true,
-    scrollRestoration: true
+    serverActions: true
   },
   images: {
     remotePatterns: [
@@ -11,20 +10,6 @@ const nextConfig = {
         hostname: 'edgaras.com',
         port: '',
         pathname: '/images/**'
-      }
-    ]
-  },
-  async redirects() {
-    return [
-      {
-        source: '/:path*',
-        has: [
-          {
-            type: 'host',
-            value: 'serviceintent.com'
-          }
-        ],
-        destination: '/portfolio/:path*'
       }
     ]
   },
