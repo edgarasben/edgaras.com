@@ -4,6 +4,7 @@ import { formatDate } from '@/lib/format-date'
 import { Container } from '@/components/container'
 import type { Metadata } from 'next'
 import { MDXRemote } from 'next-mdx-remote/rsc'
+import rehypePrettyCode from 'rehype-pretty-code'
 
 interface PostPageProps {
   params: {
@@ -32,7 +33,15 @@ export default async function PostPage({ params }: PostPageProps) {
           {formatDate(post.firstPosted)}
         </time>
         <div className="pt-16">
-          <MDXRemote source={post.markdown.parent} />
+          <MDXRemote
+            source={post.markdown.parent}
+            options={{
+              mdxOptions: {
+                remarkPlugins: [],
+                rehypePlugins: [rehypePrettyCode]
+              }
+            }}
+          />
         </div>
       </article>
     </Container>
