@@ -427,8 +427,11 @@ export default async function PortfolioPage() {
           </div>
         </section>
 
-        <section className="mx-auto w-full max-w-screen-xl space-y-20 px-8 pb-24 md:pb-96 md:pt-24">
-          <h2 className="text-5xl font-extrabold text-fg-neutral md:text-left">
+        <section className="mx-auto w-full max-w-screen-xl space-y-20 px-8 pb-24 md:pb-32 md:pt-24">
+          <h2
+            id="payment-options"
+            className="text-5xl font-extrabold text-fg-neutral md:text-left"
+          >
             Payment Options
           </h2>
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
