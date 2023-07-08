@@ -14,7 +14,7 @@ export const Card = ({ data }: { data: CardProps }) => (
     className="block w-full space-y-4 rounded-xl p-8 transition-colors hover:bg-base"
   >
     <div className="flex flex-col justify-between space-y-2 xs:flex-row xs:space-y-0">
-      <h3 className="font-semibold">{data.title}</h3>
+      <h3 className="font-medium">{data.title}</h3>
       <time
         dateTime={data.firstPosted}
         className="text-sm text-fg-neutral-faded xs:text-right xs:text-base"
