@@ -7,7 +7,7 @@ import { NavigationBar } from '@/components/navigation-bar'
 import type { Metadata } from 'next'
 import { Providers } from './Providers'
 
-export const metadata: Metadata = {
+/* export const metadata: Metadata = {
   title: {
     default: 'Edgaras — Co-Founder, Designer, Coder',
     template: '%s | edgaras.com'
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     ]
   },
   manifest: '/site.webmanifest'
-}
+} */
 /* 
 const themeScript = `
   let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
@@ -105,8 +105,8 @@ const themeScript = `
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    // suppressHydrationWarning is for "next-themes" to not give warnings
-    <html suppressHydrationWarning lang="en" className="h-full bg-page text-fg-neutral">
+    // suppressHydrationWarning is for "next-themes" to not give warnings, add to html as an attribute
+    <html lang="en" className="h-full bg-page text-fg-neutral">
       <head>
         <PlausibleProvider domain="edgaras.com" />
       </head>

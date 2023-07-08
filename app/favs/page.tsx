@@ -10,7 +10,7 @@ export const revalidate = 30 // revalidate every 30 secs
 export const metadata: Metadata = {
   title: 'Favs'
 }
-export default async function FavsPage({ searchParams }: any) {
+export default async function FavsPage() {
   const supabase = createServerComponentClient<Database>({ cookies })
   const { data } = await supabase.from('favs').select('title, tags, link')
 
