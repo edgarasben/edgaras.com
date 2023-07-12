@@ -48,17 +48,27 @@
 }
 
 code {
-  counter-reset: step;
+  counter-reset: line;
 }
 
-code .line::before {
-  content: counter(step);
-  counter-increment: step;
-  width: 1rem;
-  margin-right: 1.5rem;
+code > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+
+  /* Other styling */
   display: inline-block;
+  width: 1rem;
+  margin-right: 2rem;
   text-align: right;
-  color: theme('colors.fg.neutral-faded');
+  color: gray;
+}
+
+code[data-line-numbers-max-digits='2'] > [data-line]::before {
+  width: 2rem;
+}
+
+code[data-line-numbers-max-digits='3'] > [data-line]::before {
+  width: 3rem;
 }
 
 summary::-webkit-details-marker {

@@ -37,16 +37,22 @@ export interface Database {
         Row: {
           created_at: string | null
           id: number
+          markdown: string | null
+          slug: string | null
           title: string
         }
         Insert: {
           created_at?: string | null
           id?: number
+          markdown?: string | null
+          slug?: string | null
           title: string
         }
         Update: {
           created_at?: string | null
           id?: number
+          markdown?: string | null
+          slug?: string | null
           title?: string
         }
         Relationships: []
