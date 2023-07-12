@@ -9,6 +9,7 @@ import { Database } from '@/types/supabase'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { supabase } from '@/lib/supabaseClient'
+import Image from 'next/image'
 
 export const dynamic = 'force-static'
 export const revalidate = 30
@@ -44,6 +45,14 @@ export default async function PostPage({ params }: PostPageProps) {
     .eq('slug', slug)
     .single()
 
+  const components = {
+    img: (props: any) => (
+      <Image alt={props.alt} width={800} height={450} {...props}>
+        {props.children}
+      </Image>
+    )
+  }
+
   return (
     <Container>
       <article className="prose max-w-none break-words lg:prose-xl prose-h1:text-center prose-figcaption:text-fg-neutral-faded prose-pre:bg-black">
@@ -55,6 +64,7 @@ export default async function PostPage({ params }: PostPageProps) {
         )}
         <div className="pt-16">
           <MDXRemote
+            components={components}
             source={post?.markdown!}
             options={{
               mdxOptions: {
