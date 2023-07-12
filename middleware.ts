@@ -1,23 +1,12 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
+import { NextResponse } from 'next/server'
 
-export const config = {
-  matcher: ['/admin']
-}
+import type { NextRequest } from 'next/server'
+import type { Database } from '@/types/supabase'
 
-export function middleware(req: NextRequest) {
-  const basicAuth = req.headers.get('authorization')
-  const url = req.nextUrl
-
-  if (basicAuth) {
-    const authValue = basicAuth.split(' ')[1]
-    const [user, pwd] = Buffer.from(authValue, 'base64').toString().split(':')
-
-    if (user === '4dmin' && pwd === process.env.ADMIN_PASS) {
-      return NextResponse.next()
-    }
-  }
-
-  url.pathname = '/api/auth'
-
-  return NextResponse.rewrite(url)
+export async function middleware(req: NextRequest) {
+  const res = NextResponse.next()
+  const supabase = createMiddlewareClient<Database>({ req, res })
+  await supabase.auth.getSession()
+  return res
 }

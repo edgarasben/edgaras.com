@@ -9,7 +9,7 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      favs: {
+      bookmarks: {
         Row: {
           created_at: string | null
           id: number
@@ -53,7 +53,12 @@ export interface Database {
       }
     }
     Views: {
-      [_ in never]: never
+      bookmark_tags_all: {
+        Row: {
+          name: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never

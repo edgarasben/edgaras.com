@@ -7,7 +7,8 @@ import { NavigationBar } from '@/components/navigation-bar'
 import type { Metadata } from 'next'
 import { Providers } from './Providers'
 
-/* export const metadata: Metadata = {
+export const metadata: Metadata = {
+  metadataBase: new URL('https://edgaras.com'),
   title: {
     default: 'Edgaras — Co-Founder, Designer, Coder',
     template: '%s | edgaras.com'
@@ -66,7 +67,7 @@ import { Providers } from './Providers'
     ]
   },
   manifest: '/site.webmanifest'
-} */
+}
 /* 
 const themeScript = `
   let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')

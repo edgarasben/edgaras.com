@@ -3,6 +3,7 @@ import { Header } from '@/components/header'
 import { Container } from '@/components/container'
 import { Card } from '@/components/card'
 
+export const revalidate = 300 // revalidate every 5min
 export default async function IndexPage() {
   const posts = await getPosts()
   return (

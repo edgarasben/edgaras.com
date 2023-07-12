@@ -1,12 +1,13 @@
 import { notFound } from 'next/navigation'
 import PortfolioFooter from '../PortfolioFooter'
-import data from '../../api/data/data.json'
+import data from '../../../.drafts/app/api/data/data.json'
 import Image from 'next/image'
 import Link from 'next/link'
 import Balancer from 'react-wrap-balancer'
 
+export const dynamic = 'force-dynamic';
+
 export async function generateStaticParams() {
-  /*   const data = await getData() */
   return data.map((item: any) => ({
     slug: item.slug
   }))
@@ -14,13 +15,11 @@ export async function generateStaticParams() {
 
 export default async function CasePage({ params }: { params: { slug: string } }) {
   const { slug } = params
-  /*   const data = await getData() */
   const page = data.find((page: any) => {
     return page.slug === slug
   })
 
   if (!page) {
-    // not found page here
     return notFound()
   }
 

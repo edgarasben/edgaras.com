@@ -16,10 +16,6 @@ export const NavigationBar = () => {
       label: 'Home',
       path: '/'
     },
-    {
-      label: 'Posts',
-      path: '/posts'
-    },
     /*   {
       label: 'Log',
       path: '/log'
@@ -27,6 +23,10 @@ export const NavigationBar = () => {
     {
       label: 'Portfolio',
       path: '/portfolio'
+    },
+    {
+      label: 'Bookmarks',
+      path: '/bookmarks'
     }
     /*         {
             label: 'Lab',
@@ -51,7 +51,7 @@ export const NavigationBar = () => {
 
   if (pathname?.includes('/portfolio')) return null
   return (
-    <div className="fixed inset-x-0 bottom-0 flex justify-center p-2 xs:p-4 standalone:pb-safe-area-inset-bottom">
+    <div className="fixed inset-x-0 bottom-0 flex justify-center p-2 xs:p-4 standalone:pb-safe-area-inset-bottom z-50">
       <div className="rounded-lg border-t border-t-white/20 bg-black/60 ring-1 ring-black/70 backdrop-blur xs:w-auto">
         <ul
           className={`${
@@ -117,15 +117,15 @@ export const NavigationBar = () => {
               <ChevronUpDownIcon className="h-5 w-5" />
             </button>
           </li>
-          <li>
+          {/*       <li>
             <button
-              /*               onClick={toggleTheme} */
+              onClick={toggleTheme}
               aria-label="Toggle theme"
               className={linkClasses(null)}
             >
               <MoonIcon className="h-5 w-5" />
             </button>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>
