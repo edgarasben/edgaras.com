@@ -102,16 +102,18 @@ export default async function BookmarksPage({
 
   return (
     <div className="grid grid-cols-2 h-full">
-      <ul className="flex flex-wrap place-content-start gap-2 p-12 bg-neutral">
-        <li>
-          <TagSwitcherButton tag="All">All</TagSwitcherButton>
-        </li>
-        {tagsData?.map((tag) => (
-          <li key={tag.name}>
-            <TagSwitcherButton tag={tag.name || ''}>{tag.name}</TagSwitcherButton>
+      <section className="bg-neutral">
+        <ul className="flex flex-wrap place-content-start gap-2 p-12 sticky top-0">
+          <li>
+            <TagSwitcherButton tag="All">All</TagSwitcherButton>
           </li>
-        ))}
-      </ul>
+          {tagsData?.map((tag) => (
+            <li key={tag.name}>
+              <TagSwitcherButton tag={tag.name || ''}>{tag.name}</TagSwitcherButton>
+            </li>
+          ))}
+        </ul>
+      </section>
       <nav className="" aria-label="Directory">
         {Object.keys(filteredData).length > 0 ? (
           Object.keys(filteredData).map((tag) => (
