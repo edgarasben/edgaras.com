@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 }
 type SearchParams = {
   tag?: string[]
-  // other possible keys...
+  latest?: boolean
 }
 
 type GroupedBookmarks = {
@@ -52,12 +52,18 @@ function filterBookmarksByTag(
       .map(([category, items]: [string, Bookmark[]]) => [
         category,
         items.filter((item: Bookmark) => {
+          let searchTags: string[] | undefined = searchParams.tag
+            ? Array.isArray(searchParams.tag)
+              ? searchParams.tag
+              : [searchParams.tag]
+            : undefined
           if (
             item.tags &&
-            item.tags.every((tag) => searchParams.tag?.includes(tag)) &&
-            !includedItems.has(item.title)
+            searchTags &&
+            searchTags.every((tag) => item.tags?.includes(tag))
           ) {
-            includedItems.add(item.title)
+            // If the item is already included, return false
+            includedItems.add(item.link)
             return true
           }
           return false
