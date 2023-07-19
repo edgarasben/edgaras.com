@@ -54,7 +54,7 @@ function filterBookmarksByTag(
         items.filter((item: Bookmark) => {
           if (
             item.tags &&
-            item.tags.some((tag) => searchParams.tag?.includes(tag)) &&
+            item.tags.every((tag) => searchParams.tag?.includes(tag)) &&
             !includedItems.has(item.title)
           ) {
             includedItems.add(item.title)

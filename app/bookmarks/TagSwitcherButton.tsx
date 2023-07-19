@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
+import path from 'path'
 import { useCallback } from 'react'
 
 export default function ExampleClientComponent({
@@ -26,13 +27,16 @@ export default function ExampleClientComponent({
     [searchParams]
   )
 
+  function path() {
+    if (props.tag === 'All') return '/bookmarks'
+    if (props.tag === 'Latest')
+      return pathname + '?' + createQueryString('latest', 'true')
+    return pathname + '?' + createQueryString('tag', props.tag)
+  }
+
   return (
     <Link
-      href={
-        props.tag === 'All'
-          ? '/bookmarks'
-          : pathname + '?' + createQueryString('tag', props.tag)
-      }
+      href={path()}
       className={`inline-block rounded-lg hover:bg-black hover:text-white p-4 ${
         props.tag === searchParams.get('tag') ||
         (searchParams.get('tag') === null && props.tag === 'All')
