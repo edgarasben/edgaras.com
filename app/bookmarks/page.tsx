@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { Database } from '@/types/supabase'
-import { usePathname } from 'next/navigation'
-import Link from 'next/link'
 import TagSwitcherButton from './TagSwitcherButton'
+
+const supabase = createServerComponentClient<Database>({ cookies })
 
 type BookmarkFull = Database['public']['Tables']['bookmarks']['Row']
 type Bookmark = Pick<BookmarkFull, 'link' | 'title' | 'tags'>
@@ -15,6 +15,7 @@ export const revalidate = 0
 export const metadata: Metadata = {
   title: 'Bookmarks'
 }
+
 type SearchParams = {
   tag?: string[]
   latest?: boolean
@@ -24,46 +25,24 @@ type GroupedBookmarks = {
   [tag: string]: Bookmark[]
 }
 
-function groupBookmarksByTag(data: Bookmark[]) {
-  return data?.reduce((acc: GroupedBookmarks, bookmark: Bookmark) => {
-    bookmark.tags?.forEach((tag: string) => {
-      if (!acc[tag]) {
-        acc[tag] = []
-      }
-      acc[tag].push(bookmark)
-    })
-    return acc
-  }, {})
-}
-
 function filterBookmarksByTag(
   groupedBookmarks: GroupedBookmarks,
-  searchParams: SearchParams
+  { tag }: SearchParams
 ): GroupedBookmarks {
-  // If searchParams is empty, return all data
-  if (Object.keys(searchParams).length === 0) {
+  if (!tag) {
     return groupedBookmarks
   }
 
   let includedItems = new Set()
+  let searchTags = Array.isArray(tag) ? tag : [tag]
 
   return Object.fromEntries(
     Object.entries(groupedBookmarks)
       .map(([category, items]: [string, Bookmark[]]) => [
         category,
-        items.filter((item: Bookmark) => {
-          let searchTags: string[] | undefined = searchParams.tag
-            ? Array.isArray(searchParams.tag)
-              ? searchParams.tag
-              : [searchParams.tag]
-            : undefined
-          if (
-            item.tags &&
-            searchTags &&
-            searchTags.every((tag) => item.tags?.includes(tag))
-          ) {
-            // If the item is already included, return false
-            includedItems.add(item.link)
+        items.filter(({ tags, link }: Bookmark) => {
+          if (tags && searchTags.every((tag) => tags.includes(tag))) {
+            includedItems.add(link)
             return true
           }
           return false
@@ -73,37 +52,33 @@ function filterBookmarksByTag(
   )
 }
 
-function BookmarkItem({ bookmark }: { bookmark: Bookmark }) {
-  return bookmark.link ? (
-    <a
-      key={bookmark.link}
-      href={bookmark.link}
-      className="block hover:bg-neutral transition-colors"
-    >
+/* function BookmarkItem({ bookmark: { link, title } }: { bookmark: Bookmark }) {
+  return link ? (
+    <a key={link} href={link} className="block hover:bg-neutral transition-colors">
       <li className="flex gap-x-4 px-3 py-5">
         <div className="min-w-0 pl-3">
-          <p className="text-sm font-semibold leading-6 text-fg-neutral">
-            {bookmark.title}
-          </p>
+          <p className="text-sm font-semibold leading-6 text-fg-neutral">{title}</p>
         </div>
       </li>
     </a>
   ) : null
-}
+} */
 
 export default async function BookmarksPage({
   searchParams
 }: {
   searchParams: SearchParams
 }) {
-  const supabase = createServerComponentClient<Database>({ cookies })
   const { data: bookmarksData } = await supabase
     .from('bookmarks')
     .select('title, tags, link, created_at, id')
+    .order('created_at', { ascending: false })
 
   const { data: tagsData } = await supabase.from('bookmark_tags_all').select('*')
 
-  const groupedBookmarks = groupBookmarksByTag(bookmarksData || [])
+  console.log(bookmarksData)
+
+  const groupedBookmarks = groupBy(bookmarksData || [], 'tags')
   const filteredData = filterBookmarksByTag(groupedBookmarks, searchParams)
 
   return (
@@ -113,14 +88,14 @@ export default async function BookmarksPage({
           <li>
             <TagSwitcherButton tag="All">All</TagSwitcherButton>
           </li>
-          {tagsData?.map((tag) => (
-            <li key={tag.name}>
-              <TagSwitcherButton tag={tag.name || ''}>{tag.name}</TagSwitcherButton>
+          {tagsData?.map(({ name }) => (
+            <li key={name}>
+              <TagSwitcherButton tag={name || ''}>{name}</TagSwitcherButton>
             </li>
           ))}
         </ul>
       </section>
-      <nav className="" aria-label="Directory">
+      <nav aria-label="Directory" className="overflow-y-scroll">
         {Object.keys(filteredData).length > 0 ? (
           Object.keys(filteredData).map((tag) => (
             <div key={tag} className="relative">
@@ -129,7 +104,18 @@ export default async function BookmarksPage({
               </div>
               <ul role="list" className="divide-y divide-border-neutral-faded">
                 {filteredData[tag].map((bookmark) => (
-                  <BookmarkItem key={bookmark.link} bookmark={bookmark} />
+                  <li key={bookmark.link}>
+                    <a
+                      href={bookmark.link}
+                      className="hover:bg-neutral transition-colors flex gap-x-4 px-3 py-5"
+                    >
+                      <div className="min-w-0 pl-3">
+                        <p className="text-sm font-semibold leading-6 text-fg-neutral">
+                          {bookmark.title}
+                        </p>
+                      </div>
+                    </a>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -140,4 +126,16 @@ export default async function BookmarksPage({
       </nav>
     </div>
   )
+}
+
+///////// Helper functions
+interface Groupable {
+  [key: string]: any
+}
+
+const groupBy = <T extends Groupable>(array: T[], key: string): Record<string, T[]> => {
+  return array.reduce((result: Record<string, T[]>, obj: T) => {
+    obj[key].forEach((k: any) => (result[k] = result[k] || []).push(obj))
+    return result
+  }, {})
 }

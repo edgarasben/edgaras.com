@@ -13,21 +13,21 @@ export interface Database {
         Row: {
           created_at: string | null
           id: number
-          link: string | null
+          link: string
           tags: string[] | null
           title: string | null
         }
         Insert: {
           created_at?: string | null
           id?: number
-          link?: string | null
+          link: string
           tags?: string[] | null
           title?: string | null
         }
         Update: {
           created_at?: string | null
           id?: number
-          link?: string | null
+          link?: string
           tags?: string[] | null
           title?: string | null
         }
@@ -36,23 +36,23 @@ export interface Database {
       posts: {
         Row: {
           created_at: string | null
-          id: number
           markdown: string | null
-          slug: string | null
+          slug: string
+          status: string | null
           title: string
         }
         Insert: {
           created_at?: string | null
-          id?: number
           markdown?: string | null
-          slug?: string | null
+          slug: string
+          status?: string | null
           title: string
         }
         Update: {
           created_at?: string | null
-          id?: number
           markdown?: string | null
-          slug?: string | null
+          slug?: string
+          status?: string | null
           title?: string
         }
         Relationships: []
