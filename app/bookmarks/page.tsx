@@ -76,8 +76,6 @@ export default async function BookmarksPage({
 
   const { data: tagsData } = await supabase.from('bookmark_tags_all').select('*')
 
-  console.log(bookmarksData)
-
   const groupedBookmarks = groupBy(bookmarksData || [], 'tags')
   const filteredData = filterBookmarksByTag(groupedBookmarks, searchParams)
 
