@@ -14,10 +14,11 @@ import Image from 'next/image'
 export const dynamic = 'force-static'
 export const revalidate = 30
 
-/** @type {import('rehype-pretty-code').Options} */
+/** @type {import('rehype-pretty-code').Options} 
 const options = {
   theme: 'nord'
 }
+*/
 
 interface PostPageProps {
   params: {
@@ -69,7 +70,8 @@ export default async function PostPage({ params }: PostPageProps) {
             options={{
               mdxOptions: {
                 remarkPlugins: [],
-                rehypePlugins: [[rehypePrettyCode, options]]
+                rehypePlugins: [rehypePrettyCode]
+                /*               rehypePlugins: [[rehypePrettyCode, options]] */
               }
             }}
           />
