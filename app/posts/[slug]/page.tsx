@@ -13,8 +13,6 @@ import Image from 'next/image'
 
 export const revalidate = 30
 
-const supabase = createServerComponentClient({ cookies })
-
 /** @type {import('rehype-pretty-code').Options} */
 const options = {
   theme: 'nord'
@@ -28,7 +26,7 @@ interface PostPageProps {
 
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
   const slug = params.slug.toString()
-
+  const supabase = createServerComponentClient({ cookies })
   const { data: post } = await supabase
     .from('posts')
     .select('title')
@@ -39,7 +37,7 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
 
 export default async function PostPage({ params }: PostPageProps) {
   const slug = params.slug.toString()
-
+  const supabase = createServerComponentClient({ cookies })
   const { data: post } = await supabase
     .from('posts')
     .select('title, markdown, slug, created_at')
@@ -82,6 +80,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
 export async function generateStaticParams() {
   /*   const posts = await getPosts() */
+  const supabase = createServerComponentClient({ cookies })
   const { data: posts } = await supabase.from('posts').select('slug')
 
   if (!posts) {
