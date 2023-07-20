@@ -8,11 +8,12 @@ import rehypePrettyCode from 'rehype-pretty-code'
 import { Database } from '@/types/supabase'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
-import { supabase } from '@/lib/supabaseClient'
+/* import { supabase } from '@/lib/supabaseClient' */
 import Image from 'next/image'
 
-export const dynamic = 'force-static'
 export const revalidate = 30
+
+const supabase = createServerComponentClient({ cookies })
 
 /** @type {import('rehype-pretty-code').Options} */
 const options = {

@@ -5,12 +5,14 @@ import projects from '../../.drafts/app/api/data/data.json'
 import { ButtonCalendar } from './ButtonCalendar'
 import SpinningWheel from './SpinningWheel'
 import BookHoursForm from './BookHoursForm'
-import {
+/* import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger
-} from '@/components/accordion'
+} from '@/components/accordion' */
+
+export const dynamic = 'force-dynamic'
 
 export default function PortfolioPage() {
   return (

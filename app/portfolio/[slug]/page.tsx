@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Balancer from 'react-wrap-balancer'
 
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-dynamic'
 
 export async function generateStaticParams() {
   return data.map((item: any) => ({
