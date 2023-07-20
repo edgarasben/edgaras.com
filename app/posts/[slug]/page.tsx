@@ -11,7 +11,7 @@ import { cookies } from 'next/headers'
 /* import { supabase } from '@/lib/supabaseClient' */
 import Image from 'next/image'
 
-export const dynamic = 'force-static'
+export const dynamic = 'force-dynamic'
 export const revalidate = 30
 
 /** @type {import('rehype-pretty-code').Options} 
