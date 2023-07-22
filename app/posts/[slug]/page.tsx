@@ -4,28 +4,19 @@ import { formatDate } from '@/lib/format-date'
 import { Container } from '@/components/container'
 import type { Metadata } from 'next'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-/* import rehypePrettyCode from 'rehype-pretty-code' */
+import rehypePrettyCode from 'rehype-pretty-code'
 import { Database } from '@/types/supabase'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 /* import { supabase } from '@/lib/supabaseClient' */
 import Image from 'next/image'
-import rehypeHighlight from 'rehype-highlight'
-import '@/styles/github-dark.css'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 30
 
-/* /** @type {import('rehype-pretty-code').Options} 
+/** @type {import('rehype-pretty-code').Options}  */
 const highlighterOptions = {
-  theme: shikiNord
-} */
-
-const highlighterOptions = {
-  mdxOptions: {
-    remarkPlugins: [],
-    rehypePlugins: [rehypeHighlight]
-  }
+  theme: 'nord'
 }
 
 interface PostPageProps {
@@ -75,23 +66,13 @@ export default async function PostPage({ params }: PostPageProps) {
           <MDXRemote
             source={post?.markdown ?? ''}
             components={components}
-            options={highlighterOptions}
-
-            /*   options={{
+            options={{
               mdxOptions: {
                 remarkPlugins: [],
-                     rehypePlugins: [rehypePrettyCode] 
-                rehypePlugins: [
-                  [
-                    {
-                      theme: `nord`,
-                      useBackground: false
-                    }
-                  ]
-                ]
-              rehypePlugins: [[rehypePrettyCode, highlighterOptions]]
+                /*              rehypePlugins: [rehypePrettyCode] */
+                rehypePlugins: [[rehypePrettyCode, highlighterOptions]]
               }
-            }} */
+            }}
           />
         </div>
       </article>
