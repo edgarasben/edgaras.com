@@ -36,21 +36,21 @@ export interface Database {
       posts: {
         Row: {
           created_at: string | null
-          markdown: string | null
+          markdown: string
           slug: string
           status: string | null
           title: string
         }
         Insert: {
           created_at?: string | null
-          markdown?: string | null
+          markdown: string
           slug: string
           status?: string | null
           title: string
         }
         Update: {
           created_at?: string | null
-          markdown?: string | null
+          markdown?: string
           slug?: string
           status?: string | null
           title?: string

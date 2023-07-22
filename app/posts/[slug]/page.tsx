@@ -4,7 +4,7 @@ import { formatDate } from '@/lib/format-date'
 import { Container } from '@/components/container'
 import type { Metadata } from 'next'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-/* import rehypePrettyCode from 'rehype-pretty-code' */
+import rehypePrettyCode from 'rehype-pretty-code'
 import { Database } from '@/types/supabase'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
@@ -14,11 +14,10 @@ import Image from 'next/image'
 export const dynamic = 'force-dynamic'
 export const revalidate = 30
 
-/** @type {import('rehype-pretty-code').Options} 
-const options = {
+/** @type {import('rehype-pretty-code').Options} */
+const highlighterOptions = {
   theme: 'nord'
 }
-*/
 
 interface PostPageProps {
   params: {
@@ -65,13 +64,13 @@ export default async function PostPage({ params }: PostPageProps) {
         )}
         <div className="pt-16">
           <MDXRemote
+            source={post?.markdown ?? ''}
             components={components}
-            source={post?.markdown!}
             options={{
               mdxOptions: {
                 remarkPlugins: [],
-                rehypePlugins: []
-                /*               rehypePlugins: [[rehypePrettyCode, options]] */
+                /*              rehypePlugins: [rehypePrettyCode] */
+                rehypePlugins: [[rehypePrettyCode, highlighterOptions]]
               }
             }}
           />
