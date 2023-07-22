@@ -4,7 +4,7 @@ import { formatDate } from '@/lib/format-date'
 import { Container } from '@/components/container'
 import type { Metadata } from 'next'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import rehypePrettyCode from 'rehype-pretty-code'
+/* import rehypePrettyCode from 'rehype-pretty-code' */
 import { Database } from '@/types/supabase'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
@@ -70,7 +70,7 @@ export default async function PostPage({ params }: PostPageProps) {
             options={{
               mdxOptions: {
                 remarkPlugins: [],
-                rehypePlugins: [rehypePrettyCode]
+                rehypePlugins: []
                 /*               rehypePlugins: [[rehypePrettyCode, options]] */
               }
             }}
