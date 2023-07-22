@@ -42,6 +42,7 @@
     "react-email": "1.9.4",
     "react-wrap-balancer": "1.0.0",
     "rehype-pretty-code": "0.10.0",
+    "shiki": "^0.14.3",
     "stripe": "12.14.0",
     "tailwind-merge": "1.14.0",
     "typescript": "5.1.6",
