@@ -10,13 +10,14 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 /* import { supabase } from '@/lib/supabaseClient' */
 import Image from 'next/image'
+import * as shikiNord from './shiki-nord.json'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 30
 
 /** @type {import('rehype-pretty-code').Options} */
 const highlighterOptions = {
-  theme: 'nord'
+  theme: shikiNord
 }
 
 interface PostPageProps {
