@@ -68,8 +68,8 @@ export default async function PostPage({ params }: PostPageProps) {
             components={components}
             options={{
               mdxOptions: {
-                remarkPlugins: [],
-                rehypePlugins: [rehypePrettyCode]
+                remarkPlugins: []
+                /*               rehypePlugins: [rehypePrettyCode] */
                 /*               rehypePlugins: [[rehypePrettyCode, highlighterOptions]] */
               }
             }}
