@@ -19,6 +19,10 @@ const nextConfig = {
       {
         source: '/images/:slug*',
         destination: 'https://files.edgaras.com/images/:slug*'
+      },
+      {
+        source: '/dashboard',
+        destination: 'https://arc.net/e/47F91214-C345-42DF-BFDA-8272E3F53567'
       }
     ]
   }
