@@ -1,25 +1,24 @@
 'use client'
 
-import '@calcom/embed-react'
+import { getCalApi } from '@calcom/embed-react'
+import { useEffect } from 'react'
 /* import { useEffect } from 'react' */
 
 export function ButtonCalendar({ children }: { children: React.ReactNode }) {
-  /*   useEffect(() => {
+  useEffect(() => {
     ;(async function () {
       const cal = await getCalApi()
       cal('ui', {
-        styles: { branding: { brandColor: '#000000' } },
-        hideEventTypeDetails: false
+        theme: 'dark',
+        styles: {
+          branding: { brandColor: '#000000' }
+        }
       })
     })()
-  }, []) */
+  }, [])
   return (
     <button
       data-cal-link="edgaras/30min"
-      data-cal-config={{
-        styles: { branding: { brandColor: '#000000' } },
-        hideEventTypeDetails: false
-      }}
       className="rounded-full bg-primary px-8 py-4 text-xl font-bold tracking-wide text-on-primary transition-transform hover:rotate-2 hover:scale-105"
     >
       {children}
