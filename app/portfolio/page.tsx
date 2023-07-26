@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { AnimateStagger } from './AnimateStagger'
 import PortfolioFooter from './PortfolioFooter'
-import projects from '../../.drafts/app/api/data/data.json'
+import projects from './data.json'
 import { ButtonCalendar } from './ButtonCalendar'
 import SpinningWheel from './SpinningWheel'
 import BookHoursForm from './BookHoursForm'

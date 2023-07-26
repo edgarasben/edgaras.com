@@ -1,11 +1,9 @@
 import { notFound } from 'next/navigation'
 import PortfolioFooter from '../PortfolioFooter'
-import data from '../../../.drafts/app/api/data/data.json'
+import data from '../data.json'
 import Image from 'next/image'
 import Link from 'next/link'
 import Balancer from 'react-wrap-balancer'
-
-export const dynamic = 'force-dynamic'
 
 export async function generateStaticParams() {
   return data.map((item: any) => ({
