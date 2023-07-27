@@ -12,8 +12,6 @@ import BookHoursForm from './BookHoursForm'
   AccordionTrigger
 } from '@/components/accordion' */
 
-export const dynamic = 'force-dynamic'
-
 export default function PortfolioPage() {
   return (
     <>

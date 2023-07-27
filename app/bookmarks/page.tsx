@@ -1,16 +1,12 @@
 import type { Metadata } from 'next'
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
 import { Database } from '@/types/supabase'
 import TagSwitcherButton from './TagSwitcherButton'
-
-const supabase = createServerComponentClient<Database>({ cookies })
+import { supabase } from '@/lib/supabaseClient'
 
 type BookmarkFull = Database['public']['Tables']['bookmarks']['Row']
 type Bookmark = Pick<BookmarkFull, 'link' | 'title' | 'tags'>
 
-export const dynamic = 'force-dynamic'
-export const revalidate = 0
+export const revalidate = 30
 
 export const metadata: Metadata = {
   title: 'Bookmarks'

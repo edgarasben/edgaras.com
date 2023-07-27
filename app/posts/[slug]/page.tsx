@@ -6,12 +6,9 @@ import type { Metadata } from 'next'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import rehypePrettyCode from 'rehype-pretty-code'
 import { Database } from '@/types/supabase'
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
-/* import { supabase } from '@/lib/supabaseClient' */
+import { supabase } from '@/lib/supabaseClient'
 import Image from 'next/image'
 
-export const dynamic = 'force-dynamic'
 export const revalidate = 30
 
 /** @type {import('rehype-pretty-code').Options}  
@@ -27,7 +24,6 @@ interface PostPageProps {
 
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
   const slug = params.slug.toString()
-  const supabase = createServerComponentClient<Database>({ cookies })
   const { data: post } = await supabase
     .from('posts')
     .select('title')
@@ -38,7 +34,6 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
 
 export default async function PostPage({ params }: PostPageProps) {
   const slug = params.slug.toString()
-  const supabase = createServerComponentClient<Database>({ cookies })
   const { data: post } = await supabase
     .from('posts')
     .select('title, markdown, slug, created_at')
@@ -82,7 +77,6 @@ export default async function PostPage({ params }: PostPageProps) {
 
 export async function generateStaticParams() {
   /*   const posts = await getPosts() */
-  const supabase = createServerComponentClient<Database>({ cookies })
   const { data: posts } = await supabase.from('posts').select('slug')
 
   if (!posts) {

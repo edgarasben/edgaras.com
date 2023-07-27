@@ -1,10 +1,8 @@
 import { Container } from '@/components/container'
 import { Card } from '@/components/card'
 import type { Metadata } from 'next'
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
+import { supabase } from '@/lib/supabaseClient'
 
-export const dynamic = 'force-dynamic'
 export const revalidate = 30
 
 export const metadata: Metadata = {
@@ -12,7 +10,6 @@ export const metadata: Metadata = {
 }
 
 export default async function PostsPage() {
-  const supabase = createServerComponentClient({ cookies })
   const { data: posts } = await supabase
     .from('posts')
     .select('title, markdown, slug, created_at')
