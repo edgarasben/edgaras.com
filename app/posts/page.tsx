@@ -16,11 +16,12 @@ export default async function PostsPage() {
   const { data: posts } = await supabase
     .from('posts')
     .select('title, markdown, slug, created_at')
+    .order('created_at', { ascending: false })
 
   return (
     <Container>
       <section>
-        <h2 className="p-8 text-xl font-semibold">Latest posts</h2>
+        <h2 className="p-8 text-xl font-semibold">Latest postss</h2>
         <ul>
           {posts?.map((post: any) => (
             <li key={post.slug}>
