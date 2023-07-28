@@ -17,5 +17,5 @@ export async function GET(request: Request) {
   console.log(requestUrl)
 
   // URL to redirect to after sign in process completes
-  return NextResponse.redirect(requestUrl.origin + '/admin')
+  return NextResponse.redirect(requestUrl.origin + '/')
 }

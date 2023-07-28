@@ -57,6 +57,27 @@ export interface Database {
         }
         Relationships: []
       }
+      posts: {
+        Row: {
+          created_at: string
+          id: string
+          markdown: string
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          markdown: string
+          status: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          markdown?: string
+          status?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       bookmark_tags_all: {
@@ -67,7 +88,10 @@ export interface Database {
       }
     }
     Functions: {
-      [_ in never]: never
+      generate_random_19_digit_id: {
+        Args: Record<PropertyKey, never>
+        Returns: number
+      }
     }
     Enums: {
       [_ in never]: never

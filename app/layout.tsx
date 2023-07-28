@@ -107,7 +107,7 @@ const themeScript = `
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     // suppressHydrationWarning is for "next-themes" to not give warnings, add to html as an attribute
-    <html lang="en" className="h-full bg-page text-fg-neutral">
+    <html lang="en" className="h-full bg-page text-fg-neutral antialiased">
       <head>
         <PlausibleProvider domain="edgaras.com" />
       </head>

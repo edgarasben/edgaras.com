@@ -8,11 +8,11 @@ import type { Session } from '@supabase/auth-helpers-nextjs'
 
 export default function LoginForm({ session }: { session: Session | null }) {
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  /*   const [password, setPassword] = useState('') */
   const router = useRouter()
   const supabase = createClientComponentClient()
 
-  const handleSignUp = async () => {
+  /*  const handleSignUp = async () => {
     await supabase.auth.signUp({
       email,
       password,
@@ -22,11 +22,13 @@ export default function LoginForm({ session }: { session: Session | null }) {
     })
     router.refresh()
   }
-
+ */
   const handleSignIn = async () => {
-    await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithOtp({
       email,
-      password
+      options: {
+        emailRedirectTo: `${location.origin}/api/auth/callback`
+      }
     })
     router.refresh()
   }
@@ -48,14 +50,9 @@ export default function LoginForm({ session }: { session: Session | null }) {
         onChange={(e) => setEmail(e.target.value)}
         value={email}
       />
-      <input
-        type="password"
-        name="password"
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-      />
-      <button onClick={handleSignUp}>Sign up</button>
-      <button onClick={handleSignIn}>Sign in</button>
+
+      {/*       <button onClick={handleSignUp}>Sign up</button> */}
+      <button onClick={handleSignIn}>Log in</button>
     </>
   )
 }

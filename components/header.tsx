@@ -32,7 +32,7 @@ export const Header = () => {
         <div className="relative flex justify-between">
           <div className="flex flex-col items-start space-y-8 sm:flex-row sm:items-center sm:space-x-4 sm:space-y-0">
             <Image
-              src="/images/edgaras-profile.jpg"
+              src="/avatar.jpg"
               className="border-bg-base rounded-full border-2 shadow-md"
               alt="Edgaras profile"
               width={56}
