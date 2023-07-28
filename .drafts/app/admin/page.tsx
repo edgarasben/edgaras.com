@@ -20,13 +20,13 @@ export default async function AdminPage() {
     redirect('/')
   }
 
-  const { data } = await supabase.from('posts').select('*')
+  const { data } = await supabase.from('articles').select('*')
 
   const addPost = async (formData: FormData) => {
     'use server'
     const supabase = createServerActionClient<Database>({ cookies })
     const title = formData.get('title') as string
-    await supabase.from('posts').insert({ title })
+    await supabase.from('articles').insert({ title })
     revalidatePath('/')
   }
 

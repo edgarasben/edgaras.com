@@ -1,9 +1,9 @@
-import { formatDate } from '@/lib/format-date'
+import { formatDate } from '@/lib/utils'
 import Link from 'next/link'
 
 export const Card = ({ data }: { data: any }) => (
   <Link
-    href={`/posts/${data.slug}`}
+    href={`/articles/${data.slug}`}
     className="block w-full space-y-4 rounded-xl py-4 px-4 transition-colors hover:bg-base"
   >
     <div className="flex flex-col gap-1 xs:flex-row xs:space-y-0">

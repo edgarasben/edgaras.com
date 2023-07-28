@@ -1,21 +1,12 @@
-import { getPosts } from '@/lib/get-posts'
-import { getPost } from '@/lib/get-post'
-import { formatDate } from '@/lib/format-date'
+import { formatDate } from '@/lib/utils'
 import { Container } from '@/components/container'
 import type { Metadata } from 'next'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import rehypePrettyCode from 'rehype-pretty-code'
-import { Database } from '@/types/supabase'
 import { supabase } from '@/lib/supabaseClient'
 import Image from 'next/image'
 
 export const revalidate = 30
 
-/** @type {import('rehype-pretty-code').Options}  
-const highlighterOptions = {
-  theme: 'nord'
-}
-*/
 interface PostPageProps {
   params: {
     slug: string[]
@@ -25,7 +16,7 @@ interface PostPageProps {
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
   const slug = params.slug.toString()
   const { data: post } = await supabase
-    .from('posts')
+    .from('articles')
     .select('title')
     .eq('slug', slug)
     .single()
@@ -35,7 +26,7 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
 export default async function PostPage({ params }: PostPageProps) {
   const slug = params.slug.toString()
   const { data: post } = await supabase
-    .from('posts')
+    .from('articles')
     .select('title, markdown, slug, created_at')
     .eq('slug', slug)
     .single()
@@ -64,8 +55,6 @@ export default async function PostPage({ params }: PostPageProps) {
             options={{
               mdxOptions: {
                 remarkPlugins: []
-                /*               rehypePlugins: [rehypePrettyCode] */
-                /*               rehypePlugins: [[rehypePrettyCode, highlighterOptions]] */
               }
             }}
           />
@@ -76,14 +65,13 @@ export default async function PostPage({ params }: PostPageProps) {
 }
 
 export async function generateStaticParams() {
-  /*   const posts = await getPosts() */
-  const { data: posts } = await supabase.from('posts').select('slug')
+  const { data: articles } = await supabase.from('articles').select('slug')
 
-  if (!posts) {
+  if (!articles) {
     return []
   }
 
-  return posts.map((post) => ({
-    slug: post.slug
+  return articles.map((article) => ({
+    slug: article.slug
   }))
 }

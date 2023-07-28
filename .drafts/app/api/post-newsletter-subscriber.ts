@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { z } from 'zod'
 import { Client as NotionClient } from '@notionhq/client'
-import { sendEmail } from '@/lib/send-email'
+import { sendEmail } from '@/lib/mailersend'
 
 const schema = z.object({
   email: z.string().email({ message: 'Invalid email address' })

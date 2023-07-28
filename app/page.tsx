@@ -6,8 +6,8 @@ import { supabase } from '@/lib/supabaseClient'
 export const revalidate = 30
 
 export default async function IndexPage() {
-  const { data: posts } = await supabase
-    .from('posts')
+  const { data: articles } = await supabase
+    .from('articles')
     .select('title, markdown, slug, created_at')
     .order('created_at', { ascending: false })
 
@@ -15,11 +15,11 @@ export default async function IndexPage() {
     <Container>
       <Header />
       <section>
-        <h2 className="p-2 md:p-4 text-xl font-semibold">Latest posts</h2>
+        <h2 className="p-2 md:p-4 text-xl font-semibold">Latest articles</h2>
         <ul>
-          {posts?.map((post) => (
-            <li key={post.slug}>
-              <Card data={post} />
+          {articles?.map((article) => (
+            <li key={article.slug}>
+              <Card data={article} />
             </li>
           ))}
         </ul>

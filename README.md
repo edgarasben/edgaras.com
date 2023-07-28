@@ -1,21 +1,25 @@
 # edgaras.com
 
-My personal website and a playground.
+My personal website, [design portfolio](https://edgaras.com/portfolio/) and a code playground.
 
 ## Todo
 
--   [x] Initial design+code
--   [x] Light/dark theme + switcher
--   [x] Load posts from Notion as a CMS
--   [ ] Connect Newsletter subscription form to MailerSend API
--   [ ] Add About, Now pages
+- [x] Initial design+code
+- [x] Light/dark theme + switcher
+- [x] Load articles from Notion as a CMS
+- [x] Connect Newsletter subscription form to MailerSend API
+- [x] Add my own posts feed
+- [ ] Add About page
 
 ## Stack
 
--   ReactJS
--   TypeScript
--   NextJS
--   TailwindCSS
+- ReactJS
+- TypeScript
+- NextJS
+- Supabase
+- TailwindCSS
+- Radix UI
+- Notion (temporary)
 
 ## Follow
 
