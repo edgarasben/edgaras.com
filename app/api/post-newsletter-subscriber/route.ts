@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { Client as NotionClient } from '@notionhq/client'
-import { sendEmail } from '@/lib/send-email'
+import { sendEmail } from '@/lib/mailersend'
 import { NextResponse } from 'next/server'
 
 const schema = z.object({
