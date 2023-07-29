@@ -80,11 +80,16 @@ export default async function BookmarksPage({
       <section className="bg-neutral">
         <ul className="flex flex-wrap place-content-start gap-2 p-12 sticky top-0">
           <li>
-            <TagSwitcherButton tag="All">All</TagSwitcherButton>
+            <TagSwitcherButton tag="All">
+              <span className="font-medium">All</span>
+            </TagSwitcherButton>
           </li>
-          {tagsData?.map(({ name }) => (
-            <li key={name}>
-              <TagSwitcherButton tag={name || ''}>{name}</TagSwitcherButton>
+          {tagsData?.map((tag) => (
+            <li key={tag.name}>
+              <TagSwitcherButton tag={tag.name || ''}>
+                <span className="font-medium">{tag.name}</span>{' '}
+                <span className="text-fg-neutral-faded">{tag.count}</span>
+              </TagSwitcherButton>
             </li>
           ))}
         </ul>

@@ -82,6 +82,7 @@ export interface Database {
     Views: {
       bookmark_tags_all: {
         Row: {
+          count: number | null
           name: string | null
         }
         Relationships: []

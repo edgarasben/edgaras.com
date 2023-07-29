@@ -6,6 +6,7 @@ import { useCallback } from 'react'
 
 export default function ExampleClientComponent({
   children,
+
   ...props
 }: {
   children: React.ReactNode
@@ -47,7 +48,7 @@ export default function ExampleClientComponent({
       {children}
     </Link> */
     <button
-      className={`inline-block rounded-lg hover:bg-black hover:text-white px-4 py-2 ${
+      className={`inline-block rounded-lg hover:bg-black hover:text-white px-4 py-2 text-sm ${
         props.tag === searchParams.get('tag') ||
         (searchParams.get('tag') === null && props.tag === 'All')
           ? 'bg-black text-white'
