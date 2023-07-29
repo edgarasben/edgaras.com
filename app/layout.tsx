@@ -110,6 +110,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className="h-full bg-page text-fg-neutral antialiased">
       <head>
         <PlausibleProvider domain="edgaras.com" />
+        <link href="https://github.com/edgarasben" rel="me" />
       </head>
       <body className="h-full">
         <>
