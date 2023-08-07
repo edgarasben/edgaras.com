@@ -9,6 +9,7 @@ export default async function IndexPage() {
   const { data: articles } = await supabase
     .from('articles')
     .select('title, markdown, slug, created_at')
+    .eq('status', 'public')
     .order('created_at', { ascending: false })
 
   return (

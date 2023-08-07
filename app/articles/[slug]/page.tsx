@@ -19,6 +19,7 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
     .from('articles')
     .select('title')
     .eq('slug', slug)
+    .eq('status', true)
     .single()
   return { title: post?.title }
 }
@@ -29,6 +30,7 @@ export default async function PostPage({ params }: PostPageProps) {
     .from('articles')
     .select('title, markdown, slug, created_at')
     .eq('slug', slug)
+    .eq('status', 'public')
     .single()
 
   const components = {
