@@ -1,11 +1,17 @@
-import Script from 'next/script'
 import '@/styles/globals.css'
-import PlausibleProvider from 'next-plausible'
-
-import { NavigationBar } from '@/components/navigation-bar'
 
 import type { Metadata } from 'next'
+import { NavigationBar } from '@/components/navigation-bar'
+import PlausibleProvider from 'next-plausible'
 import { Providers } from './Providers'
+import Script from 'next/script'
+import { Viewport } from 'next'
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover'
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://edgaras.com'),
@@ -14,7 +20,6 @@ export const metadata: Metadata = {
     template: '%s | edgaras.com'
   },
   robots: 'follow, index',
-  viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
   description:
     'I design and code things for the web. Get updates on what I learn and build by joining my mailing list.',
   openGraph: {

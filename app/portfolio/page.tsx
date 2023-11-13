@@ -1,10 +1,10 @@
-import Image from 'next/image'
 import { AnimateStagger } from './AnimateStagger'
-import PortfolioFooter from './PortfolioFooter'
-import projects from './data.json'
+import BookHoursForm from '@/components/book-hours-form'
 import { ButtonCalendar } from './ButtonCalendar'
+import Image from 'next/image'
+import PortfolioFooter from './PortfolioFooter'
 import SpinningWheel from './SpinningWheel'
-import BookHoursForm from './BookHoursForm'
+import projects from './data.json'
 /* import {
   Accordion,
   AccordionContent,
@@ -410,45 +410,7 @@ export default function PortfolioPage() {
           >
             Payment Options
           </h2>
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-            <div className="flex flex-col justify-between gap-10 rounded-[32px] bg-neutral p-12">
-              <div className="space-y-4">
-                <h3 className="text-4xl">
-                  <strong>€70</strong> / hour
-                </h3>
-                <span className="block font-semibold uppercase tracking-wider text-fg-primary">
-                  Pre-paid hours
-                </span>
-              </div>
-              <p className="h-full text-xl">
-                Flexible design partner services for one-time or ongoing projects without
-                long-term commitment.
-              </p>
-              <div className="flex gap-4">
-                <BookHoursForm />
-              </div>
-            </div>
-            <div className="flex flex-col gap-10 rounded-[32px] bg-primary p-12 text-white">
-              <div className="space-y-4">
-                <h3 className="text-4xl">
-                  <strong>€3500</strong> / month
-                </h3>
-                <span className="block font-bold uppercase tracking-wider opacity-90">
-                  Subscription
-                </span>
-              </div>
-              <p className="h-full text-xl">
-                Dedicated design partner services for a fixed monthly fee, ensuring
-                consistent and efficient support for all your design needs.
-              </p>
-              <a
-                href="https://buy.stripe.com/4gw02sgqGe5Ce0U5kk"
-                className="place-self-start rounded-full bg-white px-8 py-4 text-xl font-bold tracking-wide text-fg-primary transition-transform hover:rotate-2 hover:scale-105"
-              >
-                Subscribe
-              </a>
-            </div>
-          </div>
+          <BookHoursForm />
         </section>
 
         {/*         <section className="w-full">
