@@ -10,6 +10,7 @@ My personal website, [design portfolio](https://edgaras.com/portfolio/) and a co
 - [x] Connect Newsletter subscription form to MailerSend API
 - [x] Add my own posts feed
 - [ ] Add About page
+- [ ] Fix /app/icons (https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons)
 
 ## Stack
 

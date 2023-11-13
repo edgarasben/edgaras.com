@@ -70,8 +70,7 @@ export const metadata: Metadata = {
         url: '/favicon-32x32.png'
       }
     ]
-  },
-  manifest: '/site.webmanifest'
+  }
 }
 /* 
 const themeScript = `
