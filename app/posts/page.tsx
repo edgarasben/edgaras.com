@@ -86,6 +86,7 @@ function Post({ post, isAdmin }: { post: Post; isAdmin: boolean }) {
       const supabase = createServerActionClient<Database>({ cookies })
 
       const { error } = await supabase.from('posts').delete().eq('id', id)
+      
       if (error) {
         console.error(error)
       }
