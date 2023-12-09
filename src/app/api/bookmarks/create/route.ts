@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase/admin'
+import { supabaseAdmin } from '../../../../lib/supabase/admin'
 import * as cheerio from 'cheerio'
 
 export async function POST(request: Request) {
