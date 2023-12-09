@@ -18,7 +18,7 @@ export async function POST(request: Request) {
       .select()
       .single()
 
-    if (data) return Response.json({ link: data.link })
+    if (data) return Response.json({ title: data.title })
 
     if (error) {
       if (error.code === '23505')
