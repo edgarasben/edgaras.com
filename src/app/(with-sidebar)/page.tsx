@@ -1,6 +1,5 @@
 import { Card } from '@/components/base/card'
 import { supabase } from '@/lib/supabaseClient'
-import type { Metadata } from 'next'
 
 export const revalidate = 30
 

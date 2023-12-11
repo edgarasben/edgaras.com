@@ -8,13 +8,17 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from '@/components/command'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/popover'
+} from '@/components/base/command'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/base/popover'
 
-import { Badge } from '@/components/badge'
-import { Button } from '@/components/button'
-import CheckIcon from '@/components/icons/check'
-import { Separator } from '@/components/separator'
+import { Badge } from '@/components/base/badge'
+import { Button } from '@/components/base/button'
+import { CheckIcon } from '@/icons/outline'
+import { Separator } from '@/components/base/separator'
 import { cn } from '@/lib/utils'
 
 export function FilterPopover({

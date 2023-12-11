@@ -1,5 +1,6 @@
 'use client'
 
+// @ts-ignore TODO: fix types
 import { getCalApi } from '@calcom/embed-react'
 import { useEffect } from 'react'
 /* import { useEffect } from 'react' */
@@ -11,8 +12,8 @@ export function ButtonCalendar({ children }: { children: React.ReactNode }) {
       cal('ui', {
         theme: 'dark',
         styles: {
-          branding: { brandColor: '#000000' }
-        }
+          branding: { brandColor: '#000000' },
+        },
       })
     })()
   }, [])
