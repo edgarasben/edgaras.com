@@ -32,15 +32,13 @@ export default async function CasePage({
           href="/portfolio"
           className="group inline-flex items-start gap-2 rounded-full border border-transparent bg-neutral px-4 py-2 hover:border-neutral-fade hover:bg-transparent"
         >
-          <span className="group-hover:text-fg-primary -translate-y-[1px] font-semibold transition-all group-hover:-translate-x-1">
+          <span className="-translate-y-[1px] font-semibold transition-all group-hover:-translate-x-1 group-hover:text-primary">
             ←
           </span>
           <span className="font-medium">Back to portfolio</span>
         </Link>
         <div className="space-y-4">
-          <p className="text-fg-primary text-2xl font-medium">
-            {page?.project}
-          </p>
+          <p className="text-2xl font-medium text-primary">{page?.project}</p>
           <h1 className="text-3xl font-extrabold leading-tight xs:text-4xl md:w-2/3 md:text-5xl md:leading-snug">
             <Balancer>{page?.title}</Balancer>
           </h1>
@@ -68,7 +66,7 @@ export default async function CasePage({
             <h2 className="text-sm uppercase tracking-wider">Link</h2>
             <p className="font-medium md:text-xl">
               <a
-                className="text-fg-primary font-medium underline"
+                className="font-medium text-primary underline"
                 href={page?.meta?.link?.url}
                 rel="noopener noreferrer"
                 target="_blank"

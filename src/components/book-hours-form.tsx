@@ -55,7 +55,7 @@ export default function BookHoursForm() {
           <h3 className="text-4xl">
             <strong>€70</strong> / hour
           </h3>
-          <span className="text-fg-primary block font-semibold uppercase tracking-wider">
+          <span className="block font-semibold uppercase tracking-wider text-primary">
             Pre-paid hours
           </span>
         </div>
@@ -125,7 +125,7 @@ export default function BookHoursForm() {
         </p>
         <a
           href="https://buy.stripe.com/4gw02sgqGe5Ce0U5kk"
-          className="text-fg-primary place-self-start rounded-full bg-white px-8 py-4 text-xl font-bold tracking-wide transition-transform hover:rotate-2 hover:scale-105"
+          className="place-self-start rounded-full bg-white px-8 py-4 text-xl font-bold tracking-wide text-primary transition-transform hover:rotate-2 hover:scale-105"
         >
           Subscribe
         </a>

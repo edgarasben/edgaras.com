@@ -118,7 +118,7 @@ export default async function BookmarksPage({
         {Object.keys(filteredData).length > 0 ? (
           Object.keys(filteredData).map((tag) => (
             <div key={tag} className="relative">
-              <div className="text-fg-primary sticky top-0 z-10 border-b border-l-2 border-t border-b-transparent border-l-neutral border-t-transparent bg-fade/80 px-3 py-1.5 text-xs font-medium uppercase leading-6 text-neutral-fade backdrop-blur-sm">
+              <div className="sticky top-0 z-10 border-b border-l-2 border-t border-b-transparent border-l-neutral border-t-transparent bg-fade/80 px-3 py-1.5 text-xs font-medium uppercase leading-6 text-neutral-fade text-primary backdrop-blur-sm">
                 <h3>{tag}</h3>
               </div>
               <ul role="list">

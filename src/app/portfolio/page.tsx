@@ -39,7 +39,7 @@ export default function PortfolioPage() {
                 viewBox="0 0 68 74"
                 fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg"
-                className="text-fg-primary origin-center -rotate-45 xs:translate-x-24 lg:translate-x-[432px] lg:translate-y-6 lg:rotate-0"
+                className="origin-center -rotate-45 text-primary xs:translate-x-24 lg:translate-x-[432px] lg:translate-y-6 lg:rotate-0"
               >
                 <path
                   fillRule="evenodd"
@@ -550,7 +550,7 @@ function Card(data: Data) {
         />
       </div>
       <div className="relative -mt-28 w-5/6 space-y-2 bg-base pb-8 pr-4 pt-6 transition-transform duration-500 ease-out group-hover:-translate-y-4">
-        <span className="text-fg-primary font-semibold uppercase tracking-wider xs:text-lg">
+        <span className="font-semibold uppercase tracking-wider text-primary xs:text-lg">
           {data.project}
         </span>
         <h3 className="text-xl font-bold xs:text-2xl sm:text-3xl lg:text-4xl lg:leading-snug">

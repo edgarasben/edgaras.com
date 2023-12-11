@@ -24,7 +24,7 @@ export default function PortfolioFooter() {
             Or email me
           </a>
         </div>
-        <ul className="text-fg-primary flex flex-col items-center space-y-8 pt-8 font-bold md:flex-row md:space-x-32 md:space-y-0">
+        <ul className="flex flex-col items-center space-y-8 pt-8 font-bold text-primary md:flex-row md:space-x-32 md:space-y-0">
           <li>
             <a
               href="https://www.linkedin.com/in/edgarasben"
