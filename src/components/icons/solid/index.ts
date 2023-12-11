@@ -6,4 +6,4 @@ export { default as HomeIcon } from "./HomeIcon";
 export { default as LinkedinIcon } from "./LinkedinIcon";
 export { default as MailIcon } from "./MailIcon";
 export { default as QuestionMarkCircleIcon } from "./QuestionMarkCircleIcon";
-export { default as TwitterXIcon } from "./TwitterXIcon";
+export { default as XComIcon } from "./XComIcon";

@@ -9,7 +9,7 @@ import {
 } from '@/icons/solid'
 import { MailIcon } from '@/icons/solid'
 import { NewsletterForm } from '@/components/newsletter-form'
-import { TwitterXIcon } from '@/icons/solid'
+import { XComIcon } from '@/icons/solid'
 import Link from 'next/link'
 import { ThemeToggle } from './theme-toggle'
 import { usePathname } from 'next/navigation'
@@ -24,7 +24,7 @@ const socialLinks = [
   {
     label: 'Follow on Twitter',
     url: 'https://twitter.com/edgarasben',
-    icon: <TwitterXIcon className="h-5 w-5" />,
+    icon: <XComIcon className="h-5 w-5" />,
     hoverClass: 'hover:text-black',
   },
   {
