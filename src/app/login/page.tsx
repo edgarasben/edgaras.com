@@ -3,6 +3,7 @@ import { cookies, headers } from 'next/headers'
 import { createClient } from '@/lib/supabase/server'
 import { getRootURL } from '@/lib/utils'
 import { redirect } from 'next/navigation'
+import { Button } from '@/components/base/button'
 
 /* export default async function LoginPage() {
   const supabase = createServerComponentClient<Database>({ cookies })
@@ -65,40 +66,41 @@ export default async function Login({
   }
 
   return (
-    <div className="flex w-full flex-1 flex-col justify-center gap-2 px-8 sm:max-w-md">
-      {!user ? (
-        <form
-          className="text-foreground flex w-full flex-1 flex-col justify-center gap-2 animate-in"
-          action={signIn}
-        >
-          <label className="text-md" htmlFor="email">
-            Email
-          </label>
-          <input
-            className="bg-inherit mb-6 rounded-md border px-4 py-2"
-            name="email"
-            placeholder="you@example.com"
-            required
-          />
+    <div className="flex h-full items-center justify-center">
+      {' '}
+      <div className="flex w-full flex-1 flex-col justify-center gap-2 px-4 sm:max-w-md md:px-8">
+        {!user ? (
+          <form
+            className="flex w-full flex-1 flex-col justify-center gap-2 animate-in"
+            action={signIn}
+          >
+            <label className="text-md" htmlFor="email">
+              Email
+            </label>
+            <input
+              className="mb-6 rounded-md border border-neutral-fade bg-neutral-fade px-4 py-2 text-neutral placeholder:text-neutral-fade focus-visible:border-neutral-fade focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-neutral-fade"
+              name="email"
+              placeholder="you@example.com"
+              required
+            />
 
-          <button className="bg-green-700 text-foreground mb-2 rounded-md px-4 py-2">
-            Sign In
-          </button>
+            <Button>Sign In</Button>
 
-          {searchParams?.message && (
-            <p className="bg-foreground/10 text-foreground mt-4 p-4 text-center">
-              {searchParams.message}
-            </p>
-          )}
-        </form>
-      ) : (
-        <>
-          <p>Logged in as {user.email}</p>{' '}
-          <form action={signOut}>
-            <button>Sign out</button>
+            {searchParams?.message && (
+              <p className="mt-4 bg-neutral-fade p-4 text-center">
+                {searchParams.message}
+              </p>
+            )}
           </form>
-        </>
-      )}
+        ) : (
+          <>
+            <p>Logged in as {user.email}</p>{' '}
+            <form action={signOut}>
+              <button>Sign out</button>
+            </form>
+          </>
+        )}
+      </div>
     </div>
   )
 }

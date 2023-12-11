@@ -18,7 +18,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
       >
         {isLoading && <LoadingSpinner />}
-        <span>{children}</span>
+        <span className="w-full text-center">{children}</span>
       </button>
     )
   },
