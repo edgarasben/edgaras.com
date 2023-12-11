@@ -1,4 +1,4 @@
-import { cookies, headers } from 'next/headers'
+import { cookies } from 'next/headers'
 
 import { createClient } from '@/lib/supabase/server'
 import { getRootURL } from '@/lib/utils'
@@ -38,7 +38,7 @@ export default async function Login({
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${getRootURL()}/auth/callback?originPath=login`,
+        emailRedirectTo: `${getRootURL()}/api/auth/callback?originPath=login`,
       },
     })
 
@@ -67,11 +67,10 @@ export default async function Login({
 
   return (
     <div className="flex h-full items-center justify-center">
-      {' '}
       <div className="flex w-full flex-1 flex-col justify-center gap-2 px-4 sm:max-w-md md:px-8">
         {!user ? (
           <form
-            className="flex w-full flex-1 flex-col justify-center gap-2 animate-in"
+            className="flex w-full flex-1 flex-col justify-center gap-2 animate-in animate-out"
             action={signIn}
           >
             <label className="text-md" htmlFor="email">
