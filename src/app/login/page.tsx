@@ -1,8 +1,8 @@
-import { cookies, headers } from "next/headers"
+import { cookies, headers } from 'next/headers'
 
-import { createClient } from "@/lib/supabase/server"
-import { getRootURL } from "@/lib/utils"
-import { redirect } from "next/navigation"
+import { createClient } from '@/lib/supabase/server'
+import { getRootURL } from '@/lib/utils'
+import { redirect } from 'next/navigation'
 
 /* export default async function LoginPage() {
   const supabase = createServerComponentClient<Database>({ cookies })
@@ -28,29 +28,29 @@ export default async function Login({
   } = await supabase.auth.getUser()
 
   const signIn = async (formData: FormData) => {
-    "use server"
+    'use server'
 
-    const email = formData.get("email") as string
+    const email = formData.get('email') as string
     const cookieStore = cookies()
     const supabase = createClient(cookieStore)
 
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${getRootURL()}/api/auth/callback?originPath=login`,
+        emailRedirectTo: `${getRootURL()}/auth/callback?originPath=login`,
       },
     })
 
     if (error) {
       console.log(error.message)
-      return redirect("/login?message=Could not authenticate user")
+      return redirect('/login?message=Could not authenticate user')
     }
 
-    return redirect("/login")
+    return redirect('/login')
   }
 
   const signOut = async () => {
-    "use server"
+    'use server'
 
     const cookieStore = cookies()
     const supabase = createClient(cookieStore)
@@ -58,17 +58,17 @@ export default async function Login({
     const { error } = await supabase.auth.signOut()
 
     if (error) {
-      return redirect("/login?message=Error logging out")
+      return redirect('/login?message=Error logging out')
     }
 
-    return redirect("/login")
+    return redirect('/login')
   }
 
   return (
     <div className="flex w-full flex-1 flex-col justify-center gap-2 px-8 sm:max-w-md">
       {!user ? (
         <form
-          className="animate-in text-foreground flex w-full flex-1 flex-col justify-center gap-2"
+          className="text-foreground flex w-full flex-1 flex-col justify-center gap-2 animate-in"
           action={signIn}
         >
           <label className="text-md" htmlFor="email">
@@ -93,7 +93,7 @@ export default async function Login({
         </form>
       ) : (
         <>
-          <p>Logged in as {user.email}</p>{" "}
+          <p>Logged in as {user.email}</p>{' '}
           <form action={signOut}>
             <button>Sign out</button>
           </form>

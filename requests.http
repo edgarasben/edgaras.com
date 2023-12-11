@@ -1,4 +1,4 @@
-POST https://edgaras.com/api/bookmarks/create
+POST https://localhost:3000/api/bookmarks/create
 Content-Type: application/json
 
 {
