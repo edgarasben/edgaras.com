@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "gen:types": "npx supabase gen types typescript --project-id gbvqdgotsnbrygyaifoh --schema public > types/supabase.ts",
+    "gen:types": "npx supabase gen types typescript --project-id gbvqdgotsnbrygyaifoh --schema public > ./src/lib/types/supabase.ts",
     "generate:icons": "npx @svgr/cli --no-runtime-config --no-dimensions --typescript --out-dir ./src/components/icons -- ./src/components/icons/_svg"
   },
   "dependencies": {

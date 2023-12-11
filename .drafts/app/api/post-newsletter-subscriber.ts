@@ -1,19 +1,23 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { z } from 'zod'
+
 import { Client as NotionClient } from '@notionhq/client'
 import { sendEmail } from '@/lib/mailersend'
+import { z } from 'zod'
 
 const schema = z.object({
-  email: z.string().email({ message: 'Invalid email address' })
+  email: z.string().email({ message: 'Invalid email address' }),
 })
 
 const notion = new NotionClient({
-  auth: process.env.NOTION_TOKEN
+  auth: process.env.NOTION_TOKEN,
 })
 
 const subscribersDatabaseId = '935913563fa14819b93592cb6a12df03'
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   const body = schema.parse(JSON.parse(req.body))
 
   // Check if the email already exists in Notion database
@@ -22,9 +26,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     filter: {
       property: 'Email',
       email: {
-        equals: body.email
-      }
-    }
+        equals: body.email,
+      },
+    },
   })
 
   let result = 'already-exists'
@@ -34,13 +38,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     await notion.pages.create({
       parent: {
         type: 'database_id',
-        database_id: subscribersDatabaseId
+        database_id: subscribersDatabaseId,
       },
       properties: {
         Email: {
-          email: body.email
-        }
-      }
+          email: body.email,
+        },
+      },
     })
 
     const emailData = {
@@ -54,7 +58,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             <p>Warm regards,<br/>Edgaras</p>
             <br/><br/>
             <p>(If you did not request this newsletter, you can <a href="{$unsubscribe}">unsubscribe</a>)</p>`,
-      text: 'Welcome! \n\n {$unsubscribe}'
+      text: 'Welcome! \n\n {$unsubscribe}',
     }
 
     await sendEmail(emailData)

@@ -1,0 +1,7 @@
+POST http://localhost:3000/api/bookmarks/create
+Content-Type: application/json
+
+{
+    "url": "https://example.com",
+    "token": "{{$dotenv API_ACCESS_KEY}}"
+}
