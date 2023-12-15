@@ -11,7 +11,7 @@ export const Card = ({ data }: { data: any }) => (
         dateTime={data?.created_at}
         className="min-w-[56px] pt-0.5 text-sm uppercase text-neutral-fade"
       >
-        {formatDate(data.created_at)}
+        {formatDate(data.published_at)}
       </time>
       <h3 className="font-medium">{data.title}</h3>
     </div>
