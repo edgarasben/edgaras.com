@@ -12,28 +12,34 @@ export interface Database {
       articles: {
         Row: {
           created_at: string | null
+          description: string | null
           markdown: string
           published_at: string | null
           slug: string
           status: string | null
+          tags: string | null
           title: string
           updated_at: string | null
         }
         Insert: {
           created_at?: string | null
+          description?: string | null
           markdown: string
           published_at?: string | null
           slug: string
           status?: string | null
+          tags?: string | null
           title: string
           updated_at?: string | null
         }
         Update: {
           created_at?: string | null
+          description?: string | null
           markdown?: string
           published_at?: string | null
           slug?: string
           status?: string | null
+          tags?: string | null
           title?: string
           updated_at?: string | null
         }
