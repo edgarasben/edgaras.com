@@ -1,14 +1,10 @@
 import { Card } from '@/components/base/card'
-import { supabase } from '@/lib/supabaseClient'
+import { getArticles } from '@/data/queries'
 
 export const revalidate = 30
 
 export default async function ArticlesPage() {
-  const { data: articles } = await supabase
-    .from('articles')
-    .select('title, markdown, slug, created_at')
-    .eq('status', 'public')
-    .order('created_at', { ascending: false })
+  const articles = await getArticles()
 
   return (
     <div className="p-6">

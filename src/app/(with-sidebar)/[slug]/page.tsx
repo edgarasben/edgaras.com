@@ -6,6 +6,7 @@ import { formatDate } from '@/lib/utils'
 import { supabase } from '@/lib/supabaseClient'
 import { notFound } from 'next/navigation'
 import { highlight } from 'sugar-high'
+import { getArticle } from '@/data/queries'
 
 export const revalidate = 30
 
@@ -19,23 +20,13 @@ export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
   const slug = params.slug.toString()
-  const { data: post } = await supabase
-    .from('articles')
-    .select('title')
-    .eq('slug', slug)
-    .eq('status', true)
-    .single()
-  return { title: post?.title }
+  const { article } = await getArticle(slug)
+  return { title: article?.title }
 }
 
 export default async function PostPage({ params }: PostPageProps) {
   const slug = params.slug.toString()
-  const { data: post, error } = await supabase
-    .from('articles')
-    .select('title, markdown, slug, created_at')
-    .eq('slug', slug)
-    .eq('status', 'public')
-    .single()
+  const { article, error } = await getArticle(slug)
 
   if (error) {
     return notFound()
@@ -58,18 +49,18 @@ export default async function PostPage({ params }: PostPageProps) {
   return (
     <Container>
       <article className="prose max-w-none break-words lg:prose-xl prose-h1:text-center prose-figcaption:text-neutral-fade prose-pre:bg-neutral-fade">
-        <h1>{post?.title}</h1>
-        {post?.created_at && (
+        <h1>{article?.title}</h1>
+        {article?.published_at && (
           <time
             dateTime="2018-07-07"
             className="block text-center text-neutral-fade"
           >
-            {formatDate(post?.created_at)}
+            {formatDate(article?.published_at)}
           </time>
         )}
         <div className="pt-16">
           <MDXRemote
-            source={post?.markdown ?? ''}
+            source={article?.markdown ?? ''}
             components={components as MDXRemoteProps['components']} // Casting the components
             options={{
               mdxOptions: {
