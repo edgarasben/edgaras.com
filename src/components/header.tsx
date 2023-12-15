@@ -177,12 +177,12 @@ export const Header = () => {
         </div>
         <div className="absolute bottom-4 left-4 flex gap-3">
           <ThemeToggle />
-          <Link
+          <a
             href="/feed.xml"
             className="rounded-full p-2 text-neutral-fade transition-colors hover:bg-neutral-fade hover:text-primary  dark:hover:bg-neutral-fade dark:hover:bg-opacity-10"
           >
             <RssIcon className="h-4 w-4" />
-          </Link>
+          </a>
         </div>
         {/*       <div className="space-y-4">
           <NewsletterForm />
