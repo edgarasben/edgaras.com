@@ -6,6 +6,7 @@ import {
   BriefcaseIcon,
   HomeIcon,
   LinkedinIcon,
+  RssIcon,
 } from '@/icons/solid'
 import { MailIcon } from '@/icons/solid'
 import { NewsletterForm } from '@/components/newsletter-form'
@@ -19,6 +20,12 @@ import {
   BriefcaseOutlineIcon,
   HomeOutlineIcon,
 } from './icons/outline'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from './base/tooltip'
 
 const socialLinks = [
   {
@@ -168,8 +175,14 @@ export const Header = () => {
             </ul>
           </nav>
         </div>
-        <div className="absolute bottom-4 left-4">
+        <div className="absolute bottom-4 left-4 flex gap-3">
           <ThemeToggle />
+          <Link
+            href="/feed.xml"
+            className="rounded-full p-2 text-neutral-fade transition-colors hover:bg-neutral-fade hover:text-primary  dark:hover:bg-neutral-fade dark:hover:bg-opacity-10"
+          >
+            <RssIcon className="h-4 w-4" />
+          </Link>
         </div>
         {/*       <div className="space-y-4">
           <NewsletterForm />
