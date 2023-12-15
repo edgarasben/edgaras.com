@@ -61,16 +61,6 @@ module.exports = {
                 textDecoration: 'none',
               },
             },
-            /*    code: {
-              display: 'inline-block',
-              color: 'var(--tw-prose-code)',
-              fontSize: theme('fontSize.sm')[0],
-              fontWeight: theme('fontWeight.semibold'),
-              backgroundColor: 'var(--color-bg-neutral-fade)',
-              borderRadius: theme('borderRadius.lg'),
-              paddingLeft: theme('spacing.1'),
-              paddingRight: theme('spacing.1'),
-            }, */
           },
         },
       },

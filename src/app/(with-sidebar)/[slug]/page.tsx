@@ -1,10 +1,11 @@
 import { Container } from '@/components/container'
 import Image from 'next/image'
-import { MDXRemote } from 'next-mdx-remote/rsc'
+import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc'
 import type { Metadata } from 'next'
 import { formatDate } from '@/lib/utils'
 import { supabase } from '@/lib/supabaseClient'
 import { notFound } from 'next/navigation'
+import { highlight } from 'sugar-high'
 
 export const revalidate = 30
 
@@ -40,17 +41,23 @@ export default async function PostPage({ params }: PostPageProps) {
     return notFound()
   }
 
+  function Code({ children, ...props }: { children: string }) {
+    let codeHTML = highlight(children)
+    return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
+  }
+
   const components = {
     img: (props: any) => (
       <Image alt={props.alt} width={800} height={450} {...props}>
         {props.children}
       </Image>
     ),
+    code: Code,
   }
 
   return (
     <Container>
-      <article className="prose max-w-none break-words lg:prose-xl prose-h1:text-center prose-figcaption:text-neutral-fade prose-pre:bg-black">
+      <article className="prose max-w-none break-words lg:prose-xl prose-h1:text-center prose-figcaption:text-neutral-fade prose-pre:bg-neutral-fade">
         <h1>{post?.title}</h1>
         {post?.created_at && (
           <time
@@ -63,7 +70,7 @@ export default async function PostPage({ params }: PostPageProps) {
         <div className="pt-16">
           <MDXRemote
             source={post?.markdown ?? ''}
-            components={components}
+            components={components as MDXRemoteProps['components']} // Casting the components
             options={{
               mdxOptions: {
                 remarkPlugins: [],
