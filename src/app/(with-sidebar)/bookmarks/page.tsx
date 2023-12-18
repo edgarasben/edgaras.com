@@ -114,11 +114,11 @@ export default async function BookmarksPage({
           </div>
         ) : null}
       </nav>
-      <section aria-label="Directory" className="w-full py-2 pr-2">
+      <section aria-label="Directory" className="w-full py-2">
         {Object.keys(filteredData).length > 0 ? (
           Object.keys(filteredData).map((tag) => (
             <div key={tag} className="relative">
-              <div className="sticky top-0 z-10 border-b border-l-2 border-t border-b-transparent border-l-neutral border-t-transparent bg-fade/80 px-3 py-1.5 text-xs font-medium uppercase leading-6 text-primary backdrop-blur-sm">
+              <div className="sticky top-0 z-10 border-b border-l-2 border-t border-b-transparent border-l-primary border-t-transparent bg-fade/80 px-3 py-1.5 text-xs font-medium uppercase leading-6 text-primary backdrop-blur-sm">
                 <h3>{tag}</h3>
               </div>
               <ul role="list">
@@ -126,7 +126,7 @@ export default async function BookmarksPage({
                   <li key={bookmark.link}>
                     <a
                       href={bookmark.link}
-                      className="flex gap-x-4 rounded-lg px-3 py-5 transition-colors hover:bg-neutral-fade"
+                      className="mx-1 flex gap-x-4 rounded-lg py-5 transition-colors hover:bg-neutral-fade"
                     >
                       <div className="flex w-full min-w-0 justify-between pl-3">
                         <p className="white text-sm font-medium leading-6 text-neutral">

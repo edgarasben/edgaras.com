@@ -9,7 +9,7 @@ export default async function IndexPage({
   return (
     <div className="flex h-full flex-col md:flex-row">
       <Header />
-      <section>{children}</section>
+      <section className="w-full md:ml-[320px]">{children}</section>
     </div>
   )
 }

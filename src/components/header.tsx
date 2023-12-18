@@ -75,7 +75,7 @@ export const Header = () => {
             </div>
           </div>
           <nav>
-            <ul className="flex space-y-0.5 overflow-x-scroll px-2 py-2 md:block md:py-6">
+            <ul className="flex space-y-0.5 overflow-x-auto px-2 py-2 md:block md:py-6">
               <li>
                 <Link
                   href="/"
