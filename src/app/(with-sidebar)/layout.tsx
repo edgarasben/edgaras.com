@@ -7,9 +7,9 @@ export default async function IndexPage({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex h-full">
+    <div className="flex h-full flex-col md:flex-row">
       <Header />
-      <section className="ml-[320px] w-full">{children}</section>
+      <section>{children}</section>
     </div>
   )
 }

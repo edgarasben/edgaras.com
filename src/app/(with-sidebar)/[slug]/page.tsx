@@ -48,7 +48,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <Container>
-      <article className="prose max-w-none break-words lg:prose-xl prose-h1:text-center prose-figcaption:text-neutral-fade prose-pre:bg-neutral-fade">
+      <article className="prose max-w-none break-words pt-16 lg:prose-xl prose-h1:text-center prose-figcaption:text-neutral-fade prose-pre:bg-neutral-fade md:pt-0">
         <h1>{article?.title}</h1>
         {article?.published_at && (
           <time

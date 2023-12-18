@@ -50,8 +50,8 @@ const socialLinks = [
 export const Header = () => {
   const pathname = usePathname()
   return (
-    <header className="fixed inset-y-0 left-0 min-w-[320px] max-w-sm">
-      <div className="flex h-full flex-col bg-base shadow-raise ring-1 ring-neutral-fade">
+    <header className="inset-y-0 left-0 md:fixed md:min-w-[320px] md:max-w-sm">
+      <div className="flex h-full flex-col bg-raise shadow-raise ring-1 ring-neutral-fade">
         <div>
           <div className="border-b border-neutral-fade">
             <div className="space-y-2 p-6">
@@ -75,7 +75,7 @@ export const Header = () => {
             </div>
           </div>
           <nav>
-            <ul className="space-y-0.5 px-2 py-6">
+            <ul className="flex space-y-0.5 overflow-x-scroll px-2 py-2 md:block md:py-6">
               <li>
                 <Link
                   href="/"
@@ -175,7 +175,7 @@ export const Header = () => {
             </ul>
           </nav>
         </div>
-        <div className="absolute bottom-4 left-4 flex gap-3">
+        <div className="absolute right-4 top-4 flex gap-3 md:bottom-4 md:left-4 md:right-auto md:top-auto">
           <ThemeToggle />
           <a
             href="/feed.xml"

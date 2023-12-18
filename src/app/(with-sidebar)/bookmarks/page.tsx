@@ -91,7 +91,7 @@ export default async function BookmarksPage({
 
   return (
     <div className="flex grid-cols-2 divide-x divide-neutral-fade">
-      <nav className="min-w-[320px] p-2">
+      <nav className="hidden min-w-[320px] p-2 md:block">
         <ul className="space-y-0.5">
           <li>
             <TagSwitcherButton tag="All">
@@ -118,7 +118,7 @@ export default async function BookmarksPage({
         {Object.keys(filteredData).length > 0 ? (
           Object.keys(filteredData).map((tag) => (
             <div key={tag} className="relative">
-              <div className="sticky top-0 z-10 border-b border-l-2 border-t border-b-transparent border-l-neutral border-t-transparent bg-fade/80 px-3 py-1.5 text-xs font-medium uppercase leading-6 text-neutral-fade text-primary backdrop-blur-sm">
+              <div className="sticky top-0 z-10 border-b border-l-2 border-t border-b-transparent border-l-neutral border-t-transparent bg-fade/80 px-3 py-1.5 text-xs font-medium uppercase leading-6 text-primary backdrop-blur-sm">
                 <h3>{tag}</h3>
               </div>
               <ul role="list">
@@ -129,7 +129,7 @@ export default async function BookmarksPage({
                       className="flex gap-x-4 rounded-lg px-3 py-5 transition-colors hover:bg-neutral-fade"
                     >
                       <div className="flex w-full min-w-0 justify-between pl-3">
-                        <p className="text-sm font-medium leading-6 text-neutral">
+                        <p className="white text-sm font-medium leading-6 text-neutral">
                           {bookmark.title}
                         </p>
                         {user ? (

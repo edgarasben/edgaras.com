@@ -32,7 +32,7 @@ export function ThemeToggle() {
           <SunIcon className="h-4 w-4" />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="bg-overlay">
+      <DropdownMenuContent align="end" className="bg-overlay">
         <DropdownMenuItem onClick={() => setTheme('light')}>
           Light
         </DropdownMenuItem>
