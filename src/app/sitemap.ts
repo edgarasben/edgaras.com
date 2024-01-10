@@ -1,6 +1,8 @@
 import { getArticles } from '@/data/queries'
+import { unstable_noStore as noStore } from 'next/cache'
 
 export default async function sitemap() {
+  noStore()
   const articles = await getArticles()
 
   let articlesFeed =
