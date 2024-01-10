@@ -4,6 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 import { getRootURL } from '@/lib/utils'
 import { redirect } from 'next/navigation'
 import { Button } from '@/components/base/button'
+import { signIn, signOut } from '@/data/actions'
 
 /* export default async function LoginPage() {
   const supabase = createServerComponentClient<Database>({ cookies })
@@ -27,43 +28,6 @@ export default async function Login({
   const {
     data: { user },
   } = await supabase.auth.getUser()
-
-  const signIn = async (formData: FormData) => {
-    'use server'
-
-    const email = formData.get('email') as string
-    const cookieStore = cookies()
-    const supabase = createClient(cookieStore)
-
-    const { error } = await supabase.auth.signInWithOtp({
-      email,
-      options: {
-        emailRedirectTo: `${getRootURL()}/api/auth/callback?originPath=login`,
-      },
-    })
-
-    if (error) {
-      console.log(error.message)
-      return redirect('/login?message=Could not authenticate user')
-    }
-
-    return redirect('/login')
-  }
-
-  const signOut = async () => {
-    'use server'
-
-    const cookieStore = cookies()
-    const supabase = createClient(cookieStore)
-
-    const { error } = await supabase.auth.signOut()
-
-    if (error) {
-      return redirect('/login?message=Error logging out')
-    }
-
-    return redirect('/login')
-  }
 
   return (
     <div className="flex h-full items-center justify-center">

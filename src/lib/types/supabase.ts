@@ -12,7 +12,7 @@ export interface Database {
       articles: {
         Row: {
           created_at: string | null
-          description: string | null
+          description: string
           markdown: string
           published_at: string | null
           slug: string
@@ -23,7 +23,7 @@ export interface Database {
         }
         Insert: {
           created_at?: string | null
-          description?: string | null
+          description: string
           markdown: string
           published_at?: string | null
           slug: string
@@ -34,7 +34,7 @@ export interface Database {
         }
         Update: {
           created_at?: string | null
-          description?: string | null
+          description?: string
           markdown?: string
           published_at?: string | null
           slug?: string

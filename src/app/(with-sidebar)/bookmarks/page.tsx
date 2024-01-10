@@ -1,13 +1,11 @@
 import type { Metadata } from 'next'
 import { Database } from '@/lib/types/supabase'
 import TagSwitcherButton from './TagSwitcherButton'
-import { cookies } from 'next/headers'
-import { createClient } from '@/lib/supabase/server'
 import { Button } from '@/components/base/button'
-import { getUser } from '@/app/data/queries'
+import { getUser } from '@/data/queries'
 import { supabase } from '@/lib/supabaseClient'
-import { createBookmark, deleteBookmark } from '@/app/data/actions'
-import { randomUUID } from 'crypto'
+import { deleteBookmark } from '@/data/actions'
+
 import CreateBookmarkForm from './create-bookmark-form'
 
 type Bookmark = Database['public']['Tables']['bookmarks']['Row']

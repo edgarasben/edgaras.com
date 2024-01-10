@@ -6,7 +6,9 @@ import { formatDate } from '@/lib/utils'
 import { supabase } from '@/lib/supabaseClient'
 import { notFound } from 'next/navigation'
 import { highlight } from 'sugar-high'
-import { getArticle } from '@/data/queries'
+import { getArticle, getUser } from '@/data/queries'
+import Link from 'next/link'
+import { PencilIcon, RssIcon } from '@/components/icons/solid'
 
 export const revalidate = 30
 
@@ -25,6 +27,7 @@ export async function generateMetadata({
 }
 
 export default async function PostPage({ params }: PostPageProps) {
+  const user = await getUser()
   const slug = params.slug.toString()
   const { article, error } = await getArticle(slug)
 
@@ -48,6 +51,16 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <Container>
+      {user && (
+        <div className="fixed bottom-4 right-4 flex gap-3">
+          <Link
+            href={`/${slug}/update`}
+            className="rounded-full p-2 text-neutral-fade transition-colors hover:bg-neutral-fade hover:text-primary dark:hover:bg-neutral-fade dark:hover:bg-opacity-10"
+          >
+            <PencilIcon className="h-4 w-4" />
+          </Link>
+        </div>
+      )}
       <article className="prose max-w-none break-words pt-16 lg:prose-xl prose-h1:text-center prose-figcaption:text-neutral-fade prose-pre:bg-neutral-fade md:pt-0">
         <h1>{article?.title}</h1>
         {article?.published_at && (

@@ -1,6 +1,6 @@
 'use client'
 
-import { createBookmark } from '@/app/data/actions'
+import { createBookmark } from '@/data/actions'
 import { useRef } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 
