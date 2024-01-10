@@ -75,17 +75,17 @@ export async function createArticle(formData: FormData) {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
 
-  const title = formData.get('title') as string
   const slug = formData.get('slug') as string
-  const markdown = formData.get('markdown') as string
+  const title = formData.get('title') as string
   const description = formData.get('description') as string
+  const markdown = formData.get('markdown') as string
   const status = formData.get('status') as string
 
   await supabase.from('articles').insert({
     slug: slug,
     title: title,
-    markdown: markdown,
     description: description,
+    markdown: markdown,
     status: status,
   })
 
@@ -96,10 +96,11 @@ export async function updateArticle(formData: FormData) {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
 
-  const title = formData.get('title') as string
+  const currentSlug = formData.get('currentSlug') as string
   const slug = formData.get('slug') as string
-  const markdown = formData.get('markdown') as string
+  const title = formData.get('title') as string
   const description = formData.get('description') as string
+  const markdown = formData.get('markdown') as string
   const status = formData.get('status') as string
 
   await supabase
@@ -107,11 +108,11 @@ export async function updateArticle(formData: FormData) {
     .update({
       slug: slug,
       title: title,
-      markdown: markdown,
       description: description,
+      markdown: markdown,
       status: status,
     })
-    .eq('slug', slug)
+    .eq('slug', currentSlug)
 
   redirect(`/${slug}`)
 }

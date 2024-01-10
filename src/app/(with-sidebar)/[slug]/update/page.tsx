@@ -31,6 +31,7 @@ export default async function UpdateActicle({
         Back
       </Link>
       <form action={updateArticle} className="flex flex-col items-start">
+        <input type="hidden" name="currentSlug" defaultValue={article?.slug} />
         <input
           type="text"
           name="title"
