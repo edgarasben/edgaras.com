@@ -1,6 +1,6 @@
 import { Container } from '@/components/container'
 import { ChevronLeftIcon } from '@/components/icons/outline'
-import { updateArticle } from '@/data/actions'
+import { deleteArticle, updateArticle } from '@/data/actions'
 import { getArticle, getUser } from '@/data/queries'
 
 import Link from 'next/link'
@@ -30,44 +30,54 @@ export default async function UpdateActicle({
         <ChevronLeftIcon className="relative h-4 w-4 transition-transform group-hover:-translate-x-1" />
         Back
       </Link>
-      <form action={updateArticle} className="flex flex-col">
+      <form action={updateArticle} className="flex flex-col items-start">
         <input
           type="text"
           name="title"
           defaultValue={article?.title}
           placeholder="Title"
-          className="border border-neutral bg-base"
+          className="w-full border border-neutral bg-base"
         />
         <input
           type="text"
           name="description"
           defaultValue={article?.description}
           placeholder="Description"
-          className="border border-neutral bg-base"
+          className="w-full border border-neutral bg-base"
         />
         <input
           type="text"
           name="slug"
           defaultValue={article?.slug}
           placeholder="Slug"
-          className="border border-neutral bg-base"
+          className="w-full border border-neutral bg-base"
         />
         <textarea
           name="markdown"
           rows={25}
           defaultValue={article?.markdown}
           placeholder="Markdown"
-          className="border border-neutral bg-base"
+          className="w-full border border-neutral bg-base"
         />
-        <select name="status" className="border border-neutral bg-base">
+        <select name="status" className="w-full border border-neutral bg-base">
           <option value="public">Public</option>
           <option value="draft">Draft</option>
         </select>
+
         <button
           type="submit"
-          className="border border-neutral bg-base leading-10"
+          className="w-full border border-neutral bg-base leading-10"
         >
           Update
+        </button>
+      </form>
+      <form action={deleteArticle} className="flex flex-col items-start">
+        <input type="hidden" name="slug" defaultValue={article?.slug} />
+        <button
+          type="submit"
+          className="mt-24 flex flex-grow-0 border border-[red] bg-base leading-10"
+        >
+          Delete
         </button>
       </form>
     </Container>

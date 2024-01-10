@@ -115,3 +115,14 @@ export async function updateArticle(formData: FormData) {
 
   redirect(`/${slug}`)
 }
+
+export async function deleteArticle(formData: FormData) {
+  const cookieStore = cookies()
+  const supabase = createClient(cookieStore)
+
+  const slug = formData.get('slug') as string
+
+  await supabase.from('articles').delete().eq('slug', slug)
+
+  redirect(`/`)
+}
