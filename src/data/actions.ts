@@ -63,10 +63,11 @@ export async function createBookmark(prevState: any, formData: FormData) {
     .insert({ title: title, link: link, tags: tags })
     .select()
 
-  revalidatePath('/bookmarks')
-  redirect('/bookmarks')
-  /*   if (error) return { error: JSON.stringify(error) }
-  if (data) return { message: 'Success' } */
+  if (error) return { error: JSON.stringify(error) }
+  if (data) {
+    revalidatePath('/bookmarks')
+    redirect('/bookmarks')
+  }
 }
 
 // Articles
