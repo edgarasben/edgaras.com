@@ -1,8 +1,9 @@
 import { getArticles } from '@/data/queries'
-import { unstable_noStore as noStore } from 'next/cache'
+
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export default async function sitemap() {
-  noStore()
   const articles = await getArticles()
 
   let articlesFeed =
