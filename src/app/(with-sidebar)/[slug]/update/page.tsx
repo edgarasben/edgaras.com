@@ -1,7 +1,7 @@
 import { Container } from '@/components/container'
 import { ChevronLeftIcon } from '@/components/icons/outline'
 import { deleteArticle, updateArticle } from '@/data/actions'
-import { getArticle, getUser } from '@/data/queries'
+import { getAnyArticle, getPublicArticle, getUser } from '@/data/queries'
 
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
@@ -15,7 +15,9 @@ export default async function UpdateActicle({
 }) {
   const user = await getUser()
   const slug = params.slug.toString()
-  const { article, error } = await getArticle(slug)
+  const { article } = user
+    ? await getAnyArticle(slug) // Include draft articles
+    : await getPublicArticle(slug)
 
   if (!user) {
     redirect(`/login`)
@@ -60,7 +62,11 @@ export default async function UpdateActicle({
           placeholder="Markdown"
           className="w-full border border-neutral bg-base"
         />
-        <select name="status" className="w-full border border-neutral bg-base">
+        <select
+          name="status"
+          defaultValue={article?.status}
+          className="w-full border border-neutral bg-base"
+        >
           <option value="public">Public</option>
           <option value="draft">Draft</option>
         </select>

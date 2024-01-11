@@ -6,7 +6,7 @@ import { formatDate } from '@/lib/utils'
 import { supabase } from '@/lib/supabaseClient'
 import { notFound } from 'next/navigation'
 import { highlight } from 'sugar-high'
-import { getArticle, getUser } from '@/data/queries'
+import { getAnyArticle, getPublicArticle, getUser } from '@/data/queries'
 import Link from 'next/link'
 import { PencilIcon, RssIcon } from '@/components/icons/solid'
 
@@ -22,14 +22,16 @@ export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
   const slug = params.slug.toString()
-  const { article } = await getArticle(slug)
+  const { article } = await getPublicArticle(slug)
   return { title: article?.title }
 }
 
 export default async function PostPage({ params }: PostPageProps) {
   const user = await getUser()
   const slug = params.slug.toString()
-  const { article, error } = await getArticle(slug)
+  const { article, error } = user
+    ? await getAnyArticle(slug) // Include draft articles
+    : await getPublicArticle(slug)
 
   if (error) {
     return notFound()
