@@ -1,3 +1,4 @@
+import { marked } from 'marked'
 import { getPublicArticles } from '@/data/queries'
 import RSS from 'rss'
 import config from '@/site.config.json'
@@ -23,16 +24,19 @@ export async function GET() {
   const articles = await getPublicArticles()
 
   if (articles) {
-    articles.map((article) => {
-      feed.item({
-        title: article.title,
-        description: article.markdown,
-        url: `${config.baseUrl}/${article.slug}`,
-        categories: article.tags?.split(',') || [],
-        author: 'Edgaras Benediktavicius',
-        date: article.published_at || '',
-      })
-    })
+    await Promise.all(
+      articles.map(async (article) => {
+        const html = await marked.parse(article.markdown)
+        feed.item({
+          title: article.title,
+          description: html,
+          url: `${config.baseUrl}/${article.slug}`,
+          categories: article.tags?.split(',') || [],
+          author: 'Edgaras Benediktavicius',
+          date: article.published_at || '',
+        })
+      }),
+    )
   }
 
   return new Response(feed.xml({ indent: true }), {
