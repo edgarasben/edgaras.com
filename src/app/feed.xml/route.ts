@@ -26,7 +26,7 @@ export async function GET() {
     articles.map((article) => {
       feed.item({
         title: article.title,
-        description: article.description,
+        description: article.markdown,
         url: `${config.baseUrl}/${article.slug}`,
         categories: article.tags?.split(',') || [],
         author: 'Edgaras Benediktavicius',
