@@ -5,8 +5,8 @@ import { PostTextarea } from './PostTextarea'
 import { XMarkIcon } from '@/icons/outline'
 import { cookies } from 'next/headers'
 import { createServerActionClient } from '@supabase/auth-helpers-nextjs'
-import { formatDate } from '@/lib/utils'
 import { revalidatePath } from 'next/cache'
+import { format, isThisYear } from 'date-fns'
 
 export const dynamic = 'force-dynamic'
 
@@ -111,7 +111,9 @@ function Post({ post, isAdmin }: { post: Post; isAdmin: boolean }) {
             @edgarasben
           </a>
           <span className="text-neutral-fade">
-            {formatDate(post.created_at ?? '')}
+            {isThisYear(post.created_at)
+              ? format(post.created_at, 'MMM d')
+              : format(post.created_at, 'yyyy-MM-dd')}
           </span>
         </div>
         <p className="text-neutral/95">{post.markdown}</p>

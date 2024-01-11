@@ -1,5 +1,5 @@
+import { isThisYear, format } from 'date-fns'
 import Link from 'next/link'
-import { formatDate } from '@/lib/utils'
 import { Tables } from '@/lib/types/supabase'
 
 type Data = {
@@ -17,12 +17,14 @@ export const Card = ({ data }: Data) => (
           dateTime={data?.created_at}
           className="min-w-[56px] pt-0.5 text-sm uppercase text-neutral-fade"
         >
-          {formatDate(data.published_at)}
+          {isThisYear(data.published_at)
+            ? format(data.published_at, 'MMM d')
+            : format(data.published_at, 'yyyy')}
         </time>
         <h3 className="font-medium">{data.title}</h3>
       </div>
       {data.status === 'draft' && (
-        <div className="text-2xs inline-block rounded-full bg-neutral px-2 font-medium uppercase leading-5">
+        <div className="inline-block rounded-full bg-neutral px-2 text-2xs font-medium uppercase leading-5">
           {data.status}
         </div>
       )}

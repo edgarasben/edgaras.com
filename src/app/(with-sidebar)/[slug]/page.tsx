@@ -2,13 +2,13 @@ import { Container } from '@/components/container'
 import Image from 'next/image'
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc'
 import type { Metadata } from 'next'
-import { formatDate } from '@/lib/utils'
 import { supabase } from '@/lib/supabaseClient'
 import { notFound } from 'next/navigation'
 import { highlight } from 'sugar-high'
 import { getAnyArticle, getPublicArticle, getUser } from '@/data/queries'
 import Link from 'next/link'
 import { PencilIcon, RssIcon } from '@/components/icons/solid'
+import { format, isThisYear } from 'date-fns'
 
 export const revalidate = 30
 
@@ -71,13 +71,15 @@ export default async function PostPage({ params }: PostPageProps) {
             dateTime="2018-07-07"
             className="block text-center text-neutral-fade"
           >
-            {formatDate(article?.published_at)}
+            {isThisYear(article.published_at)
+              ? format(article.published_at, 'MMMM d')
+              : format(article.published_at, 'yyyy-MM-dd')}
           </time>
         )}
 
         {article?.status === 'draft' && (
           <div className="flex justify-center">
-            <div className="text-2xs inline-block rounded-full bg-neutral px-2 font-medium uppercase leading-5">
+            <div className="inline-block rounded-full bg-neutral px-2 text-2xs font-medium uppercase leading-5">
               {article.status}
             </div>
           </div>

@@ -18,7 +18,7 @@ export default async function ArticlesPage() {
   const user = await getUser()
 
   const articles = user
-    ? [...publicArticles, ...((await getDraftArticles()) ?? [])] // If user is logged in, mix public and draft articles
+    ? [...((await getDraftArticles()) ?? []), ...publicArticles] // If user is logged in, mix public and draft articles
     : publicArticles // Otherwise, only show public articles
 
   return (
