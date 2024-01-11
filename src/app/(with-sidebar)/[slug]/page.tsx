@@ -63,7 +63,7 @@ export default async function PostPage({ params }: PostPageProps) {
           </Link>
         </div>
       )}
-      <article className="prose max-w-none break-words pt-16 lg:prose-xl prose-h1:text-center prose-figcaption:text-neutral-fade prose-pre:bg-neutral-fade md:pt-0">
+      <article className="prose max-w-none break-words lg:prose-xl prose-h1:text-center prose-figcaption:text-neutral-fade prose-pre:bg-neutral-fade">
         <h1>{article?.title}</h1>
 
         {article?.published_at && (
@@ -82,7 +82,7 @@ export default async function PostPage({ params }: PostPageProps) {
             </div>
           </div>
         )}
-        <div className="pt-16">
+        <div className="pt-8 md:pt-16">
           <MDXRemote
             source={article?.markdown ?? ''}
             components={components as MDXRemoteProps['components']} // Casting the components
