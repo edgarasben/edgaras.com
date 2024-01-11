@@ -29,10 +29,11 @@ export async function getPublicArticles() {
 }
 
 // Including drafts
-export async function getAllArticles() {
+export async function getDraftArticles() {
   const { data: articles } = await supabase
     .from('articles')
     .select('*')
+    .eq('status', 'draft')
     .order('created_at', { ascending: false })
 
   return articles

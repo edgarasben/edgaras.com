@@ -1,13 +1,25 @@
 import { Card } from '@/components/base/card'
 import { PlusIcon } from '@/components/icons/solid'
-import { getAllArticles, getPublicArticles, getUser } from '@/data/queries'
+import { getDraftArticles, getPublicArticles, getUser } from '@/data/queries'
+import { unstable_cache as cache } from 'next/cache'
 import Link from 'next/link'
 
-export const revalidate = 30
-
 export default async function ArticlesPage() {
+  const getCachedPublicArticles = cache(
+    // Cache public articles
+    async () => getPublicArticles(),
+    ['articles'],
+    {
+      revalidate: 30, // for 30 seconds
+    },
+  )
+  const publicArticles = (await getCachedPublicArticles()) ?? []
+
   const user = await getUser()
-  const articles = user ? await getAllArticles() : await getPublicArticles()
+
+  const articles = user
+    ? [...publicArticles, ...((await getDraftArticles()) ?? [])] // If user is logged in, mix public and draft articles
+    : publicArticles // Otherwise, only show public articles
 
   return (
     <div className="p-2 md:p-6">
