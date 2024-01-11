@@ -1,4 +1,4 @@
-import { getArticles } from '@/data/queries'
+import { getPublicArticles } from '@/data/queries'
 import RSS from 'rss'
 import config from '@/site.config.json'
 
@@ -20,7 +20,7 @@ export async function GET() {
     ttl: 60,
   })
 
-  const articles = await getArticles()
+  const articles = await getPublicArticles()
 
   if (articles) {
     articles.map((article) => {

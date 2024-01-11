@@ -1,10 +1,10 @@
-import { getArticles } from '@/data/queries'
+import { getPublicArticles } from '@/data/queries'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
 export default async function sitemap() {
-  const articles = await getArticles()
+  const articles = await getPublicArticles()
 
   let articlesFeed =
     articles?.map((article) => ({

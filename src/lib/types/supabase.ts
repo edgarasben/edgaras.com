@@ -11,37 +11,37 @@ export interface Database {
     Tables: {
       articles: {
         Row: {
-          created_at: string | null
+          created_at: string
           description: string
           markdown: string
-          published_at: string | null
+          published_at: string
           slug: string
-          status: string | null
+          status: string
           tags: string | null
           title: string
-          updated_at: string | null
+          updated_at: string
         }
         Insert: {
-          created_at?: string | null
+          created_at?: string
           description: string
           markdown: string
-          published_at?: string | null
+          published_at?: string
           slug: string
-          status?: string | null
+          status: string
           tags?: string | null
           title: string
-          updated_at?: string | null
+          updated_at?: string
         }
         Update: {
-          created_at?: string | null
+          created_at?: string
           description?: string
           markdown?: string
-          published_at?: string | null
+          published_at?: string
           slug?: string
-          status?: string | null
+          status?: string
           tags?: string | null
           title?: string
-          updated_at?: string | null
+          updated_at?: string
         }
         Relationships: []
       }

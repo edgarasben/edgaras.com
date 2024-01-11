@@ -1,13 +1,13 @@
 import { Card } from '@/components/base/card'
 import { PlusIcon } from '@/components/icons/solid'
-import { getArticles, getUser } from '@/data/queries'
+import { getAllArticles, getPublicArticles, getUser } from '@/data/queries'
 import Link from 'next/link'
 
 export const revalidate = 30
 
 export default async function ArticlesPage() {
   const user = await getUser()
-  const articles = await getArticles()
+  const articles = user ? await getAllArticles() : await getPublicArticles()
 
   return (
     <div className="p-2 md:p-6">

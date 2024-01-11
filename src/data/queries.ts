@@ -14,11 +14,21 @@ export async function getUser() {
   return user
 }
 
-export async function getArticles() {
+export async function getPublicArticles() {
   const { data: articles } = await supabase
     .from('articles')
-    .select('title, markdown, slug, published_at, description, tags')
+    .select('*')
     .eq('status', 'public')
+    .order('created_at', { ascending: false })
+
+  return articles
+}
+
+// Including drafts
+export async function getAllArticles() {
+  const { data: articles } = await supabase
+    .from('articles')
+    .select('*')
     .order('created_at', { ascending: false })
 
   return articles
@@ -27,9 +37,8 @@ export async function getArticles() {
 export async function getArticle(slug: string) {
   const { data: article, error } = await supabase
     .from('articles')
-    .select('title, markdown, slug, published_at, description')
+    .select('*')
     .eq('slug', slug)
-    .eq('status', 'public')
     .single()
 
   return { article, error }

@@ -63,6 +63,7 @@ export default async function PostPage({ params }: PostPageProps) {
       )}
       <article className="prose max-w-none break-words pt-16 lg:prose-xl prose-h1:text-center prose-figcaption:text-neutral-fade prose-pre:bg-neutral-fade md:pt-0">
         <h1>{article?.title}</h1>
+
         {article?.published_at && (
           <time
             dateTime="2018-07-07"
@@ -70,6 +71,14 @@ export default async function PostPage({ params }: PostPageProps) {
           >
             {formatDate(article?.published_at)}
           </time>
+        )}
+
+        {article?.status === 'draft' && (
+          <div className="flex justify-center">
+            <div className="text-2xs inline-block rounded-full bg-neutral px-2 font-medium uppercase leading-5">
+              {article.status}
+            </div>
+          </div>
         )}
         <div className="pt-16">
           <MDXRemote

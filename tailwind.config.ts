@@ -36,6 +36,9 @@ module.exports = {
       sink: '0 0.5px 1px 0px rgba(0, 0, 0, 0.10), 0 1px 3px 0px rgba(0, 0, 0, 0.05)',
     },
     extend: {
+      fontSize: {
+        '2xs': ['0.625rem', { lineHeight: '0.75rem' }],
+      },
       fontFamily: {
         display: ['var(--font-satoshi)', ...fontFamily.sans],
       },
