@@ -9,7 +9,7 @@ export default async function sitemap() {
   let articlesFeed =
     articles?.map((article) => ({
       url: `https://edgaras.com/${article.slug}`,
-      lastModified: new Date(article.published_at ?? '')
+      lastModified: new Date(article.updated_at ?? '')
         .toISOString()
         .split('T')[0],
     })) ?? []

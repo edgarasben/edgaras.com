@@ -8,7 +8,7 @@ import { highlight } from 'sugar-high'
 import { getAnyArticle, getPublicArticle, getUser } from '@/data/queries'
 import Link from 'next/link'
 import { PencilIcon, RssIcon } from '@/components/icons/solid'
-import { format, isThisYear } from 'date-fns'
+import { format, isSameDay, isThisYear } from 'date-fns'
 
 export const revalidate = 30
 
@@ -51,6 +51,25 @@ export default async function PostPage({ params }: PostPageProps) {
     code: Code,
   }
 
+  const datePublished = () => {
+    if (article?.published_at) {
+      return isThisYear(article.published_at)
+        ? format(article.published_at, 'MMMM d')
+        : format(article.published_at, 'yyyy-MM-dd')
+    }
+  }
+
+  const dateUpdated = () => {
+    // Don't show updated date if it's the same day as published date
+    if (article && isSameDay(article.published_at, article.updated_at)) return
+
+    if (article?.updated_at) {
+      return isThisYear(article.updated_at)
+        ? format(article.updated_at, 'MMMM d')
+        : format(article.updated_at, 'yyyy-MM-dd')
+    }
+  }
+
   return (
     <Container>
       {user && (
@@ -66,24 +85,26 @@ export default async function PostPage({ params }: PostPageProps) {
       <article className="prose max-w-none break-words lg:prose-xl prose-h1:text-center prose-h1:text-5xl prose-h2:pt-8 prose-h2:text-2xl prose-figcaption:text-neutral-fade prose-pre:bg-neutral-fade">
         <h1>{article?.title}</h1>
 
-        {article?.published_at && (
-          <time
-            dateTime="2018-07-07"
-            className="block text-center text-neutral-fade"
-          >
-            {isThisYear(article.published_at)
-              ? format(article.published_at, 'MMMM d')
-              : format(article.published_at, 'yyyy-MM-dd')}
-          </time>
-        )}
+        <div className="flex justify-center space-x-1">
+          {article?.published_at && (
+            <time
+              dateTime="2018-07-07"
+              className="inline-block text-center text-sm text-neutral-fade"
+            >
+              Published: {datePublished()}{' '}
+              {dateUpdated() && <>· Updated: {dateUpdated()}</>}
+            </time>
+          )}
+        </div>
 
         {article?.status === 'draft' && (
-          <div className="flex justify-center">
+          <div className="flex justify-center pt-8">
             <div className="inline-block rounded-full bg-neutral px-2 text-2xs font-medium uppercase leading-5">
               {article.status}
             </div>
           </div>
         )}
+
         <div className="pt-8 md:pt-16">
           <MDXRemote
             source={article?.markdown ?? ''}
