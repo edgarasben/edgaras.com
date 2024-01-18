@@ -12,7 +12,7 @@ export default function ExampleClientComponent({
   tag: string
 }) {
   const pathname = usePathname()
-  const searchParams = useSearchParams()!
+  const searchParams = useSearchParams()
   const router = useRouter()
 
   // Get a new searchParams string by merging the current
