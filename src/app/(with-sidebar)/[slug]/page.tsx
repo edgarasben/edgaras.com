@@ -63,7 +63,7 @@ export default async function PostPage({ params }: PostPageProps) {
           </Link>
         </div>
       )}
-      <article className="prose max-w-none break-words lg:prose-xl prose-h1:text-center prose-figcaption:text-neutral-fade prose-pre:bg-neutral-fade">
+      <article className="prose max-w-none break-words lg:prose-xl prose-h1:text-center prose-h1:text-5xl prose-h2:pt-8 prose-h2:text-2xl prose-figcaption:text-neutral-fade prose-pre:bg-neutral-fade">
         <h1>{article?.title}</h1>
 
         {article?.published_at && (
