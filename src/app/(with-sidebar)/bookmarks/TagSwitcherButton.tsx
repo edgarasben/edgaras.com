@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
 import { usePathname, useSearchParams, useRouter } from 'next/navigation'
 import { useCallback } from 'react'
 
-export default function ExampleClientComponent({
+export default function TagSwitcherButton({
   children,
   ...props
 }: {
@@ -21,6 +21,7 @@ export default function ExampleClientComponent({
     (name: string, value: string) => {
       const params = new URLSearchParams(searchParams.toString())
       params.set(name, value)
+      window.history.replaceState(null, '', `?${params.toString()}`) // Update the URL instantly
 
       return params.toString()
     },
