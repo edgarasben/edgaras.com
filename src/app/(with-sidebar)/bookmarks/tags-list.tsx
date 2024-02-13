@@ -34,7 +34,7 @@ export default function TagsList({
 
     startTransition(() => {
       setOptimsticTags(tags)
-      router.push(`?${newParams}`)
+      router.push(`?${newParams}`, { scroll: false })
     })
   }
 

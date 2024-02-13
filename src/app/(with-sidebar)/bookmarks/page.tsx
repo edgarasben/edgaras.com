@@ -59,7 +59,7 @@ export default async function BookmarksPage({
         ) : null}
         <div className="mb-0.5">
           <Link
-            href="/bookmarks2"
+            href="/bookmarks"
             className={cn(
               'flex w-full justify-between rounded-lg border border-transparent bg-transparent px-2 py-2 text-left text-sm font-medium text-neutral-fade hover:bg-neutral-fade',
               currentTags.length === 0 ? 'bg-neutral-fade text-neutral' : '',
