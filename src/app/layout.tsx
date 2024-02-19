@@ -2,9 +2,10 @@ import '@/styles/globals.css'
 
 import type { Metadata } from 'next'
 import { NavigationBar } from '@/components/navigation-bar'
-import PlausibleProvider from 'next-plausible'
+
 import { Viewport } from 'next'
 import { Providers } from '@/app/providers'
+import Script from 'next/script'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -81,8 +82,12 @@ export default function RootLayout({
     // suppressHydrationWarning: https://github.com/pacocoursey/next-themes/issues/180#issuecomment-1736652696
     <html suppressHydrationWarning lang="en" className="h-full">
       <head>
-        <PlausibleProvider domain="edgaras.com" />
         <link href="https://github.com/edgarasben" rel="me" />
+        <Script
+          defer
+          src="https://analytics.eu.umami.is/script.js"
+          data-website-id="6b937d0e-517d-49ae-808a-4c7e88173574"
+        />
       </head>
       <body className="h-full bg-fade text-neutral antialiased">
         <>

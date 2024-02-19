@@ -8,8 +8,6 @@ import { Button } from '@/components/base/button'
 import { useRouter } from 'next/navigation'
 import { useTransition } from 'react'
 
-/* import { usePlausible } from 'next-plausible' */
-
 export function NewsletterForm() {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
@@ -20,7 +18,6 @@ export function NewsletterForm() {
     title: '',
     description: '',
   })
-  /*     const plausible = usePlausible() */
 
   const handleSubscribe = async (event: React.SyntheticEvent) => {
     event.preventDefault()
@@ -76,11 +73,7 @@ export function NewsletterForm() {
           className="w-full rounded-lg  border-neutral-fade bg-neutral-fade px-2.5 outline-none transition-all placeholder:text-neutral-fade focus-visible:border-neutral focus-visible:bg-base focus-visible:ring-4 focus-visible:ring-neutral-fade"
         />
         <div className="x inset-y-0 right-0 flex items-center pr-1">
-          <Button
-            type="submit"
-            isLoading={isLoading}
-            /*             onClick={() => plausible('Clicked Subscribe')} */
-          >
+          <Button type="submit" isLoading={isLoading}>
             Subscribe
           </Button>
         </div>
