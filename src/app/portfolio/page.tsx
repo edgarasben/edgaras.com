@@ -549,7 +549,7 @@ function Card(data: Data) {
           className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
       </div>
-      <div className="relative -mt-28 w-5/6 space-y-2 bg-base pb-8 pr-4 pt-6 transition-transform duration-500 ease-out group-hover:-translate-y-4">
+      <div className="relative -mt-28 w-5/6 space-y-2 bg-fade pb-8 pr-4 pt-6 transition-transform duration-500 ease-out group-hover:-translate-y-4">
         <span className="font-semibold uppercase tracking-wider text-primary xs:text-lg">
           {data.project}
         </span>
