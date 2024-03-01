@@ -62,7 +62,7 @@ export default async function BookmarksPage({
             href="/bookmarks"
             className={cn(
               'flex w-full justify-between rounded-lg border border-transparent bg-transparent px-2 py-2 text-left text-sm font-medium text-neutral-fade hover:bg-neutral-fade',
-              currentTags.length === 0 ? 'bg-neutral-fade text-neutral' : '',
+              currentTags.length === 0 ? 'bg-neutral-fade text-neutral' : ''
             )}
           >
             <span>All</span> <span>{count}</span>
@@ -82,6 +82,8 @@ export default async function BookmarksPage({
                 {filteredData[tag].map((bookmark) => (
                   <li key={bookmark.link}>
                     <a
+                      rel="noopener noreferrer"
+                      target="_blank"
                       href={bookmark.link}
                       className="mx-1 flex gap-x-4 rounded-lg py-5 transition-colors hover:bg-neutral-fade"
                     >
@@ -118,7 +120,7 @@ export default async function BookmarksPage({
 
 function filterBookmarksByTag(
   bookmarks: GroupedBookmarks,
-  tags: string[],
+  tags: string[]
 ): GroupedBookmarks {
   if (!tags.length) return bookmarks
 
@@ -132,19 +134,16 @@ function filterBookmarksByTag(
             ({ tags: itemTags, link }) =>
               itemTags &&
               tags.every((tag) => itemTags.includes(tag)) &&
-              includedItems.add(link),
+              includedItems.add(link)
           ),
         ]
       })
-      .filter(([_, items]) => items.length),
+      .filter(([_, items]) => items.length)
   )
 }
 
 // Group an array of objects by a key
-function groupBy<T, K extends keyof T>(
-  array: T[],
-  key: K,
-): Record<string, T[]> {
+function groupBy<T, K extends keyof T>(array: T[], key: K): Record<string, T[]> {
   return array.reduce((acc: Record<string, T[]>, item: T) => {
     const groupKey = String(item[key]) || 'Untagged'
     if (!acc[groupKey]) {
