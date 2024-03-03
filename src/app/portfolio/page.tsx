@@ -69,8 +69,8 @@ export default function PortfolioPage() {
               <p className="max-w-xl text-center text-xl xs:text-2xl lg:text-left">
                 {/* Design and development services that help you launch your product with
                 confidence. */}{' '}
-                Design and development services to help you prototype and launch
-                your web or mobile product.
+                Design and development services to help you prototype and launch your
+                web or mobile product.
               </p>
               <div className="flex flex-col items-center gap-10 pt-8 sm:flex-row">
                 <ButtonCalendar>Free 30 min call</ButtonCalendar>
@@ -176,9 +176,9 @@ export default function PortfolioPage() {
           <p className="max-w-3xl text-center text-2xl leading-relaxed text-neutral md:text-3xl md:leading-normal">
             Hi! My name is Edgaras, and I am a freelancer specializing in UX/UI
             Design, No-Code, and JavaScript development. <br />{' '}
-            <br className="block md:hidden" /> I work with clients globally to
-            create engaging websites, functional app prototypes, and automations
-            that enable you to focus on what matters most.
+            <br className="block md:hidden" /> I work with clients globally to create
+            engaging websites, functional app prototypes, and automations that enable
+            you to focus on what matters most.
           </p>
         </section>
         {/* Testimonials */}
@@ -213,8 +213,8 @@ export default function PortfolioPage() {
                 </div>
               </div>
               <p className="text-lg text-neutral">
-                Edgaras is an exceptionally creative and professional designer
-                and developer.
+                Edgaras is an exceptionally creative and professional designer and
+                developer.
               </p>
             </div>
             <div className="flex flex-col space-y-4">
@@ -235,8 +235,7 @@ export default function PortfolioPage() {
               </div>
               <p className="text-lg text-neutral">
                 Knowledgeable of systems, processes, visual design but first and
-                foremost he simply gets how people use technology and
-                interfaces.
+                foremost he simply gets how people use technology and interfaces.
               </p>
             </div>
             <div className="flex flex-col space-y-4">
@@ -256,8 +255,8 @@ export default function PortfolioPage() {
                 </div>
               </div>
               <p className="text-lg text-neutral">
-                He is a skilled and talented graphic designer who truly
-                understands the importance of UI, UX, and brand values.
+                He is a skilled and talented graphic designer who truly understands
+                the importance of UI, UX, and brand values.
               </p>
             </div>
             <div className="flex flex-col space-y-4">
@@ -271,15 +270,12 @@ export default function PortfolioPage() {
                 />
                 <div>
                   <b>Rasmus Keldorff</b>
-                  <p className="text-sm text-neutral-fade">
-                    Visual Lead at Kiloo
-                  </p>
+                  <p className="text-sm text-neutral-fade">Visual Lead at Kiloo</p>
                 </div>
               </div>
               <p className="text-lg text-neutral">
-                Edgaras is rarely satisfied with &ldquo;good enough&rdquo; and
-                does not lightly quit a task when &ldquo;better&rdquo; is a
-                possibility.
+                Edgaras is rarely satisfied with &ldquo;good enough&rdquo; and does
+                not lightly quit a task when &ldquo;better&rdquo; is a possibility.
               </p>
             </div>
           </div>
@@ -334,11 +330,10 @@ export default function PortfolioPage() {
                 <h3 className="text-2xl font-bold md:text-3xl">Figma</h3>
               </div>
               <p className="text-lg text-neutral">
-                Whether I need to craft a quick <b>visual mockup</b> for a
-                landing page or detail <b>UI design systems</b>, Figma is my
-                go-to. With its real-time collaboration features and intuitive
-                interface, I can work seamlessly with others and accelerate the
-                design process.
+                Whether I need to craft a quick <b>visual mockup</b> for a landing
+                page or detail <b>UI design systems</b>, Figma is my go-to. With its
+                real-time collaboration features and intuitive interface, I can work
+                seamlessly with others and accelerate the design process.
               </p>
               <div className="relative aspect-video">
                 <Image src={'/images/figma.jpg'} fill alt="Figma editor" />
@@ -357,11 +352,10 @@ export default function PortfolioPage() {
                 <h3 className="text-2xl font-bold md:text-3xl">Miro</h3>
               </div>
               <p className="text-lg text-neutral">
-                When a project requires more UX work, planning and
-                collaboration, I turn to <b>Miro</b> or <b>FigJam</b>. These
-                tools are excellent for <b>organizing research data</b>,{' '}
-                <b>user journeys</b>, and <b>wireframes</b>, and simplify
-                collaborative <b>design thinking</b>.
+                When a project requires more UX work, planning and collaboration, I
+                turn to <b>Miro</b> or <b>FigJam</b>. These tools are excellent for{' '}
+                <b>organizing research data</b>, <b>user journeys</b>, and{' '}
+                <b>wireframes</b>, and simplify collaborative <b>design thinking</b>.
               </p>
               <div className="relative aspect-video">
                 <Image src={'/images/miro.jpg'} fill alt="Miro whiteboard" />
@@ -380,15 +374,15 @@ export default function PortfolioPage() {
                 <h3 className="text-2xl font-bold md:text-3xl">Code</h3>
               </div>
               <p className="text-lg text-neutral">
-                Designers don’t have to code, but I do! My go-to tool for coding
-                is <strong>VS Code</strong>, where I write <strong>HTML</strong>
-                , <strong>CSS</strong> and <strong>JavaScript</strong>. I also
-                enjoy writing <strong>Tailwind CSS</strong>, which allows me to
-                build layouts quickly. When it comes to building full websites
-                and apps, I turn to frameworks — <strong>React</strong> and{' '}
-                <strong>NextJS</strong>. Knowing how to code not only enables me
-                to build Minimal Viable Products, but also makes it easier for
-                me to communicate and collaborate with other developers.
+                Designers don’t have to code, but I do! My go-to tool for coding is{' '}
+                <strong>VS Code</strong>, where I write <strong>HTML</strong>,{' '}
+                <strong>CSS</strong> and <strong>JavaScript</strong>. I also enjoy
+                writing <strong>Tailwind CSS</strong>, which allows me to build
+                layouts quickly. When it comes to building full websites and apps, I
+                turn to frameworks — <strong>React</strong> and{' '}
+                <strong>NextJS</strong>. Knowing how to code not only enables me to
+                build Minimal Viable Products, but also makes it easier for me to
+                communicate and collaborate with other developers.
               </p>
               <div className="relative aspect-video">
                 <Image src={'/images/code.jpg'} fill alt="Code editor" />
@@ -409,14 +403,14 @@ export default function PortfolioPage() {
               <p className="text-lg text-neutral">
                 When I&apos;m working on projects where speed and cost are
                 priorities, I turn to no-code tools. <strong>Zapier</strong> and{' '}
-                <strong>Make</strong> are excellent tools for workflow
-                automation, while <strong>Internal</strong> is great for
-                building internal tools. <strong>Tally</strong> is perfect for
-                creating quick forms and surveys. For database prototyping, I
-                prefer <strong>Airtable</strong> or <strong>Notion</strong>. I
-                view these tools as building blocks that enable me to quickly
-                bootstrap apps and automate processes, before diving into
-                writing more resilient code or disrupting other developers.
+                <strong>Make</strong> are excellent tools for workflow automation,
+                while <strong>Internal</strong> is great for building internal tools.{' '}
+                <strong>Tally</strong> is perfect for creating quick forms and
+                surveys. For database prototyping, I prefer <strong>Airtable</strong>{' '}
+                or <strong>Notion</strong>. I view these tools as building blocks
+                that enable me to quickly bootstrap apps and automate processes,
+                before diving into writing more resilient code or disrupting other
+                developers.
               </p>
               <div className="relative aspect-video">
                 <Image

@@ -1,5 +1,5 @@
 import '@/styles/globals.css'
-import { Fira_Sans as sans } from 'next/font/google'
+import { Inter as sans } from 'next/font/google'
 import display from 'next/font/local'
 
 import type { Metadata } from 'next'
@@ -11,7 +11,7 @@ import Script from 'next/script'
 
 // Sans-serif font
 const fontSans = sans({
-  weight: '400',
+  weight: 'variable',
   subsets: ['latin'],
   variable: '--font-sans',
 })
