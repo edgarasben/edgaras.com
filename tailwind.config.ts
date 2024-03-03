@@ -7,6 +7,11 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   darkMode: ['class', '[data-theme="dark"]'],
   theme: {
+    fontFamily: {
+      display: ['var(--font-display)', ...fontFamily.sans],
+      sans: ['var(--font-sans)', ...fontFamily.sans],
+      mono: [...fontFamily.mono],
+    },
     gradientColorStops: { ...tokens.colors.background },
     backgroundColor: { ...tokens.colors.background },
     borderColor: { ...tokens.colors.border },
@@ -29,8 +34,7 @@ module.exports = {
     },
     boxShadow: {
       subtle: '0 1px 1px 0px rgba(0, 0, 0, 0.05)',
-      raise:
-        '0 1px 2px -1px rgba(0, 0, 0, 0.1), 0 1px 3px 0px rgba(0, 0, 0, 0.1)',
+      raise: '0 1px 2px -1px rgba(0, 0, 0, 0.1), 0 1px 3px 0px rgba(0, 0, 0, 0.1)',
       overlay:
         '0 8px 16px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.1)',
       sink: '0 0.5px 1px 0px rgba(0, 0, 0, 0.10), 0 1px 3px 0px rgba(0, 0, 0, 0.05)',
@@ -38,9 +42,6 @@ module.exports = {
     extend: {
       fontSize: {
         '2xs': ['0.625rem', { lineHeight: '0.75rem' }],
-      },
-      fontFamily: {
-        display: ['var(--font-satoshi)', ...fontFamily.sans],
       },
       spacing: {
         // Bottom spacing for iOS Home Indicator

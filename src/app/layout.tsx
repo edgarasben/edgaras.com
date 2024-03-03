@@ -1,4 +1,6 @@
 import '@/styles/globals.css'
+import { Fira_Sans as sans } from 'next/font/google'
+import display from 'next/font/local'
 
 import type { Metadata } from 'next'
 import { NavigationBar } from '@/components/navigation-bar'
@@ -6,6 +8,20 @@ import { NavigationBar } from '@/components/navigation-bar'
 import { Viewport } from 'next'
 import { Providers } from '@/app/providers'
 import Script from 'next/script'
+
+// Sans-serif font
+const fontSans = sans({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-sans',
+})
+
+// Display font
+const fontDisplay = display({
+  src: '../fonts/Satoshi-Variable.woff2',
+  variable: '--font-display',
+  display: 'swap',
+})
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -73,14 +89,14 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     // suppressHydrationWarning: https://github.com/pacocoursey/next-themes/issues/180#issuecomment-1736652696
-    <html suppressHydrationWarning lang="en" className="h-full">
+    <html
+      suppressHydrationWarning
+      lang="en"
+      className={`h-full ${fontDisplay.variable} ${fontSans.variable}`}
+    >
       <head>
         <link href="https://github.com/edgarasben" rel="me" />
         <Script
@@ -89,7 +105,7 @@ export default function RootLayout({
           data-website-id="6b937d0e-517d-49ae-808a-4c7e88173574"
         />
       </head>
-      <body className="h-full bg-fade text-neutral antialiased">
+      <body className={`h-full bg-fade text-neutral antialiased `}>
         <>
           {/*       <NavigationBar /> */}
           <Providers>{children}</Providers>

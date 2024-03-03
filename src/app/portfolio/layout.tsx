@@ -1,12 +1,5 @@
 import type { Metadata } from 'next'
 
-import localFont from 'next/font/local'
-
-const satoshi = localFont({
-  src: './Satoshi-Variable.woff2',
-  variable: '--font-satoshi'
-})
-
 export const metadata: Metadata = {
   title: 'Portfolio',
   openGraph: {
@@ -17,9 +10,9 @@ export const metadata: Metadata = {
         url: 'https://edgaras.com/images/og-portfolio.jpg',
         alt: 'Edgaras — Software Designer and Developer',
         width: 1200,
-        height: 630
-      }
-    ]
+        height: 630,
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
@@ -33,16 +26,16 @@ export const metadata: Metadata = {
         url: 'https://edgaras.com/images/og-portfolio.jpg',
         alt: 'Edgaras — Software Designer and Developer',
         width: 1200,
-        height: 630
-      }
-    ]
-  }
+        height: 630,
+      },
+    ],
+  },
 }
 
-export default function PortfolioLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className={`${satoshi.variable} h-full bg-[#BFDFB4] font-display`}>
-      {children}
-    </div>
-  )
+export default function PortfolioLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return <div className={`h-full bg-[#BFDFB4] font-display`}>{children}</div>
 }

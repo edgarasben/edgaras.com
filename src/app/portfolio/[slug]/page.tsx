@@ -11,11 +11,7 @@ export async function generateStaticParams() {
   }))
 }
 
-export default async function CasePage({
-  params,
-}: {
-  params: { slug: string }
-}) {
+export default async function CasePage({ params }: { params: { slug: string } }) {
   const { slug } = params
   const page = data.find((page: any) => {
     return page.slug === slug
@@ -39,7 +35,7 @@ export default async function CasePage({
         </Link>
         <div className="space-y-4">
           <p className="text-2xl font-medium text-primary">{page?.project}</p>
-          <h1 className="text-3xl font-extrabold leading-tight xs:text-4xl md:w-2/3 md:text-5xl md:leading-snug">
+          <h1 className="font-display text-3xl font-extrabold leading-tight xs:text-4xl md:w-2/3 md:text-5xl md:leading-snug">
             <Balancer>{page?.title}</Balancer>
           </h1>
         </div>
@@ -96,36 +92,16 @@ export default async function CasePage({
       {page?.image1 && (
         <section className="mx-auto grid w-full max-w-screen-xl gap-8 px-8 pb-16 md:grid-cols-2 md:pb-32">
           <div className="relative aspect-video md:col-span-2">
-            <Image
-              src={page?.image1}
-              alt="test"
-              fill
-              className="object-cover"
-            />
+            <Image src={page?.image1} alt="test" fill className="object-cover" />
           </div>
           <div className="relative aspect-square">
-            <Image
-              src={page?.image2}
-              alt="test"
-              fill
-              className="object-cover"
-            />
+            <Image src={page?.image2} alt="test" fill className="object-cover" />
           </div>
           <div className="relative aspect-square">
-            <Image
-              src={page?.image3}
-              alt="test"
-              fill
-              className="object-cover"
-            />
+            <Image src={page?.image3} alt="test" fill className="object-cover" />
           </div>
           <div className="relative aspect-video md:col-span-2">
-            <Image
-              src={page?.image4}
-              alt="test"
-              fill
-              className="object-cover"
-            />
+            <Image src={page?.image4} alt="test" fill className="object-cover" />
           </div>
         </section>
       )}
