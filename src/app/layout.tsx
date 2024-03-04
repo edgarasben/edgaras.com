@@ -99,6 +99,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <head>
         <link href="https://github.com/edgarasben" rel="me" />
+        <meta
+          name="ahrefs-site-verification"
+          content="6ba507e7008a009ebc24b0516602cad7c34838be20e0b7e0c98415f78af3b6fc"
+        ></meta>
         <Script
           defer
           src="https://analytics.eu.umami.is/script.js"
