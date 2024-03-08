@@ -1,12 +1,12 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr'
-import { type NextRequest, NextResponse } from 'next/server'
+import { NextResponse, type NextRequest } from 'next/server'
 
-export const createClient = (request: NextRequest) => {
+export const updateSession = async (request: NextRequest) => {
   // Create an unmodified response
   let response = NextResponse.next({
     request: {
-      headers: request.headers
-    }
+      headers: request.headers,
+    },
   })
 
   const supabase = createServerClient(
@@ -22,17 +22,17 @@ export const createClient = (request: NextRequest) => {
           request.cookies.set({
             name,
             value,
-            ...options
+            ...options,
           })
           response = NextResponse.next({
             request: {
-              headers: request.headers
-            }
+              headers: request.headers,
+            },
           })
           response.cookies.set({
             name,
             value,
-            ...options
+            ...options,
           })
         },
         remove(name: string, options: CookieOptions) {
@@ -40,22 +40,26 @@ export const createClient = (request: NextRequest) => {
           request.cookies.set({
             name,
             value: '',
-            ...options
+            ...options,
           })
           response = NextResponse.next({
             request: {
-              headers: request.headers
-            }
+              headers: request.headers,
+            },
           })
           response.cookies.set({
             name,
             value: '',
-            ...options
+            ...options,
           })
-        }
-      }
+        },
+      },
     }
   )
 
-  return { supabase, response }
+  // This will refresh session if expired - required for Server Components
+  // https://supabase.com/docs/guides/auth/server-side/nextjs
+  await supabase.auth.getUser()
+
+  return response
 }
