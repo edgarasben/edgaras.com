@@ -58,19 +58,21 @@ export default async function CasePage({ params }: { params: { slug: string } })
             <p className="font-medium md:text-xl">{page?.meta?.year}</p>
           </li>
 
-          <li className="space-y-2">
-            <h2 className="text-sm uppercase tracking-wider">Link</h2>
-            <p className="font-medium md:text-xl">
-              <a
-                className="font-medium text-primary underline"
-                href={page?.meta?.link?.url}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                {page?.meta?.link?.text}
-              </a>
-            </p>
-          </li>
+          {page?.meta?.link?.url && page.meta.link.text && (
+            <li className="space-y-2">
+              <h2 className="text-sm uppercase tracking-wider">Link</h2>
+              <p className="font-medium md:text-xl">
+                <a
+                  className="font-medium text-primary underline"
+                  href={page?.meta?.link?.url}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {page?.meta?.link?.text}
+                </a>
+              </p>
+            </li>
+          )}
         </ul>
       </section>
       {page?.coverHorizontal && (
