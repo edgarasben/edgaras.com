@@ -1,5 +1,6 @@
 export { default as BookmarkIcon } from "./BookmarkIcon";
 export { default as BriefcaseIcon } from "./BriefcaseIcon";
+export { default as ClipboardIcon } from "./ClipboardIcon";
 export { default as DotIcon } from "./DotIcon";
 export { default as ExclamationCircleIcon } from "./ExclamationCircleIcon";
 export { default as HomeIcon } from "./HomeIcon";

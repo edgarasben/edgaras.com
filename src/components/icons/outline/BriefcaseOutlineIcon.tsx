@@ -22,7 +22,7 @@ const SvgBriefcaseOutlineIcon = (props: SVGProps<SVGSVGElement>) => (
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.5}
-      d="M168 64V48a16 16 0 0 0-16-16h-48a16 16 0 0 0-16 16v16M224 118.31A191.09 191.09 0 0 1 128 144a191.14 191.14 0 0 1-96-25.68M112 112h32"
+      d="M168 64V48a16 16 0 0 0-16-16h-48a16 16 0 0 0-16 16v16M224 118.31A191.1 191.1 0 0 1 128 144a191.14 191.14 0 0 1-96-25.68M112 112h32"
       vectorEffect="non-scaling-stroke"
     />
   </svg>
