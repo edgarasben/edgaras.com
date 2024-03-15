@@ -1,10 +1,9 @@
 'use client'
 
-import { MoonIcon, SunIcon } from '@/icons/outline'
+import { SunIcon } from '@/icons/outline'
 import { useTheme } from 'next-themes'
 
 /* import { Button } from '@/components/ui/button' */
-import { Button } from '@/components/base/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,6 +19,7 @@ export function ThemeToggle() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button
+          aria-label="Select theme"
           className="rounded-full p-2 text-neutral-fade transition-colors hover:bg-neutral-fade hover:text-primary  dark:hover:bg-neutral-fade dark:hover:bg-opacity-10"
           /*     size={'xs'}
           leftIcon={
@@ -29,16 +29,12 @@ export function ThemeToggle() {
             </>
           } */
         >
-          <SunIcon className="h-4 w-4" />
+          <SunIcon aria-hidden="true" className="h-4 w-4" />
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="bg-overlay">
-        <DropdownMenuItem onClick={() => setTheme('light')}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>
-          Dark
-        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('light')}>Light</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('dark')}>Dark</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => setTheme('system')}>
           System

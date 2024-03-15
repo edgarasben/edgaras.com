@@ -65,9 +65,7 @@ export const Header = () => {
                 />
               </Link>
               <div className="space-y-1">
-                <h1 className="text-sm font-semibold">
-                  Edgaras Benediktavičius
-                </h1>
+                <h1 className="text-sm font-semibold">Edgaras Benediktavičius</h1>
                 <p className="text-sm text-neutral-fade">
                   Product designer and web developer
                 </p>
@@ -80,28 +78,26 @@ export const Header = () => {
                 <Link
                   href="/"
                   className={cn(
-                    'group flex items-center gap-2 rounded-lg px-4 py-2 font-medium text-neutral-fade hover:bg-neutral-fade hover:text-neutral',
+                    'group flex items-center gap-2 rounded-lg px-4 py-2 font-medium text-neutral-fade hover:bg-neutral-fade hover:text-neutral'
                   )}
                 >
                   {pathname === '/' ? (
                     <HomeIcon
                       className={cn(
                         'h-4 w-4 group-hover:text-primary',
-                        pathname === '/' ? 'text-primary' : '',
+                        pathname === '/' ? 'text-primary' : ''
                       )}
                     />
                   ) : (
                     <HomeOutlineIcon
                       className={cn(
                         'h-4 w-4',
-                        pathname === '/' ? 'text-primary' : '',
+                        pathname === '/' ? 'text-primary' : ''
                       )}
                     />
                   )}
 
-                  <span
-                    className={cn('', pathname === '/' ? 'text-neutral' : '')}
-                  >
+                  <span className={cn('', pathname === '/' ? 'text-neutral' : '')}>
                     Home
                   </span>
                 </Link>
@@ -110,21 +106,21 @@ export const Header = () => {
                 <Link
                   href="/bookmarks"
                   className={cn(
-                    'group flex items-center gap-2 rounded-lg px-4 py-2 font-medium text-neutral-fade hover:bg-neutral-fade hover:text-neutral',
+                    'group flex items-center gap-2 rounded-lg px-4 py-2 font-medium text-neutral-fade hover:bg-neutral-fade hover:text-neutral'
                   )}
                 >
                   {pathname === '/bookmarks' ? (
                     <BookmarkIcon
                       className={cn(
                         'h-4 w-4 group-hover:text-primary',
-                        pathname === '/bookmarks' ? 'text-primary' : '',
+                        pathname === '/bookmarks' ? 'text-primary' : ''
                       )}
                     />
                   ) : (
                     <BookmarkOutlineIcon
                       className={cn(
                         'h-4 w-4 group-hover:text-neutral',
-                        pathname === '/bookmarks' ? 'text-primary' : '',
+                        pathname === '/bookmarks' ? 'text-primary' : ''
                       )}
                     />
                   )}
@@ -132,7 +128,7 @@ export const Header = () => {
                   <span
                     className={cn(
                       '',
-                      pathname === '/bookmarks' ? 'text-neutral' : '',
+                      pathname === '/bookmarks' ? 'text-neutral' : ''
                     )}
                   >
                     Bookmarks
@@ -143,21 +139,21 @@ export const Header = () => {
                 <Link
                   href="/portfolio"
                   className={cn(
-                    'group flex items-center gap-2 rounded-lg px-4 py-2 font-medium text-neutral-fade hover:bg-neutral-fade hover:text-neutral',
+                    'group flex items-center gap-2 rounded-lg px-4 py-2 font-medium text-neutral-fade hover:bg-neutral-fade hover:text-neutral'
                   )}
                 >
                   {pathname === '/portfolio' ? (
                     <BriefcaseIcon
                       className={cn(
                         'h-4 w-4 group-hover:text-primary',
-                        pathname === '/portfolio' ? 'text-primary' : '',
+                        pathname === '/portfolio' ? 'text-primary' : ''
                       )}
                     />
                   ) : (
                     <BriefcaseOutlineIcon
                       className={cn(
                         'h-4 w-4 group-hover:text-neutral',
-                        pathname === '/portfolio' ? 'text-primary' : '',
+                        pathname === '/portfolio' ? 'text-primary' : ''
                       )}
                     />
                   )}
@@ -165,7 +161,7 @@ export const Header = () => {
                   <span
                     className={cn(
                       '',
-                      pathname === '/portfolio' ? 'text-neutral' : '',
+                      pathname === '/portfolio' ? 'text-neutral' : ''
                     )}
                   >
                     Portfolio
@@ -178,6 +174,7 @@ export const Header = () => {
         <div className="absolute right-4 top-4 flex gap-3 md:bottom-4 md:left-4 md:right-auto md:top-auto">
           <ThemeToggle />
           <a
+            aria-label="Subscribe via RSS"
             href="/feed.xml"
             className="rounded-full p-2 text-neutral-fade transition-colors hover:bg-neutral-fade hover:text-primary  dark:hover:bg-neutral-fade dark:hover:bg-opacity-10"
           >
