@@ -64,12 +64,12 @@ export const Header = () => {
                   height={48}
                 />
               </Link>
-              <div className="space-y-1">
-                <h1 className="text-sm font-semibold">Edgaras Benediktavičius</h1>
-                <p className="text-sm text-neutral-fade">
+              <dl className="space-y-1">
+                <dt className="text-sm font-semibold">Edgaras Benediktavičius</dt>
+                <dd className="text-sm text-neutral-fade">
                   Product designer and web developer
-                </p>
-              </div>
+                </dd>
+              </dl>
             </div>
           </div>
           <nav>
