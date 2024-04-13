@@ -82,9 +82,7 @@ export function hslToPlain(hsl: string) {
 }
 
 export function hslaToHsl(hsla: string) {
-  const values = hsla.match(
-    /^hsla\((\d+),\s*([\d.]+)%,\s*([\d.]+)%,\s*([\d.]+)%\)$/,
-  )
+  const values = hsla.match(/^hsla\((\d+),\s*([\d.]+)%,\s*([\d.]+)%,\s*([\d.]+)%\)$/)
 
   if (!values) {
     return null // Return null if the input string does not match the expected format
@@ -93,11 +91,7 @@ export function hslaToHsl(hsla: string) {
   return `hsl(${values[1]}, ${values[2]}%, ${values[3]}%)`
 }
 
-export function rgbToHsl(
-  r: number,
-  g: number,
-  b: number,
-): [number, number, number] {
+export function rgbToHsl(r: number, g: number, b: number): [number, number, number] {
   // Normalize RGB values to the range 0-1
   r /= 255
   g /= 255
@@ -156,7 +150,7 @@ export function hexToRgb(hex: string) {
 export function makeAlphaHsla(
   colorHex: string,
   backgroundHex: string,
-  strength = 1,
+  strength = 1
 ) {
   // Convert input HEXes to RGBs (arrays)
   const color = hexToRgb(colorHex)
@@ -166,14 +160,14 @@ export function makeAlphaHsla(
       ? '#FFFFFF'
       : backgroundHex === 'black'
         ? '#000000'
-        : backgroundHex,
+        : backgroundHex
   )
 
   // Calculate alpha value per channel, pick the highest value
   const alphaPerChannel = color.map((channel, i) => {
     return [
       (channel - surface[i]) / (255 - surface[i]),
-      (channel - surface[i]) / (0 - surface[i]),
+      (channel - surface[i]) / (0 - surface[i])
     ]
   })
 
@@ -181,8 +175,8 @@ export function makeAlphaHsla(
     Math.max(
       ...alphaPerChannel
         .flat()
-        .filter((value) => /^-?\d+\.?\d*$/.test(value.toString())),
-    ),
+        .filter((value) => /^-?\d+\.?\d*$/.test(value.toString()))
+    )
   )
 
   // Calculate new RGB values based on the alpha
@@ -197,7 +191,7 @@ export function makeAlphaHsla(
       h: hsl[0],
       s: Math.round(hsl[1] * strength),
       l: hsl[2],
-      a: 1,
+      a: 1
     }
   } else {
     const hsl = rgbToHsl(alphaColor[0], alphaColor[1], alphaColor[2])
@@ -205,7 +199,7 @@ export function makeAlphaHsla(
       h: hsl[0],
       s: Math.round(hsl[1] * strength),
       l: hsl[2],
-      a: alpha,
+      a: alpha
     }
   }
 }
@@ -222,7 +216,7 @@ export const tokens = {
     text: {
       neutral: {
         DEFAULT: 'hsl(var(--fg-neutral) / <alpha-value>)',
-        fade: 'hsl(var(--fg-neutral-fade) / <alpha-value>)',
+        fade: 'hsl(var(--fg-neutral-fade) / <alpha-value>)'
       },
       primary: 'hsl(var(--fg-primary) / <alpha-value>)',
       positive: 'hsl(var(--fg-positive) / <alpha-value>)',
@@ -230,22 +224,23 @@ export const tokens = {
       'on-neutral': 'hsl(var(--on-neutral) / <alpha-value>)',
       'on-primary': 'hsl(var(--on-primary) / <alpha-value>)',
       'on-critical': 'hsl(var(--on-critical) / <alpha-value>)',
+      'on-warn': 'hsl(var(--on-warn) / <alpha-value>)',
       disable: 'hsl(var(--fg-disable) / <alpha-value>)',
       black: '#000000',
       white: '#ffffff',
-      transparent: 'transparent',
+      transparent: 'transparent'
     },
     border: {
       neutral: {
         DEFAULT: 'hsl(var(--border-neutral) / <alpha-value>)',
-        fade: 'hsl(var(--border-neutral-fade))',
+        fade: 'hsl(var(--border-neutral-fade))'
       },
       primary: 'hsl(var(--border-primary) / <alpha-value>)',
       critical: 'hsl(var(--border-critical) / <alpha-value>)',
       disable: 'hsl(var(--border-disable) / <alpha-value>)',
       black: '#000000',
       white: '#ffffff',
-      transparent: 'transparent',
+      transparent: 'transparent'
     },
     background: {
       page: 'hsl(var(--bg-page) / <alpha-value>)',
@@ -255,41 +250,41 @@ export const tokens = {
       overlay: 'hsl(var(--bg-overlay) / <alpha-value>)',
       neutral: {
         DEFAULT: 'hsl(var(--bg-neutral) / <alpha-value>)',
-        fade: 'hsl(var(--bg-neutral-fade))',
+        fade: 'hsl(var(--bg-neutral-fade))'
       },
       primary: {
         DEFAULT: 'hsl(var(--bg-primary) / <alpha-value>)',
         highlight: 'hsl(var(--bg-primary-highlight) / <alpha-value>)',
         active: 'hsl(var(--bg-primary-active) / <alpha-value>)',
-        fade: 'hsl(var(--bg-primary-fade) / <alpha-value>)',
+        fade: 'hsl(var(--bg-primary-fade) / <alpha-value>)'
       },
       positive: {
         DEFAULT: 'hsl(var(--bg-positive) / <alpha-value>)',
         highlight: 'hsl(var(--bg-positive-highlight) / <alpha-value>)',
         active: 'hsl(var(--bg-positive-active) / <alpha-value>)',
-        fade: 'hsl(var(--bg-positive-fade) / <alpha-value>)',
+        fade: 'hsl(var(--bg-positive-fade) / <alpha-value>)'
       },
       warn: {
         DEFAULT: 'hsl(var(--bg-warn) / <alpha-value>)',
         highlight: 'hsl(var(--bg-warn-highlight) / <alpha-value>)',
         active: 'hsl(var(--bg-warn-active) / <alpha-value>)',
-        fade: 'hsl(var(--bg-warn-fade) / <alpha-value>)',
+        fade: 'hsl(var(--bg-warn-fade) / <alpha-value>)'
       },
       critical: {
         DEFAULT: 'hsl(var(--bg-critical) / <alpha-value>)',
         highlight: 'hsl(var(--bg-critical-highlight) / <alpha-value>)',
         active: 'hsl(var(--bg-critical-active) / <alpha-value>)',
-        fade: 'hsl(var(--bg-critical-fade) / <alpha-value>)',
+        fade: 'hsl(var(--bg-critical-fade) / <alpha-value>)'
       },
       disable: {
         DEFAULT: 'hsl(var(--bg-disable) / <alpha-value>)',
-        fade: 'hsl(var(--bg-disable-fade) / <alpha-value>)',
+        fade: 'hsl(var(--bg-disable-fade) / <alpha-value>)'
       },
       black: '#000000',
       white: '#ffffff',
-      transparent: 'transparent',
-    },
-  },
+      transparent: 'transparent'
+    }
+  }
 }
 
 // Tailwind plugin to create CSS variables. Uses convertToHsl and makeAlphaHslaString functions
@@ -300,7 +295,7 @@ type ColorConfig = {
 }
 
 export function createVariables(
-  config: ColorConfig,
+  config: ColorConfig
 ): ({ addBase }: { addBase: (base: ColorConfig) => void }) => void {
   const convertToHsl = (obj: ColorConfig) => {
     const result: ColorConfig = {}

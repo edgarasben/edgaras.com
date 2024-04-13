@@ -6,7 +6,7 @@ import {
   BriefcaseIcon,
   HomeIcon,
   LinkedinIcon,
-  RssIcon,
+  RssIcon
 } from '@/icons/solid'
 import { MailIcon } from '@/icons/solid'
 import { NewsletterForm } from '@/components/newsletter-form'
@@ -18,13 +18,13 @@ import { cn } from '@/lib/utils'
 import {
   BookmarkOutlineIcon,
   BriefcaseOutlineIcon,
-  HomeOutlineIcon,
+  HomeOutlineIcon
 } from './icons/outline'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger,
+  TooltipTrigger
 } from './base/tooltip'
 
 const socialLinks = [
@@ -32,19 +32,19 @@ const socialLinks = [
     label: 'Follow on Twitter',
     url: 'https://twitter.com/edgarasben',
     icon: <XComIcon className="h-5 w-5" />,
-    hoverClass: 'hover:text-black',
+    hoverClass: 'hover:text-black'
   },
   {
     label: 'Connect on LinkedIn',
     url: 'https://www.linkedin.com/in/edgarasben/',
     icon: <LinkedinIcon className="h-5 w-5" />,
-    hoverClass: 'hover:text-[#0077B5]',
+    hoverClass: 'hover:text-[#0077B5]'
   },
   {
     label: 'Send email',
     url: 'mailto:hi@edgaras.com',
-    icon: <MailIcon className="h-5 w-5" />,
-  },
+    icon: <MailIcon className="h-5 w-5" />
+  }
 ]
 
 export const Header = () => {
@@ -97,7 +97,9 @@ export const Header = () => {
                     />
                   )}
 
-                  <span className={cn('', pathname === '/' ? 'text-neutral' : '')}>
+                  <span
+                    className={cn('text-sm', pathname === '/' ? 'text-neutral' : '')}
+                  >
                     Home
                   </span>
                 </Link>
@@ -127,7 +129,7 @@ export const Header = () => {
 
                   <span
                     className={cn(
-                      '',
+                      'text-sm',
                       pathname === '/bookmarks' ? 'text-neutral' : ''
                     )}
                   >
@@ -160,7 +162,7 @@ export const Header = () => {
 
                   <span
                     className={cn(
-                      '',
+                      'text-sm',
                       pathname === '/portfolio' ? 'text-neutral' : ''
                     )}
                   >

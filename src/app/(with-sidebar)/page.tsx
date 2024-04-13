@@ -10,8 +10,8 @@ export default async function ArticlesPage() {
     async () => getPublicArticles(),
     ['articles'],
     {
-      revalidate: 30, // for 30 seconds
-    },
+      revalidate: 30 // for 30 seconds
+    }
   )
   const publicArticles = (await getCachedPublicArticles()) ?? []
 
@@ -22,8 +22,10 @@ export default async function ArticlesPage() {
     : publicArticles // Otherwise, only show public articles
 
   return (
-    <div className="p-2 md:p-6">
-      <h2 className="p-4 font-semibold tracking-wide">Latest articles</h2>
+    <div className="p-2 md:p-6 md:pt-16">
+      <h2 className="p-4 text-sm font-medium tracking-wide text-neutral-fade">
+        Latest articles
+      </h2>
       <ul>
         {articles?.map((article) => (
           <li key={article.slug}>

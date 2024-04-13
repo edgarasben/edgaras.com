@@ -10,7 +10,7 @@ module.exports = {
     fontFamily: {
       display: ['var(--font-display)', ...fontFamily.sans],
       sans: ['var(--font-sans)', ...fontFamily.sans],
-      mono: [...fontFamily.mono],
+      mono: [...fontFamily.mono]
     },
     gradientColorStops: { ...tokens.colors.background },
     backgroundColor: { ...tokens.colors.background },
@@ -25,30 +25,30 @@ module.exports = {
       center: true,
       padding: {
         DEFAULT: '1rem',
-        sm: '2rem',
-      },
+        sm: '2rem'
+      }
     },
     screens: {
       xs: '475px',
-      ...screens,
+      ...screens
     },
     boxShadow: {
       subtle: '0 1px 1px 0px rgba(0, 0, 0, 0.05)',
       raise: '0 1px 2px -1px rgba(0, 0, 0, 0.1), 0 1px 3px 0px rgba(0, 0, 0, 0.1)',
       overlay:
         '0 8px 16px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.1)',
-      sink: '0 0.5px 1px 0px rgba(0, 0, 0, 0.10), 0 1px 3px 0px rgba(0, 0, 0, 0.05)',
+      sink: '0 0.5px 1px 0px rgba(0, 0, 0, 0.10), 0 1px 3px 0px rgba(0, 0, 0, 0.05)'
     },
     extend: {
       fontSize: {
-        '2xs': ['0.625rem', { lineHeight: '0.75rem' }],
+        '2xs': ['0.625rem', { lineHeight: '0.75rem' }]
       },
       spacing: {
         // Bottom spacing for iOS Home Indicator
-        'safe-area-inset-bottom': 'env(safe-area-inset-bottom, 24px)',
+        'safe-area-inset-bottom': 'env(safe-area-inset-bottom, 24px)'
       },
       screens: {
-        standalone: { raw: '(display-mode: standalone)' },
+        standalone: { raw: '(display-mode: standalone)' }
       },
       typography: {
         DEFAULT: {
@@ -62,49 +62,49 @@ module.exports = {
 
             a: {
               '&:hover': {
-                textDecoration: 'none',
-              },
-            },
-          },
-        },
+                textDecoration: 'none'
+              }
+            }
+          }
+        }
       },
       keyframes: {
         'rotate-3': {
           '0%': {
             transform: 'rotate(3deg)',
-            animationTimingFunction: 'ease-in',
+            animationTimingFunction: 'ease-in'
           },
           '100%': {
             transform: 'rotate(0deg)',
-            animationTimingFunction: 'ease-in',
-          },
+            animationTimingFunction: 'ease-in'
+          }
         },
         'slide-up-8': {
           '0%': { transform: 'translateY(100%)' },
-          '100%': { transform: 'translateY(0%)' },
+          '100%': { transform: 'translateY(0%)' }
         },
         'translateX-0--100': {
           '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(-100%)' }
         },
         'translateX-100-0': {
           '0%': { transform: 'translateX(100%)' },
-          '100%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(0%)' }
         },
         'accordion-down': {
           from: { height: 0 },
-          to: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: 'var(--radix-accordion-content-height)' }
         },
         'accordion-up': {
           from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: 0 },
-        },
+          to: { height: 0 }
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-      },
-    },
+        'accordion-up': 'accordion-up 0.2s ease-out'
+      }
+    }
   },
 
   plugins: [
@@ -143,6 +143,8 @@ module.exports = {
         // Postive
 
         // Warn
+        '--bg-warn-fade': colors.yellow[300],
+        '--on-warn': colors.black,
 
         // Critical
         '--fg-critical': colors.red[600],
@@ -156,7 +158,7 @@ module.exports = {
         '--fg-disable': colors.neutral[500],
         '--border-disable': colors.neutral[300],
         '--bg-disable': colors.neutral[200],
-        '--bg-disable-fade': colors.neutral[100],
+        '--bg-disable-fade': colors.neutral[100]
       },
       '[data-theme="dark"]': {
         // Page Dark
@@ -183,8 +185,8 @@ module.exports = {
         // Critical Dark
         '--bg-critical': colors.red[600],
         '--bg-critical-highlight': colors.red[700],
-        '--bg-critical-active': colors.red[800],
-      },
-    }),
-  ],
+        '--bg-critical-active': colors.red[800]
+      }
+    })
+  ]
 }

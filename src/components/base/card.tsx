@@ -9,7 +9,7 @@ type Data = {
 export const Card = ({ data }: Data) => (
   <Link
     href={`/${data.slug}`}
-    className="block w-full space-y-4 rounded-xl px-4 py-4 transition-colors hover:bg-neutral-fade"
+    className="block w-full space-y-4 rounded-xl px-4 py-4 text-sm transition-colors hover:bg-neutral-fade"
   >
     <div className="flex items-center space-x-2">
       <div className="flex items-center">
@@ -24,7 +24,7 @@ export const Card = ({ data }: Data) => (
         <h3 className="font-medium">{data.title}</h3>
       </div>
       {data.status === 'draft' && (
-        <div className="inline-block rounded-full bg-neutral px-2 text-2xs font-medium uppercase leading-5">
+        <div className="text-on-warn inline-block rounded-full bg-warn-fade px-2 text-2xs font-medium uppercase leading-5 tracking-widest">
           {data.status}
         </div>
       )}
