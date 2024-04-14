@@ -19,7 +19,7 @@ interface PostPageProps {
 }
 
 export async function generateMetadata({
-  params,
+  params
 }: PostPageProps): Promise<Metadata> {
   const slug = params.slug.toString()
   const { article } = await getPublicArticle(slug)
@@ -49,6 +49,16 @@ export default async function PostPage({ params }: PostPageProps) {
       </Image>
     ),
     code: Code,
+    a: (props: any) => (
+      <Link
+        href={props.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-umami-event="External Link Click"
+      >
+        {props.children}
+      </Link>
+    )
   }
 
   const datePublished = () => {
@@ -111,8 +121,8 @@ export default async function PostPage({ params }: PostPageProps) {
             components={components as MDXRemoteProps['components']} // Casting the components
             options={{
               mdxOptions: {
-                remarkPlugins: [],
-              },
+                remarkPlugins: []
+              }
             }}
           />
         </div>
@@ -129,6 +139,6 @@ export async function generateStaticParams() {
   }
 
   return articles.map((article) => ({
-    slug: article.slug,
+    slug: article.slug
   }))
 }
