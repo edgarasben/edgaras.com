@@ -54,7 +54,7 @@ export default async function PostPage({ params }: PostPageProps) {
         href={props.href}
         target="_blank"
         rel="noopener noreferrer"
-        data-umami-event="External Link Click"
+        data-umami-event={props.href}
       >
         {props.children}
       </Link>
