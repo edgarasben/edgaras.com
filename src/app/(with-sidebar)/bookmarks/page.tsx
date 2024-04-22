@@ -11,7 +11,7 @@ import { Button } from '@/components/base/button'
 
 export const revalidate = 30
 export const metadata: Metadata = {
-  title: 'Bookmarks',
+  title: 'Bookmarks'
 }
 
 type Bookmark = Database['public']['Tables']['bookmarks']['Row']
@@ -20,7 +20,7 @@ type GroupedBookmarks = {
 }
 
 export default async function BookmarksPage({
-  searchParams,
+  searchParams
 }: {
   searchParams: { tag?: string | string[]; latest?: boolean }
 }) {
@@ -41,7 +41,7 @@ export default async function BookmarksPage({
     .from('bookmarks')
     .select('title, tags, link, created_at, id', {
       count: 'estimated',
-      head: false,
+      head: false
     })
     .order('created_at', { ascending: false })
 
@@ -72,6 +72,7 @@ export default async function BookmarksPage({
         <TagsList currentTags={currentTags} tags={tagsData ?? []} />
       </nav>
       <section aria-label="Directory" className="w-full py-2">
+        <h1 className="pb-4 pl-4 pt-2 text-sm font-semibold">Bookmarks</h1>
         {Object.keys(filteredData).length > 0 ? (
           Object.keys(filteredData).map((tag) => (
             <div key={tag} className="relative">
@@ -135,7 +136,7 @@ function filterBookmarksByTag(
               itemTags &&
               tags.every((tag) => itemTags.includes(tag)) &&
               includedItems.add(link)
-          ),
+          )
         ]
       })
       .filter(([_, items]) => items.length)
