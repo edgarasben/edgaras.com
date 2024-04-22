@@ -140,10 +140,7 @@ export default function PortfolioPage() {
                 className="w-10 opacity-50 transition hover:scale-105 hover:opacity-90 lg:w-14"
               />
             </a>
-            <a
-              href="https://spirii.com/en/ev-drivers/spirii-go-app"
-              className="shrink-0"
-            >
+            <a href="https://spirii.com" className="shrink-0">
               <Image
                 src={'/images/logos/spirii.png'}
                 width={66.74}

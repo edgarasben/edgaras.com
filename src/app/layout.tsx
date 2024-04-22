@@ -13,27 +13,27 @@ import Script from 'next/script'
 const fontSans = sans({
   weight: 'variable',
   subsets: ['latin'],
-  variable: '--font-sans',
+  variable: '--font-sans'
 })
 
 // Display font
 const fontDisplay = display({
   src: '../fonts/Satoshi-Variable.woff2',
   variable: '--font-display',
-  display: 'swap',
+  display: 'swap'
 })
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  viewportFit: 'cover',
+  viewportFit: 'cover'
 }
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://edgaras.com'),
   title: {
     default: 'Edgaras — Co-Founder, Designer, Coder',
-    template: '%s | edgaras.com',
+    template: '%s | edgaras.com'
   },
   robots: 'follow, index',
   description:
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
         url: 'https://edgaras.com/images/og-main.png',
         alt: 'Edgaras — Co-Founder, Designer, Coder',
         width: 1200,
-        height: 630,
-      },
-    ],
+        height: 630
+      }
+    ]
   },
   twitter: {
     card: 'summary_large_image',
@@ -65,9 +65,9 @@ export const metadata: Metadata = {
         url: 'https://edgaras.com/images/og-main.png',
         alt: 'Edgaras — Co-Founder, Designer, Coder',
         width: 1200,
-        height: 630,
-      },
-    ],
+        height: 630
+      }
+    ]
   },
   icons: {
     icon: '/favicon.ico',
@@ -77,16 +77,16 @@ export const metadata: Metadata = {
         rel: 'icon',
         type: 'image/png',
         sizes: '16x16',
-        url: '/favicon-16x16.png',
+        url: '/favicon-16x16.png'
       },
       {
         rel: 'icon',
         type: 'image/png',
         sizes: '32x32',
-        url: '/favicon-32x32.png',
-      },
-    ],
-  },
+        url: '/favicon-32x32.png'
+      }
+    ]
+  }
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -102,8 +102,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <Script
           defer
-          src="https://analytics.eu.umami.is/script.js"
-          data-website-id="6b937d0e-517d-49ae-808a-4c7e88173574"
+          src="https://umami-production-9867.up.railway.app/script.js"
+          data-website-id="830cff46-5be7-45bd-b659-27ceb328f7a7"
         />
       </head>
       <body className={`h-full bg-fade text-neutral antialiased `}>

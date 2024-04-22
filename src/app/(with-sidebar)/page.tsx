@@ -23,9 +23,9 @@ export default async function ArticlesPage() {
 
   return (
     <div className="p-2 md:p-6 md:pt-16">
-      <h2 className="p-4 text-sm font-medium tracking-wide text-neutral-fade">
+      <h1 className="p-4 text-sm font-medium tracking-wide text-neutral-fade">
         Latest articles
-      </h2>
+      </h1>
       <ul>
         {articles?.map((article) => (
           <li key={article.slug}>

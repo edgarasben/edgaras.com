@@ -21,10 +21,10 @@ export const Card = ({ data }: Data) => (
             ? format(data.published_at, 'MMM d')
             : format(data.published_at, 'yyyy')}
         </time>
-        <h3 className="font-medium">{data.title}</h3>
+        <h2 className="font-medium">{data.title}</h2>
       </div>
       {data.status === 'draft' && (
-        <div className="text-on-warn inline-block rounded-full bg-warn-fade px-2 text-2xs font-medium uppercase leading-5 tracking-widest">
+        <div className="inline-block rounded-full bg-warn-fade px-2 text-2xs font-medium uppercase leading-5 tracking-widest text-on-warn">
           {data.status}
         </div>
       )}
