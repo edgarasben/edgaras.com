@@ -60,7 +60,7 @@
     "@types/rss": "^0.0.32",
     "autoprefixer": "10.4.19",
     "encoding": "^0.1.13",
-    "eslint": "9.1.1",
+    "eslint": "8.57.0",
     "eslint-config-next": "14.2.3",
     "postcss": "8.4.38",
     "prettier": "^3.2.5",
