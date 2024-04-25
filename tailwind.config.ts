@@ -170,7 +170,7 @@ module.exports = {
 
         // Neutral Dark
         '--fg-neutral': colors.neutral[200],
-        '--fg-neutral-fade': colors.neutral[400],
+        '--fg-neutral-fade': colors.neutral[300],
         '--border-neutral': colors.neutral[700],
         '--border-neutral-fade': [colors.neutral[800], colors.neutral[950]],
 
