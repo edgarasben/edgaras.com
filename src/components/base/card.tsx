@@ -9,7 +9,7 @@ type Data = {
 export const Card = ({ data }: Data) => (
   <Link
     href={`/${data.slug}`}
-    className="block w-full space-y-4 rounded-xl px-4 py-4 text-sm transition-colors hover:bg-neutral-fade"
+    className="block w-full space-y-4 rounded-xl px-4 py-4 text-sm transition-colors hover:bg-neutral-fade/50"
   >
     <div className="flex items-center space-x-2">
       <div className="flex items-center">

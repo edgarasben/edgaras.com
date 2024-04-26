@@ -162,8 +162,8 @@ module.exports = {
       },
       '[data-theme="dark"]': {
         // Page Dark
-        '--bg-page': colors.neutral[950],
-        '--bg-fade': [colors.neutral[900], colors.neutral[950]],
+        '--bg-page': colors.neutral[900],
+        '--bg-fade': colors.neutral[900],
         '--bg-base': colors.neutral[950],
         '--bg-raise': colors.neutral[900],
         '--bg-overlay': colors.neutral[800],
@@ -175,7 +175,7 @@ module.exports = {
         '--border-neutral-fade': [colors.neutral[800], colors.neutral[950]],
 
         '--bg-neutral': colors.neutral[700],
-        '--bg-neutral-fade': [colors.neutral[900], colors.neutral[950]],
+        '--bg-neutral-fade': colors.neutral[800],
         // Primary Dark
         '--bg-primary': colors.green[700],
         '--bg-primary-highlight': colors.green[600],

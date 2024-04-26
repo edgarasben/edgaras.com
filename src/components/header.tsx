@@ -27,6 +27,27 @@ import {
   TooltipTrigger
 } from './base/tooltip'
 
+const menuLinks = [
+  {
+    label: 'Home',
+    url: '/',
+    IconActive: HomeIcon,
+    IconInactive: HomeOutlineIcon
+  },
+  {
+    label: 'Bookmarks',
+    url: '/bookmarks',
+    IconActive: BookmarkIcon,
+    IconInactive: BookmarkOutlineIcon
+  },
+  {
+    label: 'Portfolio',
+    url: '/portfolio',
+    IconActive: BriefcaseIcon,
+    IconInactive: BriefcaseOutlineIcon
+  }
+]
+
 const socialLinks = [
   {
     label: 'Follow on Twitter',
@@ -49,6 +70,13 @@ const socialLinks = [
 
 export const Header = () => {
   const pathname = usePathname()
+
+  const getIconClass = (url: string) =>
+    cn('h-4 w-4', {
+      'group-hover:text-primary': true,
+      'text-primary': pathname === url
+    })
+
   return (
     <header className="inset-y-0 left-0 md:fixed md:min-w-[320px] md:max-w-sm">
       <div className="flex h-full flex-col bg-raise shadow-raise ring-1 ring-neutral-fade">
@@ -74,102 +102,30 @@ export const Header = () => {
           </div>
           <nav>
             <ul className="flex space-y-0.5 overflow-x-auto px-2 py-2 md:block md:py-6">
-              <li>
-                <Link
-                  href="/"
-                  className={cn(
-                    'group flex items-center gap-2 rounded-lg px-4 py-2 font-medium text-neutral-fade hover:bg-neutral-fade hover:text-neutral'
-                  )}
-                >
-                  {pathname === '/' ? (
-                    <HomeIcon
-                      className={cn(
-                        'h-4 w-4 group-hover:text-primary',
-                        pathname === '/' ? 'text-primary' : ''
-                      )}
-                    />
-                  ) : (
-                    <HomeOutlineIcon
-                      className={cn(
-                        'h-4 w-4',
-                        pathname === '/' ? 'text-primary' : ''
-                      )}
-                    />
-                  )}
-
-                  <span
-                    className={cn('text-sm', pathname === '/' ? 'text-neutral' : '')}
-                  >
-                    Home
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/bookmarks"
-                  className={cn(
-                    'group flex items-center gap-2 rounded-lg px-4 py-2 font-medium text-neutral-fade hover:bg-neutral-fade hover:text-neutral'
-                  )}
-                >
-                  {pathname === '/bookmarks' ? (
-                    <BookmarkIcon
-                      className={cn(
-                        'h-4 w-4 group-hover:text-primary',
-                        pathname === '/bookmarks' ? 'text-primary' : ''
-                      )}
-                    />
-                  ) : (
-                    <BookmarkOutlineIcon
-                      className={cn(
-                        'h-4 w-4 group-hover:text-neutral',
-                        pathname === '/bookmarks' ? 'text-primary' : ''
-                      )}
-                    />
-                  )}
-
-                  <span
+              {menuLinks.map(({ label, url, IconActive, IconInactive }) => (
+                <li key={label}>
+                  <Link
+                    href={url}
                     className={cn(
-                      'text-sm',
-                      pathname === '/bookmarks' ? 'text-neutral' : ''
+                      'group flex items-center gap-2 rounded-lg px-4 py-2 font-medium text-neutral-fade hover:bg-neutral-fade/50 hover:text-neutral'
                     )}
                   >
-                    Bookmarks
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/portfolio"
-                  className={cn(
-                    'group flex items-center gap-2 rounded-lg px-4 py-2 font-medium text-neutral-fade hover:bg-neutral-fade hover:text-neutral'
-                  )}
-                >
-                  {pathname === '/portfolio' ? (
-                    <BriefcaseIcon
-                      className={cn(
-                        'h-4 w-4 group-hover:text-primary',
-                        pathname === '/portfolio' ? 'text-primary' : ''
-                      )}
-                    />
-                  ) : (
-                    <BriefcaseOutlineIcon
-                      className={cn(
-                        'h-4 w-4 group-hover:text-neutral',
-                        pathname === '/portfolio' ? 'text-primary' : ''
-                      )}
-                    />
-                  )}
-
-                  <span
-                    className={cn(
-                      'text-sm',
-                      pathname === '/portfolio' ? 'text-neutral' : ''
+                    {pathname === url ? (
+                      <IconActive className={getIconClass(url)} />
+                    ) : (
+                      <IconInactive className={getIconClass(url)} />
                     )}
-                  >
-                    Portfolio
-                  </span>
-                </Link>
-              </li>
+                    <span
+                      className={cn(
+                        'text-sm',
+                        pathname === url ? 'text-neutral' : ''
+                      )}
+                    >
+                      {label}
+                    </span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
         </div>
