@@ -114,7 +114,7 @@ export async function updateArticle(formData: FormData) {
     })
     .eq('slug', currentSlug)
 
-  redirect(`/${slug}`)
+  return redirect(`/${slug}`)
 }
 
 export async function deleteArticle(formData: FormData) {
