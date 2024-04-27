@@ -50,6 +50,7 @@ export async function deleteBookmark(formData: FormData) {
 
   return revalidatePath('/')
 }
+
 export async function createBookmark(prevState: any, formData: FormData) {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
@@ -66,7 +67,7 @@ export async function createBookmark(prevState: any, formData: FormData) {
   if (error) return { error: JSON.stringify(error) }
   if (data) {
     revalidatePath('/bookmarks')
-    redirect('/bookmarks')
+    return redirect('/bookmarks')
   }
 }
 
@@ -89,7 +90,7 @@ export async function createArticle(formData: FormData) {
     status: status
   })
 
-  redirect(`/${slug}`)
+  return redirect(`/${slug}`)
 }
 
 export async function updateArticle(formData: FormData) {
