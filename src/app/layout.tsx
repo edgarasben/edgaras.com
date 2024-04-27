@@ -8,6 +8,7 @@ import { NavigationBar } from '@/components/navigation-bar'
 import { Viewport } from 'next'
 import { Providers } from '@/app/providers'
 import Script from 'next/script'
+import { Toaster } from '@/components/base/sonner'
 
 // Sans-serif font
 const fontSans = sans({
@@ -109,7 +110,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`h-full bg-fade text-neutral antialiased `}>
         <>
           {/*       <NavigationBar /> */}
-          <Providers>{children}</Providers>
+          <Providers>
+            <>
+              {children}
+              <Toaster />
+            </>
+          </Providers>
         </>
       </body>
     </html>

@@ -1,26 +1,31 @@
 import { Container } from '@/components/container'
 import { ChevronLeftIcon } from '@/components/icons/outline'
-import { deleteArticle, updateArticle } from '@/data/actions'
+import { updateArticle } from '@/data/actions'
 import { getAnyArticle, getPublicArticle, getUser } from '@/data/queries'
 
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
+import { DeleteArticle } from './delete-article'
 
 export default async function UpdateActicle({
-  params,
+  params
 }: {
   params: {
     slug: string[]
   }
 }) {
   const user = await getUser()
+  if (!user) {
+    redirect(`/login`)
+  }
+
   const slug = params.slug.toString()
-  const { article } = user
+  const { article, error } = user
     ? await getAnyArticle(slug) // Include draft articles
     : await getPublicArticle(slug)
 
-  if (!user) {
-    redirect(`/login`)
+  if (error || !article) {
+    return notFound()
   }
 
   return (
@@ -78,15 +83,7 @@ export default async function UpdateActicle({
           Update
         </button>
       </form>
-      <form action={deleteArticle} className="flex flex-col items-start">
-        <input type="hidden" name="slug" defaultValue={article?.slug} />
-        <button
-          type="submit"
-          className="mt-24 flex flex-grow-0 border border-[red] bg-base leading-10"
-        >
-          Delete
-        </button>
-      </form>
+      <DeleteArticle article={article} />
     </Container>
   )
 }

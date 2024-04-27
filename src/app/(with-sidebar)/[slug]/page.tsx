@@ -7,7 +7,7 @@ import { notFound } from 'next/navigation'
 import { highlight } from 'sugar-high'
 import { getAnyArticle, getPublicArticle, getUser } from '@/data/queries'
 import Link from 'next/link'
-import { PencilIcon, RssIcon } from '@/components/icons/solid'
+import { PencilIcon } from '@/components/icons/solid'
 import { format, isSameDay, isThisYear } from 'date-fns'
 
 export const revalidate = 30

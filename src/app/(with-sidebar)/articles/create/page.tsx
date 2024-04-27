@@ -51,10 +51,7 @@ export default async function CreateArticle() {
           <option value="public">Public</option>
           <option value="draft">Draft</option>
         </select>
-        <button
-          type="submit"
-          className="border border-neutral bg-base leading-10"
-        >
+        <button type="submit" className="border border-neutral bg-base leading-10">
           Create
         </button>
       </form>

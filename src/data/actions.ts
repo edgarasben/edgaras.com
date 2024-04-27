@@ -16,8 +16,8 @@ export async function signIn(formData: FormData) {
   const { error } = await supabase.auth.signInWithOtp({
     email,
     options: {
-      emailRedirectTo: `${getRootURL()}/api/auth/callback?originPath=login`,
-    },
+      emailRedirectTo: `${getRootURL()}/api/auth/callback?originPath=login`
+    }
   })
 
   if (error) {
@@ -86,7 +86,7 @@ export async function createArticle(formData: FormData) {
     title: title,
     description: description,
     markdown: markdown,
-    status: status,
+    status: status
   })
 
   redirect(`/${slug}`)
@@ -110,7 +110,7 @@ export async function updateArticle(formData: FormData) {
       title: title,
       description: description,
       markdown: markdown,
-      status: status,
+      status: status
     })
     .eq('slug', currentSlug)
 
@@ -125,5 +125,5 @@ export async function deleteArticle(formData: FormData) {
 
   await supabase.from('articles').delete().eq('slug', slug)
 
-  redirect(`/`)
+  return redirect(`/`)
 }
