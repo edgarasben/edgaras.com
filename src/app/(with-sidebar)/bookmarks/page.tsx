@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import TagsList from './tags-list'
-import { supabase } from '@/lib/supabaseClient'
 import { cn } from '@/lib/utils'
 import { getUser } from '@/data/queries'
 import CreateBookmarkForm from './create-bookmark-form'
 import { Database } from '@/lib/types/supabase'
 import { deleteBookmark } from '@/data/actions'
 import { Button } from '@/components/base/button'
+import { createClient } from '@/lib/supabase/client'
 
 export const revalidate = 30
 export const metadata: Metadata = {
@@ -32,6 +32,7 @@ export default async function BookmarksPage({
       ? [searchParams.tag]
       : []
 
+  const supabase = createClient()
   const { data: tagsData } = await supabase
     .from('bookmark_tags_all')
     .select('name, count')

@@ -1,16 +1,14 @@
 'use server'
 
-import { supabase } from '@/lib/supabaseClient'
-import { createClient } from '@/lib/supabase/server'
-import { cookies } from 'next/headers'
+import { createServerClient } from '@/lib/supabase/server'
+import { createClient } from '@/lib/supabase/client'
 
 /* Auth */
 
 export async function getUser() {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = createServerClient()
   const {
-    data: { user },
+    data: { user }
   } = await supabase.auth.getUser()
 
   return user
@@ -19,6 +17,7 @@ export async function getUser() {
 /* Articles */
 
 export async function getPublicArticles() {
+  const supabase = createClient()
   const { data: articles } = await supabase
     .from('articles')
     .select('*')
@@ -30,6 +29,7 @@ export async function getPublicArticles() {
 
 // Including drafts
 export async function getDraftArticles() {
+  const supabase = createServerClient()
   const { data: articles } = await supabase
     .from('articles')
     .select('*')
@@ -40,6 +40,7 @@ export async function getDraftArticles() {
 }
 
 export async function getPublicArticle(slug: string) {
+  const supabase = createServerClient()
   const { data: article, error } = await supabase
     .from('articles')
     .select('*')
@@ -52,6 +53,7 @@ export async function getPublicArticle(slug: string) {
 
 // Include draft articles
 export async function getAnyArticle(slug: string) {
+  const supabase = createServerClient()
   const { data: article, error } = await supabase
     .from('articles')
     .select('*')

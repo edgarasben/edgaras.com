@@ -1,11 +1,9 @@
 'use client'
 
-import { revalidatePath, revalidateTag } from 'next/cache'
-import { startTransition, useTransition } from 'react'
+import { startTransition } from 'react'
 
 import { Avatar } from './Avatar'
 import { Database } from '@/lib/types/supabase'
-import { cookies } from 'next/headers'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
 
@@ -23,7 +21,7 @@ export function PostTextarea() {
   }
 
   const handleTextareaKeyDown = (
-    event: React.KeyboardEvent<HTMLTextAreaElement>,
+    event: React.KeyboardEvent<HTMLTextAreaElement>
   ) => {
     //
     if (event.key === 'Enter' && !event.shiftKey) {

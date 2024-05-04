@@ -2,13 +2,13 @@ import { Container } from '@/components/container'
 import Image from 'next/image'
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc'
 import type { Metadata } from 'next'
-import { supabase } from '@/lib/supabaseClient'
 import { notFound } from 'next/navigation'
 import { highlight } from 'sugar-high'
 import { getAnyArticle, getPublicArticle, getUser } from '@/data/queries'
 import Link from 'next/link'
 import { PencilIcon } from '@/components/icons/solid'
 import { format, isSameDay, isThisYear } from 'date-fns'
+import { createClient } from '@/lib/supabase/client'
 
 export const revalidate = 30
 
@@ -133,6 +133,7 @@ export default async function PostPage({ params }: PostPageProps) {
 }
 
 export async function generateStaticParams() {
+  const supabase = createClient()
   const { data: articles } = await supabase.from('articles').select('slug')
 
   if (!articles) {

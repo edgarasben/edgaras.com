@@ -3,17 +3,16 @@ import { Database } from '@/lib/types/supabase'
 import type { Metadata } from 'next'
 import { PostTextarea } from './PostTextarea'
 import { XMarkIcon } from '@/icons/outline'
-import { cookies } from 'next/headers'
-import { createServerActionClient } from '@supabase/auth-helpers-nextjs'
 import { revalidatePath } from 'next/cache'
 import { format, isThisYear } from 'date-fns'
+import { createServerClient } from '@/lib/supabase/server'
 
 export const dynamic = 'force-dynamic'
 
 type Post = Database['public']['Tables']['posts']['Row']
 
 export const metadata: Metadata = {
-  title: 'Posts',
+  title: 'Posts'
 }
 
 /* const posts = [
@@ -38,14 +37,14 @@ export const metadata: Metadata = {
 ] */
 
 export default async function PostsPage() {
-  const supabase = createServerActionClient<Database>({ cookies })
+  const supabase = createServerClient()
   const { data: posts } = await supabase
     .from('posts')
     .select()
     .order('created_at', { ascending: false })
 
   const {
-    data: { session },
+    data: { session }
   } = await supabase.auth.getSession()
 
   const isAdmin = session && session.user.email === 'hi@edgaras.com'
@@ -82,7 +81,7 @@ function Post({ post, isAdmin }: { post: Post; isAdmin: boolean }) {
     const id = formData.get('id') as string
 
     if (id) {
-      const supabase = createServerActionClient<Database>({ cookies })
+      const supabase = createServerClient()
 
       const { error } = await supabase.from('posts').delete().eq('id', id)
 

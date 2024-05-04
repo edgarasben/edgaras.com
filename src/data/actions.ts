@@ -1,17 +1,15 @@
 'use server'
 
-import { createClient } from '@/lib/supabase/server'
+import { createServerClient } from '@/lib/supabase/server'
 import { getRootURL } from '@/lib/utils'
 import { revalidatePath } from 'next/cache'
-import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 // User
 
 export async function signIn(formData: FormData) {
   const email = formData.get('email') as string
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = createServerClient()
 
   const { error } = await supabase.auth.signInWithOtp({
     email,
@@ -29,8 +27,7 @@ export async function signIn(formData: FormData) {
 }
 
 export async function signOut() {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = createServerClient()
 
   const { error } = await supabase.auth.signOut()
 
@@ -43,8 +40,7 @@ export async function signOut() {
 
 // Bookmarks
 export async function deleteBookmark(formData: FormData) {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = createServerClient()
   const id = formData.get('id')
   const { error } = await supabase.from('bookmarks').delete().eq('id', `${id}`)
 
@@ -52,8 +48,7 @@ export async function deleteBookmark(formData: FormData) {
 }
 
 export async function createBookmark(prevState: any, formData: FormData) {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = createServerClient()
   const title = formData.get('title') as string
   const link = formData.get('link') as string
   const tagsString = formData.get('tags') as string
@@ -73,8 +68,7 @@ export async function createBookmark(prevState: any, formData: FormData) {
 
 // Articles
 export async function createArticle(formData: FormData) {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = createServerClient()
 
   const slug = formData.get('slug') as string
   const title = formData.get('title') as string
@@ -94,8 +88,7 @@ export async function createArticle(formData: FormData) {
 }
 
 export async function updateArticle(formData: FormData) {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = createServerClient()
 
   const currentSlug = formData.get('currentSlug') as string
   const slug = formData.get('slug') as string
@@ -119,8 +112,7 @@ export async function updateArticle(formData: FormData) {
 }
 
 export async function deleteArticle(formData: FormData) {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = createServerClient()
 
   const slug = formData.get('slug') as string
 
