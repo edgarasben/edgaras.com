@@ -103,8 +103,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <Script
           defer
-          src="https://umami-production-9867.up.railway.app/script.js"
-          data-website-id="830cff46-5be7-45bd-b659-27ceb328f7a7"
+          src="https://umami.edgaras.com/script.js"
+          data-website-id="e48c7292-6a3e-4ee3-bbe4-1278ef043853"
         />
       </head>
       <body className={`h-full bg-fade text-neutral antialiased `}>
