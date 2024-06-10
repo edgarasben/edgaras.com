@@ -101,6 +101,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link href="https://github.com/edgarasben" rel="me" />
 
+        <meta name="theme-color" content="#00ff00" />
+
         <Script
           defer
           src="https://umami.edgaras.com/script.js"
