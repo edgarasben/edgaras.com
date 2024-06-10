@@ -101,7 +101,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link href="https://github.com/edgarasben" rel="me" />
 
-        <meta name="theme-color" content="#00ff00" />
+        <meta
+          name="theme-color"
+          media="(prefers-color-scheme: light)"
+          content="#fff"
+        />
+        <meta
+          name="theme-color"
+          media="(prefers-color-scheme: dark)"
+          content="#000"
+        />
 
         <Script
           defer
