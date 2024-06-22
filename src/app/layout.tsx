@@ -101,21 +101,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link href="https://github.com/edgarasben" rel="me" />
 
-        <meta
-          name="theme-color"
-          media="(prefers-color-scheme: light)"
-          content="#fff"
-        />
-        <meta
-          name="theme-color"
-          media="(prefers-color-scheme: dark)"
-          content="#000"
-        />
-
         <Script
           defer
           src="https://umami.edgaras.com/script.js"
-          data-website-id="e48c7292-6a3e-4ee3-bbe4-1278ef043853"
+          data-website-id="830cff46-5be7-45bd-b659-27ceb328f7a7"
         />
       </head>
       <body className={`h-full bg-fade text-neutral antialiased `}>
