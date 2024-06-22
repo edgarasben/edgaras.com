@@ -2,7 +2,7 @@ import { Header } from '@/components/header'
 import React from 'react'
 
 export default async function IndexPage({
-  children,
+  children
 }: {
   children: React.ReactNode
 }) {
