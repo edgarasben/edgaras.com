@@ -1,4 +1,4 @@
-import config from '@/site.config.json'
+import { config } from '@/app.config'
 
 export default function robots() {
   return {

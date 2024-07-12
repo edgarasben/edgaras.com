@@ -1,7 +1,7 @@
 import { marked } from 'marked'
 import { getPublicArticles } from '@/data/queries'
 import RSS from 'rss'
-import config from '@/site.config.json'
+import { config } from '@/app.config'
 
 export const revalidate = 0 // 0 seconds
 
@@ -18,7 +18,7 @@ export async function GET() {
     } ${config.lastName}`,
     language: 'en-US',
     pubDate: new Date().toUTCString(),
-    ttl: 60,
+    ttl: 60
   })
 
   const articles = await getPublicArticles()
@@ -33,15 +33,15 @@ export async function GET() {
           url: `${config.baseUrl}/${article.slug}`,
           categories: article.tags?.split(',') || [],
           author: 'Edgaras Benediktavicius',
-          date: article.published_at || '',
+          date: article.published_at || ''
         })
-      }),
+      })
     )
   }
 
   return new Response(feed.xml({ indent: true }), {
     headers: {
-      'Content-Type': 'application/xml; charset=utf-8',
-    },
+      'Content-Type': 'application/xml; charset=utf-8'
+    }
   })
 }
