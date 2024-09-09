@@ -3,7 +3,7 @@ import Stripe from 'stripe'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   // https://github.com/stripe/stripe-node#configuration
-  apiVersion: '2024-04-10'
+  apiVersion: '2024-06-20'
 })
 
 // ="https://buy.stripe.com/6oE6qQfmCaTqg927st"

@@ -1,11 +1,12 @@
-import { Avatar } from './Avatar'
-import { Database } from '@/lib/types/supabase'
-import type { Metadata } from 'next'
-import { PostTextarea } from './PostTextarea'
-import { XMarkIcon } from '@/icons/outline'
-import { revalidatePath } from 'next/cache'
-import { format, isThisYear } from 'date-fns'
 import { createServerClient } from '@/lib/supabase/server'
+import { Database } from '@/lib/types/supabase'
+import { Avatar } from './Avatar'
+import { PostTextarea } from './PostTextarea'
+
+import { XMarkIcon } from '@/icons/outline'
+import { format, isThisYear } from 'date-fns'
+import type { Metadata } from 'next'
+import { revalidatePath } from 'next/cache'
 
 export const dynamic = 'force-dynamic'
 
@@ -95,7 +96,7 @@ function Post({ post, isAdmin }: { post: Post; isAdmin: boolean }) {
   return (
     <div className="relative flex items-start space-x-4">
       <Avatar />
-      <div className="space-y-0.5">
+      <div className="flex space-y-0.5">
         <div className="space-x-1">
           <a
             href="https://twitter.com/edgarasben"
