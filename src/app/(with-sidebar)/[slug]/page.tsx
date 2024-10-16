@@ -1,14 +1,15 @@
 import { Container } from '@/components/container'
-import Image from 'next/image'
-import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc'
-import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
-import { highlight } from 'sugar-high'
-import { getAnyArticle, getPublicArticle, getUser } from '@/data/queries'
-import Link from 'next/link'
 import { PencilIcon } from '@/components/icons/solid'
-import { format, isSameDay, isThisYear } from 'date-fns'
+import { getAnyArticle, getPublicArticle, getUser } from '@/data/queries'
 import { createClient } from '@/lib/supabase/client'
+import rehypeShiki from '@shikijs/rehype'
+import { format, isSameDay, isThisYear } from 'date-fns'
+import type { Metadata } from 'next'
+import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc'
+import Image from 'next/image'
+import Link from 'next/link'
+import { notFound } from 'next/navigation'
+import { createHighlighter } from 'shiki'
 
 export const revalidate = 30
 
@@ -37,10 +38,10 @@ export default async function PostPage({ params }: PostPageProps) {
     return notFound()
   }
 
-  function Code({ children, ...props }: { children: string }) {
-    let codeHTML = highlight(children)
-    return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
-  }
+  const highlighter = await createHighlighter({
+    themes: ['github-dark'],
+    langs: ['javascript', 'typescript', 'jsx', 'tsx'] // Add languages you need
+  })
 
   const components = {
     img: (props: any) => (
@@ -48,7 +49,6 @@ export default async function PostPage({ params }: PostPageProps) {
         {props.children}
       </Image>
     ),
-    code: Code,
     a: (props: any) => (
       <Link
         href={props.href}
@@ -119,9 +119,12 @@ export default async function PostPage({ params }: PostPageProps) {
         <div className="pt-8 md:pt-16">
           <MDXRemote
             source={article?.markdown ?? ''}
-            components={components as MDXRemoteProps['components']} // Casting the components
+            components={components as MDXRemoteProps['components']}
             options={{
               mdxOptions: {
+                rehypePlugins: [
+                  [rehypeShiki, { highlighter, theme: 'github-dark' }]
+                ],
                 remarkPlugins: []
               }
             }}
