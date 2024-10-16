@@ -1,13 +1,12 @@
+import { getUser } from '@/data/queries'
+import { createClient } from '@/lib/supabase/client'
+import { Database } from '@/lib/types/supabase'
+import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import TagsList from './tags-list'
-import { cn } from '@/lib/utils'
-import { getUser } from '@/data/queries'
+import { BookmarkLink } from './bookmark-link'
 import CreateBookmarkForm from './create-bookmark-form'
-import { Database } from '@/lib/types/supabase'
-import { deleteBookmark } from '@/data/actions'
-import { Button } from '@/components/base/button'
-import { createClient } from '@/lib/supabase/client'
+import TagsList from './tags-list'
 
 export const revalidate = 30
 export const metadata: Metadata = {
@@ -81,30 +80,12 @@ export default async function BookmarksPage({
                 <h3>{tag === 'null' ? 'Untagged' : tag}</h3>
               </div>
               <ul role="list">
-                {filteredData[tag].map((bookmark) => (
+                {filteredData[tag].map((bookmark: Bookmark) => (
                   <li key={bookmark.link}>
-                    <a
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      href={bookmark.link}
-                      className="mx-1 flex gap-x-4 rounded-lg py-5 transition-colors hover:bg-neutral-fade"
-                    >
-                      <div className="flex w-full min-w-0 justify-between pl-3">
-                        <p className="white text-sm font-medium leading-6 text-neutral">
-                          {bookmark.title}
-                        </p>
-                        {user ? (
-                          <form action={deleteBookmark}>
-                            <input
-                              type="hidden"
-                              name="id"
-                              defaultValue={bookmark.id}
-                            />
-                            <Button className="bg-[red]">Delete</Button>
-                          </form>
-                        ) : null}
-                      </div>
-                    </a>
+                    <BookmarkLink
+                      bookmark={bookmark}
+                      withMenu={user ? true : false}
+                    />
                   </li>
                 ))}
               </ul>

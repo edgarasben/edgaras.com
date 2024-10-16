@@ -7,13 +7,14 @@ import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
 import { DeleteArticle } from './delete-article'
 
-export default async function UpdateActicle({
-  params
-}: {
-  params: {
-    slug: string[]
+export default async function UpdateActicle(
+  props: {
+    params: Promise<{
+      slug: string[]
+    }>
   }
-}) {
+) {
+  const params = await props.params;
   const user = await getUser()
   if (!user) {
     redirect(`/login`)

@@ -15,11 +15,12 @@ import { signIn, signOut } from '@/data/actions'
 }
  */
 
-export default async function Login({
-  searchParams
-}: {
-  searchParams: { message: string }
-}) {
+export default async function Login(
+  props: {
+    searchParams: Promise<{ message: string }>
+  }
+) {
+  const searchParams = await props.searchParams;
   const supabase = createServerClient()
 
   const {

@@ -11,7 +11,8 @@ export async function generateStaticParams() {
   }))
 }
 
-export default async function CasePage({ params }: { params: { slug: string } }) {
+export default async function CasePage(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const { slug } = params
   const page = data.find((page: any) => {
     return page.slug === slug

@@ -13,20 +13,20 @@ import { bundledLanguages, createHighlighter } from 'shiki/bundle/web'
 export const revalidate = 30
 
 interface PostPageProps {
-  params: {
+  params: Promise<{
     slug: string[]
-  }
+  }>
 }
 
-export async function generateMetadata({
-  params
-}: PostPageProps): Promise<Metadata> {
+export async function generateMetadata(props: PostPageProps): Promise<Metadata> {
+  const params = await props.params;
   const slug = params.slug.toString()
   const { article } = await getPublicArticle(slug)
   return { title: article?.title }
 }
 
-export default async function PostPage({ params }: PostPageProps) {
+export default async function PostPage(props0: PostPageProps) {
+  const params = await props0.params;
   const user = await getUser()
   const slug = params.slug.toString()
   const { article, error } = user
