@@ -1,8 +1,6 @@
-import { createServerClient } from '@/lib/supabase/server'
-import { getRootURL } from '@/lib/utils'
-import { redirect } from 'next/navigation'
 import { Button } from '@/components/base/button'
 import { signIn, signOut } from '@/data/actions'
+import { createServerClient } from '@/lib/supabase/server'
 
 /* export default async function LoginPage() {
   const supabase = createServerComponentClient<Database>({ cookies })
@@ -15,13 +13,11 @@ import { signIn, signOut } from '@/data/actions'
 }
  */
 
-export default async function Login(
-  props: {
-    searchParams: Promise<{ message: string }>
-  }
-) {
-  const searchParams = await props.searchParams;
-  const supabase = createServerClient()
+export default async function Login(props: {
+  searchParams: Promise<{ message: string }>
+}) {
+  const searchParams = await props.searchParams
+  const supabase = await createServerClient()
 
   const {
     data: { user }
