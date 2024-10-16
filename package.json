@@ -25,7 +25,6 @@
     "@react-email/button": "0.0.17",
     "@react-email/html": "0.0.10",
     "@react-email/tailwind": "0.1.0",
-    "@shikijs/rehype": "^1.22.0",
     "@stripe/stripe-js": "4.8.0",
     "@supabase/auth-helpers-nextjs": "0.10.0",
     "@supabase/ssr": "0.5.1",
