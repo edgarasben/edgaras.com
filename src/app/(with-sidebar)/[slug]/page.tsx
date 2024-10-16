@@ -38,9 +38,10 @@ export default async function PostPage({ params }: PostPageProps) {
     return notFound()
   }
 
-  const highlighter = await createHighlighter({
+  // Move the highlighter creation outside of the component
+  const highlighterPromise = createHighlighter({
     themes: ['github-dark'],
-    langs: ['javascript', 'typescript', 'jsx', 'tsx'] // Add languages you need
+    langs: ['javascript', 'typescript', 'jsx', 'tsx']
   })
 
   const components = {
@@ -80,6 +81,9 @@ export default async function PostPage({ params }: PostPageProps) {
         : format(article.updated_at, 'yyyy-MM-dd')
     }
   }
+
+  // Use the pre-created highlighter promise
+  const highlighter = await highlighterPromise
 
   return (
     <Container>
