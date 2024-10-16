@@ -48,6 +48,7 @@
     "react-wrap-balancer": "1.1.1",
     "recharts": "^2.13.0",
     "rss": "^1.2.2",
+    "sharp": "^0.33.5",
     "shiki": "^1.22.0",
     "sonner": "^1.5.0",
     "stripe": "16.10.0",
