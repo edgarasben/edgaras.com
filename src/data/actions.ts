@@ -9,7 +9,7 @@ import { redirect } from 'next/navigation'
 
 export async function signIn(formData: FormData) {
   const email = formData.get('email') as string
-  const supabase = createServerClient()
+  const supabase = await createServerClient()
 
   const { error } = await supabase.auth.signInWithOtp({
     email,
@@ -27,7 +27,7 @@ export async function signIn(formData: FormData) {
 }
 
 export async function signOut() {
-  const supabase = createServerClient()
+  const supabase = await createServerClient()
 
   const { error } = await supabase.auth.signOut()
 
@@ -40,7 +40,7 @@ export async function signOut() {
 
 // Bookmarks
 export async function deleteBookmark(formData: FormData) {
-  const supabase = createServerClient()
+  const supabase = await createServerClient()
   const id = formData.get('id')
   const { error } = await supabase.from('bookmarks').delete().eq('id', `${id}`)
 
@@ -48,7 +48,7 @@ export async function deleteBookmark(formData: FormData) {
 }
 
 export async function createBookmark(prevState: any, formData: FormData) {
-  const supabase = createServerClient()
+  const supabase = await createServerClient()
   const title = formData.get('title') as string
   const link = formData.get('link') as string
   const tagsString = formData.get('tags') as string
@@ -68,7 +68,7 @@ export async function createBookmark(prevState: any, formData: FormData) {
 
 // Articles
 export async function createArticle(formData: FormData) {
-  const supabase = createServerClient()
+  const supabase = await createServerClient()
 
   const slug = formData.get('slug') as string
   const title = formData.get('title') as string
@@ -88,7 +88,7 @@ export async function createArticle(formData: FormData) {
 }
 
 export async function updateArticle(formData: FormData) {
-  const supabase = createServerClient()
+  const supabase = await createServerClient()
 
   const currentSlug = formData.get('currentSlug') as string
   const slug = formData.get('slug') as string
@@ -112,7 +112,7 @@ export async function updateArticle(formData: FormData) {
 }
 
 export async function deleteArticle(formData: FormData) {
-  const supabase = createServerClient()
+  const supabase = await createServerClient()
 
   const slug = formData.get('slug') as string
 
