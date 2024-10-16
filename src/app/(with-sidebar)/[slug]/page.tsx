@@ -8,7 +8,7 @@ import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { bundledLanguages, getHighlighter } from 'shiki/bundle/web'
+import { bundledLanguages, createHighlighter } from 'shiki/bundle/web'
 
 export const revalidate = 30
 
@@ -37,7 +37,7 @@ export default async function PostPage(props0: PostPageProps) {
     return notFound()
   }
 
-  const highlighter = await getHighlighter({
+  const highlighter = await createHighlighter({
     themes: ['github-dark'],
     langs: [...Object.keys(bundledLanguages)]
   })
