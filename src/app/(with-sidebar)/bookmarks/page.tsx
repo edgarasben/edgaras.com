@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: 'Bookmarks'
 }
 
-type Bookmark = Database['public']['Tables']['bookmarks']['Row']
+export type Bookmark = Database['public']['Tables']['bookmarks']['Row']
 type GroupedBookmarks = {
   [tag: string]: Bookmark[]
 }

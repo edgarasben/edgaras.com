@@ -2,7 +2,7 @@ import BookHoursForm from '@/components/book-hours-form'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Book Design Hours',
+  title: 'Book Design Hours'
 }
 
 export default function BookDesignHours() {
