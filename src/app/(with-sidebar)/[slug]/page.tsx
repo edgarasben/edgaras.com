@@ -9,7 +9,7 @@ import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { createHighlighter } from 'shiki'
+import { getSingletonHighlighter } from 'shiki/bundle/web'
 
 export const revalidate = 30
 
@@ -18,6 +18,12 @@ interface PostPageProps {
     slug: string[]
   }
 }
+
+// Use getSingletonHighlighter for a singleton instance
+const highlighterPromise = getSingletonHighlighter({
+  themes: ['github-dark'],
+  langs: ['javascript', 'typescript', 'jsx', 'tsx']
+})
 
 export async function generateMetadata({
   params
@@ -37,12 +43,6 @@ export default async function PostPage({ params }: PostPageProps) {
   if (error) {
     return notFound()
   }
-
-  // Move the highlighter creation outside of the component
-  const highlighterPromise = createHighlighter({
-    themes: ['github-dark'],
-    langs: ['javascript', 'typescript', 'jsx', 'tsx']
-  })
 
   const components = {
     img: (props: any) => (
@@ -72,9 +72,7 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   const dateUpdated = () => {
-    // Don't show updated date if it's the same day as published date
     if (article && isSameDay(article.published_at, article.updated_at)) return
-
     if (article?.updated_at) {
       return isThisYear(article.updated_at)
         ? format(article.updated_at, 'MMMM d')
@@ -82,7 +80,6 @@ export default async function PostPage({ params }: PostPageProps) {
     }
   }
 
-  // Use the pre-created highlighter promise
   const highlighter = await highlighterPromise
 
   return (
