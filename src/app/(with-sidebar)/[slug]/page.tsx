@@ -2,14 +2,13 @@ import { Container } from '@/components/container'
 import { PencilIcon } from '@/components/icons/solid'
 import { getAnyArticle, getPublicArticle, getUser } from '@/data/queries'
 import { createClient } from '@/lib/supabase/client'
-import rehypeShiki from '@shikijs/rehype'
 import { format, isSameDay, isThisYear } from 'date-fns'
 import type { Metadata } from 'next'
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { getSingletonHighlighter } from 'shiki/bundle/web'
+import { bundledLanguages, getHighlighter } from 'shiki/bundle/web'
 
 export const revalidate = 30
 
@@ -18,12 +17,6 @@ interface PostPageProps {
     slug: string[]
   }
 }
-
-// Use getSingletonHighlighter for a singleton instance
-const highlighterPromise = getSingletonHighlighter({
-  themes: ['github-dark'],
-  langs: ['javascript', 'typescript', 'jsx', 'tsx']
-})
 
 export async function generateMetadata({
   params
@@ -44,6 +37,11 @@ export default async function PostPage({ params }: PostPageProps) {
     return notFound()
   }
 
+  const highlighter = await getHighlighter({
+    themes: ['github-dark'],
+    langs: [...Object.keys(bundledLanguages)]
+  })
+
   const components = {
     img: (props: any) => (
       <Image alt={props.alt} width={800} height={450} {...props}>
@@ -60,7 +58,15 @@ export default async function PostPage({ params }: PostPageProps) {
       >
         {props.children}
       </Link>
-    )
+    ),
+    code: async ({ children, className }: any) => {
+      const language = className ? className.replace(/language-/, '') : 'text'
+      const codeHTML = highlighter.codeToHtml(children, {
+        lang: language,
+        theme: 'github-dark'
+      })
+      return <code dangerouslySetInnerHTML={{ __html: codeHTML }} />
+    }
   }
 
   const datePublished = () => {
@@ -79,8 +85,6 @@ export default async function PostPage({ params }: PostPageProps) {
         : format(article.updated_at, 'yyyy-MM-dd')
     }
   }
-
-  const highlighter = await highlighterPromise
 
   return (
     <Container>
@@ -121,14 +125,6 @@ export default async function PostPage({ params }: PostPageProps) {
           <MDXRemote
             source={article?.markdown ?? ''}
             components={components as MDXRemoteProps['components']}
-            options={{
-              mdxOptions: {
-                rehypePlugins: [
-                  [rehypeShiki, { highlighter, theme: 'github-dark' }]
-                ],
-                remarkPlugins: []
-              }
-            }}
           />
         </div>
       </article>
