@@ -18,11 +18,10 @@ type GroupedBookmarks = {
   [tag: string]: Bookmark[]
 }
 
-export default async function BookmarksPage({
-  searchParams
-}: {
-  searchParams: { tag?: string | string[]; latest?: boolean }
+export default async function BookmarksPage(props: {
+  searchParams: Promise<{ tag?: string | string[]; latest?: boolean }>
 }) {
+  const searchParams = await props.searchParams
   const user = await getUser()
 
   const currentTags = Array.isArray(searchParams.tag)
