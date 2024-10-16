@@ -44,9 +44,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
   const components = {
     img: (props: any) => (
-      <Image alt={props.alt} width={800} height={450} {...props}>
-        {props.children}
-      </Image>
+      <Image alt={props.alt} width={800} height={450} {...props} />
     ),
     a: (props: any) => (
       <Link
@@ -59,13 +57,16 @@ export default async function PostPage({ params }: PostPageProps) {
         {props.children}
       </Link>
     ),
-    code: async ({ children, className }: any) => {
-      const language = className ? className.replace(/language-/, '') : 'text'
-      const codeHTML = highlighter.codeToHtml(children, {
+    pre: ({ children }: any) => {
+      const code = children.props.children.trim()
+      const language = children.props.className?.replace(/language-/, '') || 'text'
+
+      const highlightedCode = highlighter.codeToHtml(code, {
         lang: language,
         theme: 'github-dark'
       })
-      return <code dangerouslySetInnerHTML={{ __html: codeHTML }} />
+
+      return <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
     }
   }
 
