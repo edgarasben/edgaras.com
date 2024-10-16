@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 ] */
 
 export default async function PostsPage() {
-  const supabase = createServerClient()
+  const supabase = await createServerClient()
   const { data: posts } = await supabase
     .from('posts')
     .select()
@@ -82,7 +82,7 @@ function Post({ post, isAdmin }: { post: Post; isAdmin: boolean }) {
     const id = formData.get('id') as string
 
     if (id) {
-      const supabase = createServerClient()
+      const supabase = await createServerClient()
 
       const { error } = await supabase.from('posts').delete().eq('id', id)
 
