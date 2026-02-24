@@ -1,6 +1,8 @@
 import { createVariables, tokens } from './src/lib/style/colors'
-import { fontFamily, screens } from 'tailwindcss/defaultTheme'
+import defaultTheme from 'tailwindcss/defaultTheme'
 import colors from 'tailwindcss/colors'
+
+const { fontFamily, screens } = defaultTheme
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

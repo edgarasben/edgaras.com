@@ -1,11 +1,10 @@
-import '@/styles/globals.css'
+import '@/styles/globals-v3.css'
 import { Inter as sans } from 'next/font/google'
-import display from 'next/font/local'
 
 import type { Metadata } from 'next'
 
-import { Providers } from '@/app/providers'
 import { Toaster } from '@/components/base/sonner'
+import { ThemeProvider } from 'next-themes'
 import { Viewport } from 'next'
 import Script from 'next/script'
 
@@ -17,11 +16,11 @@ const fontSans = sans({
 })
 
 // Display font
-const fontDisplay = display({
+/* const fontDisplay = display({
   src: '../fonts/Satoshi-Variable.woff2',
   variable: '--font-display',
   display: 'swap'
-})
+}) */
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -95,7 +94,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       suppressHydrationWarning
       lang="en"
-      className={`h-full ${fontDisplay.variable} ${fontSans.variable}`}
+      className={`h-full ${fontSans.variable}`}
     >
       <head>
         <link href="https://github.com/edgarasben" rel="me" />
@@ -107,15 +106,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className={`bg-fade text-neutral h-full antialiased`}>
-        <>
-          {/*       <NavigationBar /> */}
-          <Providers>
-            <>
-              {children}
-              <Toaster />
-            </>
-          </Providers>
-        </>
+        <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
+          {children}
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   )

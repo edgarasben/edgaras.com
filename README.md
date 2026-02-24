@@ -26,4 +26,9 @@ My personal website, [design portfolio](https://edgaras.com/portfolio/) and a co
 
 Follow the Twitter thread on how I built this website in public: https://twitter.com/edgarasben/status/1602810871264198656?s=20&t=Tkszhy_7R_U-PwfUc7_dBQ
 
--
+## Inspiration
+
+-https://www.joshuataylordesign.com
+- https://mw.works/
+- https://hellobrianl.in
+- https://fonsmans.com

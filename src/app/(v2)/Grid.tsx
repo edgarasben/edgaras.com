@@ -21,11 +21,11 @@ export function Grid() {
 
   return (
     <div
-      className="absolute inset-0 flex items-center justify-center"
+      className="absolute inset-0 -z-10 flex items-center justify-center"
       style={{
         backgroundSize: '1ch 1em',
         backgroundImage:
-          'linear-gradient(to right, rgb(0 0 0 / 1) 1px, transparent 1px), linear-gradient(to bottom, rgb(0 0 0 / 1) 1px, transparent 1px)'
+          'linear-gradient(to right, rgb(255 255 255 / 0.025) 1px, transparent 1px), linear-gradient(to bottom, rgb(255 255 255 / 0.025) 1px, transparent 1px)'
       }}
     />
   )

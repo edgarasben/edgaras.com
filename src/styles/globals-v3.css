@@ -1,0 +1,49 @@
+@import 'tailwindcss';
+
+@theme inline {
+  --background-color-default: var(--bg-default);
+  --text-color-default: var(--text-default);
+  --border-color-default: var(--border-default);
+
+  --text-color-soft: var(--text-soft);
+
+  --border-color-softer: var(--border-softer);
+
+  --default-font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --bg-default: var(--color-neutral-100);
+  --text-default: var(--color-neutral-900);
+  --border-default: var(--color-neutral-100);
+
+  --text-soft: var(--color-neutral-500);
+  --border-softer: var(--color-neutral-200);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-default: var(--color-neutral-900);
+    --text-default: var(--color-neutral-100);
+    --border-default: var(--color-neutral-600);
+
+    --text-soft: var(--color-neutral-500);
+    --border-softer: var(--color-neutral-800);
+  }
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before {
+    border-color: var(--border-color-default);
+  }
+}
+
+html {
+  @apply h-full scroll-pt-4 scroll-smooth border-[red];
+}
+
+body {
+  @apply bg-default text-default h-full break-words antialiased;
+}

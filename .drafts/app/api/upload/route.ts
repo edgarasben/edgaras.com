@@ -1,6 +1,6 @@
-import { NextResponse } from 'next/server'
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
+import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
+import { NextResponse } from 'next/server'
 
 const S3 = new S3Client({
   region: 'auto',
@@ -26,6 +26,9 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ presignedUrl })
   } catch (err: any) {
-    return NextResponse.json({ statusCode: 500, message: err.message }, { status: 500 })
+    return NextResponse.json(
+      { statusCode: 500, message: err.message },
+      { status: 500 }
+    )
   }
 }

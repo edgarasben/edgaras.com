@@ -125,7 +125,7 @@ export function BookmarkList({
             selectedIndex === index
               ? "text-neutral relative select-none before:absolute before:-left-[2ch] before:text-cyan-500 before:transition-all before:duration-150 before:content-['>']"
               : 'hover:text-neutral'
-          }`}
+          } ${editingIndex !== null && editingIndex !== index ? 'opacity-50' : ''}`}
         >
           {editingIndex === index ? (
             <form
