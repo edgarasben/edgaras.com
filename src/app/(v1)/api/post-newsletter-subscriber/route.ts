@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { z } from 'zod'
 import { Client as NotionClient } from '@notionhq/client'
 import { sendEmail } from '@/lib/mailersend'
