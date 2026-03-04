@@ -1,5 +1,5 @@
 import { getPublicArticles } from '@/data/queries'
-import portfolioProjects from '@/app/portfolio/data.json'
+import portfolioProjects from './portfolio/data.json'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
