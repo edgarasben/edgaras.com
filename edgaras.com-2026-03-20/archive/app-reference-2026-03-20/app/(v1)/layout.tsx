@@ -4,7 +4,7 @@ import display from 'next/font/local'
 
 import type { Metadata } from 'next'
 
-import { Providers } from '@/app/providers'
+import { Providers } from './providers'
 import { Toaster } from '@/components/base/sonner'
 import { Viewport } from 'next'
 import Script from 'next/script'
@@ -18,7 +18,7 @@ const fontSans = sans({
 
 // Display font
 const fontDisplay = display({
-  src: '../fonts/Satoshi-Variable.woff2',
+  src: '../../fonts/Satoshi-Variable.woff2',
   variable: '--font-display',
   display: 'swap'
 })

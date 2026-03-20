@@ -3,7 +3,12 @@
 # dependencies
 /node_modules
 /.pnp
-.pnp.js
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
 # testing
 /coverage
@@ -11,10 +16,6 @@
 # next.js
 /.next/
 /out/
-/analyze/*
-
-# react-email
-.react-email
 
 # production
 /build
@@ -22,7 +23,6 @@
 # misc
 .DS_Store
 *.pem
-*(alias)
 
 # debug
 npm-debug.log*
@@ -30,9 +30,8 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# local env files
-.env*.local
-.env
+# env files (can opt-in for committing if needed)
+.env*
 
 # vercel
 .vercel
