@@ -3,17 +3,16 @@ import "server-only";
 import { ClockClient, TimezoneLabelClient } from "./clock-client";
 
 function getVilniusClockData(date: Date) {
-  const hours = date.toLocaleTimeString("en-GB", {
+  const timeParts = new Intl.DateTimeFormat("en-GB", {
     hour: "2-digit",
-    hour12: false,
-    timeZone: "Europe/Vilnius",
-  });
-
-  const minutes = date.toLocaleTimeString("en-GB", {
     minute: "2-digit",
     hour12: false,
     timeZone: "Europe/Vilnius",
-  });
+  }).formatToParts(date);
+
+  const hours = timeParts.find((part) => part.type === "hour")?.value ?? "00";
+  const minutes =
+    timeParts.find((part) => part.type === "minute")?.value ?? "00";
 
   const offset = new Intl.DateTimeFormat("en", {
     timeZone: "Europe/Vilnius",
