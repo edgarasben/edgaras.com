@@ -13,7 +13,7 @@ export default function NowPage() {
 
       {/* ── Content ── */}
       <article className="px-4 py-8 lg:px-16 lg:py-16 max-w-3xl flex flex-col gap-8">
-        <h2 className="font-heading font-bold text-2xl lg:text-3xl uppercase text-white leading-none">
+        <h2 className="font-heading font-bold text-2xl lg:text-3xl uppercase text-foreground leading-none">
           What I&apos;m doing now
         </h2>
 
@@ -24,7 +24,7 @@ export default function NowPage() {
               href="https://epigraphmedia.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline underline-offset-4 hover:text-white transition-colors"
+              className="underline underline-offset-4 hover:text-fade-foreground transition-colors"
             >
               Epigraph Media
             </a>{" "}
@@ -51,7 +51,7 @@ export default function NowPage() {
             href="https://nownownow.com/about"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline underline-offset-4 hover:text-white transition-colors"
+            className="underline underline-offset-4 hover:text-fade-foreground transition-colors"
           >
             why this page exists
           </a>
@@ -60,7 +60,7 @@ export default function NowPage() {
             href="https://nownownow.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline underline-offset-4 hover:text-white transition-colors"
+            className="underline underline-offset-4 hover:text-fade-foreground transition-colors"
           >
             /now pages
           </a>

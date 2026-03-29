@@ -13,7 +13,7 @@ export default function PublicationsPage() {
       <SubpageHeader title="Publications" />
 
       <article className="px-4 py-8 lg:px-16 lg:py-16 max-w-3xl flex flex-col gap-8">
-        <h1 className="font-heading font-bold text-2xl lg:text-3xl uppercase text-white leading-none">
+        <h1 className="font-heading font-bold text-2xl lg:text-3xl uppercase text-foreground leading-none">
           Publications
         </h1>
 
@@ -24,7 +24,7 @@ export default function PublicationsPage() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-body text-base lg:text-lg text-foreground leading-relaxed hover:text-white transition-colors"
+                className="font-body text-base lg:text-lg text-foreground leading-relaxed hover:text-fade-foreground transition-colors"
               >
                 {item.name}
               </a>

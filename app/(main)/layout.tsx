@@ -1,8 +1,9 @@
-import { connection } from "next/server";
 import Link from "next/link";
+import { connection } from "next/server";
 import { Suspense } from "react";
 import { EdgarasDotMatrix } from "../components/edgaras-dot-matrix";
 import { FooterSocialLinks } from "../components/footer-social-links";
+import { RouteThemeWrapper } from "../components/route-theme-wrapper";
 import { experiments, projects, publications } from "./content";
 
 const contentGridSections = [
@@ -28,7 +29,7 @@ const contentGridHeadingClassName =
   "font-heading text-lg font-bold uppercase leading-none text-muted-foreground transition-colors hover:text-foreground lg:text-2xl";
 const contentGridListClassName = "flex flex-col gap-4 lg:gap-4";
 const contentGridItemLinkClassName =
-  "font-heading text-xl font-normal leading-none tracking-[0.08em] text-foreground transition-colors hover:text-white lg:text-xl lg:tracking-[0.1em]";
+  "font-heading text-xl font-normal leading-none tracking-[0.08em] text-foreground transition-colors hover:text-fade-foreground lg:text-xl lg:tracking-[0.1em]";
 const footerLinkClassName =
   "font-heading text-lg font-bold uppercase leading-none text-muted-foreground transition-colors hover:text-foreground lg:flex-1 lg:text-2xl";
 const footerCopyrightClassName =
@@ -49,7 +50,7 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col">
+    <RouteThemeWrapper>
       {children}
 
       {/* ── Content Grid ── */}
@@ -58,14 +59,20 @@ export default function MainLayout({
           {contentGridSections.map((section) => (
             <div key={section.title} className={contentGridSectionClassName}>
               <h2>
-                <Link href={section.href} className={contentGridHeadingClassName}>
+                <Link
+                  href={section.href}
+                  className={contentGridHeadingClassName}
+                >
                   / {section.title}
                 </Link>
               </h2>
               <ul className={contentGridListClassName}>
                 {section.items.map((item) => (
                   <li key={item.name}>
-                    <a href={item.href} className={contentGridItemLinkClassName}>
+                    <a
+                      href={item.href}
+                      className={contentGridItemLinkClassName}
+                    >
                       {item.name}
                     </a>
                   </li>
@@ -113,7 +120,6 @@ export default function MainLayout({
           <FooterSocialLinks />
         </div>
       </section>
-
-    </div>
+    </RouteThemeWrapper>
   );
 }

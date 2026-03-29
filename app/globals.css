@@ -17,20 +17,20 @@
 
 :root {
     --background: oklch(0.9729 0.0013 106.42);
-    --foreground: oklch(0 0 0 / 75%);
-    --fade-foreground: oklch(0 0 0 / 50%);
-    --muted-foreground: oklch(0 0 0 / 25%);
-    --border: oklch(0 0 0 / 5%);
-    --ring: oklch(0 0 0);
+    --foreground: oklch(0.2 0 0 / 85%);
+    --fade-foreground: oklch(0.2 0 0 / 65%);
+    --muted-foreground: oklch(0.2 0 0 / 45%);
+    --border: oklch(0.2 0 0 / 10%);
+    --ring: oklch(0.2 0 0 / 70%);
 }
 
 .dark {
-    --background: oklch(1 0 0);
-    --foreground: oklch(1 0 0 / 75%);
-    --fade-foreground: oklch(1 0 0 / 75%);
-    --muted-foreground: oklch(1 0 0 / 25%);
-    --border: oklch(1 0 0 / 5%);
-    --ring: oklch(1 0 0);
+    --background: oklch(0.1448 0 0);
+    --foreground: oklch(0.98 0 0 / 82%);
+    --fade-foreground: oklch(0.98 0 0 / 64%);
+    --muted-foreground: oklch(0.98 0 0 / 38%);
+    --border: oklch(0.98 0 0 / 8%);
+    --ring: oklch(0.98 0 0 / 70%);
 }
 
 @layer base {
@@ -39,6 +39,14 @@
     }
     body {
         @apply bg-background text-foreground;
+    }
+
+    html {
+        color-scheme: light;
+    }
+
+    html.dark {
+        color-scheme: dark;
     }
     html {
         @apply font-body;

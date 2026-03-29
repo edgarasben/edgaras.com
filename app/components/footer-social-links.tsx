@@ -1,6 +1,8 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ThemeToggle } from "./theme-toggle";
 
 const emailCharCodes = [
   104, 105, 64, 101, 100, 103, 97, 114, 97, 115, 46, 99, 111, 109,
@@ -11,7 +13,9 @@ function getEmailAddress() {
 }
 
 export function FooterSocialLinks() {
+  const pathname = usePathname();
   const [copied, setCopied] = useState(false);
+  const showThemeToggle = pathname !== "/";
 
   useEffect(() => {
     if (!copied) return;
@@ -34,6 +38,7 @@ export function FooterSocialLinks() {
 
   return (
     <div className="flex flex-wrap items-center gap-x-4 gap-y-2 lg:justify-end">
+      {showThemeToggle ? <ThemeToggle /> : null}
       <button
         type="button"
         onClick={copyEmail}
