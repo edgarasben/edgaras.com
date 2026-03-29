@@ -32,7 +32,7 @@ export default function MainLayout({
               <li key={item.name}>
                 <a
                   href={item.href}
-                  className="font-heading font-normal text-xl leading-none tracking-widest lg:font-body lg:text-lg lg:leading-normal lg:tracking-wider text-foreground hover:text-white transition-colors"
+                  className="font-heading font-normal text-xl leading-none lg:font-body lg:text-lg lg:leading-normal lg:tracking-wider text-foreground hover:text-white transition-colors"
                 >
                   {item.name}
                 </a>
@@ -56,7 +56,7 @@ export default function MainLayout({
               <li key={item.name}>
                 <a
                   href={item.href}
-                  className="font-heading font-normal text-xl leading-none tracking-widest lg:font-body lg:text-lg lg:leading-normal lg:tracking-wider text-foreground hover:text-white transition-colors"
+                  className="font-heading font-normal text-xl leading-none lg:font-body lg:text-lg lg:leading-normal lg:tracking-wider text-foreground hover:text-white transition-colors"
                 >
                   {item.name}
                 </a>
@@ -80,7 +80,7 @@ export default function MainLayout({
               <li key={item.name}>
                 <a
                   href={item.href}
-                  className="font-body text-base leading-normal tracking-widest lg:text-lg lg:tracking-wider text-foreground hover:text-foreground transition-colors"
+                  className="font-body text-base leading-normal lg:text-lg lg:tracking-wider text-foreground hover:text-foreground transition-colors"
                 >
                   {item.name}
                 </a>
@@ -125,7 +125,7 @@ export default function MainLayout({
       {/* ── Tiny site footer ── */}
       <section className="px-4 py-6 lg:px-16 lg:py-8">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-          <p className="font-body text-left text-base lg:text-lg tracking-wider text-white/45">
+          <p className="font-body text-left text-sm lg:text-base text-muted-foreground">
             © 2026 Edgaras Benediktavičius
           </p>
           <FooterSocialLinks />

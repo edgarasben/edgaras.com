@@ -2,6 +2,14 @@
 
 import { useEffect, useState } from "react";
 
+const emailCharCodes = [
+  104, 105, 64, 101, 100, 103, 97, 114, 97, 115, 46, 99, 111, 109,
+];
+
+function getEmailAddress() {
+  return String.fromCharCode(...emailCharCodes);
+}
+
 export function FooterSocialLinks() {
   const [copied, setCopied] = useState(false);
 
@@ -17,7 +25,7 @@ export function FooterSocialLinks() {
 
   const copyEmail = async () => {
     try {
-      await navigator.clipboard.writeText("hi@edgaras.com");
+      await navigator.clipboard.writeText(getEmailAddress());
       setCopied(true);
     } catch {
       setCopied(false);
@@ -29,7 +37,7 @@ export function FooterSocialLinks() {
       <button
         type="button"
         onClick={copyEmail}
-        className="cursor-pointer font-body text-sm lg:text-base tracking-wider text-white/50 hover:text-foreground transition-colors"
+        className="cursor-pointer font-body text-sm lg:text-base tracking-wider text-muted-foreground hover:text-foreground transition-colors"
       >
         {copied ? "Copied!" : "Email"}
       </button>
@@ -37,7 +45,7 @@ export function FooterSocialLinks() {
         href="https://twitter.com/edgarasben"
         target="_blank"
         rel="noopener noreferrer"
-        className="font-body text-sm lg:text-base tracking-wider text-white/50 hover:text-foreground transition-colors"
+        className="font-body text-base lg:text-lg tracking-wider text-muted-foreground hover:text-foreground transition-colors"
       >
         X
       </a>
@@ -45,7 +53,7 @@ export function FooterSocialLinks() {
         href="https://www.linkedin.com/in/edgarasben/"
         target="_blank"
         rel="noopener noreferrer"
-        className="font-body text-sm lg:text-base tracking-wider text-white/50 hover:text-foreground transition-colors"
+        className="font-body text-base lg:text-lg tracking-wider text-muted-foreground hover:text-foreground transition-colors"
       >
         LinkedIn
       </a>

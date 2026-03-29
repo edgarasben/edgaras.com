@@ -19,25 +19,29 @@ export default function NowPage() {
 
         <ul className="flex flex-col gap-4 list-disc list-outside pl-5">
           <li className="font-body text-base lg:text-lg text-foreground leading-relaxed">
-            Just moved to back to Lithuania after 15 years abroad (in Denmark,
-            EU and Asia). Working towards more stable lifestyle.
+            Writing some design, tech and AI related blog posts for our{" "}
+            <a
+              href="https://epigraphmedia.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 hover:text-white transition-colors"
+            >
+              Epigraph Media
+            </a>{" "}
+            publications.
           </li>
           <li className="font-body text-base lg:text-lg text-foreground leading-relaxed">
             As a contractor, making design systems and mobile apps for the top
-            Danish football clubs.
+            Danish and international football clubs.
           </li>
           <li className="font-body text-base lg:text-lg text-foreground leading-relaxed">
-            As a side-project and own business, working on Naispage - a
-            multi-tenant directory website framework.
+            Practicing Bachata 2x a week and social dancing
           </li>
           <li className="font-body text-base lg:text-lg text-foreground leading-relaxed">
-            Taking practicing and dancing social Bachata dance
+            Getting back to my 3-times/week gym routine.
           </li>
           <li className="font-body text-base lg:text-lg text-foreground leading-relaxed">
-            Hitting gym 3 times a week
-          </li>
-          <li className="font-body text-base lg:text-lg text-foreground leading-relaxed">
-            Currently in 🇱🇹 Kaunas, Lithuania
+            Recently started living in 🇱🇹 Vilnius, Lithuania
           </li>
         </ul>
 
