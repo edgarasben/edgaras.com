@@ -25,21 +25,30 @@ export function EdgarasDotMatrixInteractive({
     const vbW = vb?.[2] ?? 1616;
     const vbH = vb?.[3] ?? 184;
 
-    const circles = Array.from(svg.querySelectorAll("circle"));
-    const data = circles.map((c) => {
-      const el = c as SVGElement;
+    const BASE_VIEWBOX_WIDTH = 1616;
+    const BASE_FILL = "white";
+    const BASE_FILL_OPACITY = 0.03;
+    const geometryScale = vbW / BASE_VIEWBOX_WIDTH;
+    const INTERACTION_RADIUS = 300 * geometryScale;
+    const PUSH_DISTANCE = 8 * geometryScale;
+
+    const dots = Array.from(svg.querySelectorAll("circle, ellipse"));
+    const data = dots.map((dot) => {
+      const el = dot as SVGElement;
       el.style.transformBox = "fill-box";
       el.style.transformOrigin = "center";
       el.style.transition =
         "transform 0.4s ease-out, fill-opacity 0.5s ease-out";
+      el.style.fill = BASE_FILL;
+      el.style.fillOpacity = String(BASE_FILL_OPACITY);
+
       return {
         el,
-        cx: Number.parseFloat(c.getAttribute("cx") || "0"),
-        cy: Number.parseFloat(c.getAttribute("cy") || "0"),
+        cx: Number.parseFloat(dot.getAttribute("cx") || "0"),
+        cy: Number.parseFloat(dot.getAttribute("cy") || "0"),
       };
     });
 
-    const RADIUS = 300;
     let rafId: number | null = null;
 
     const update = (mouseX: number, mouseY: number, scale: number) => {
@@ -48,23 +57,24 @@ export function EdgarasDotMatrixInteractive({
         const dy = cy - mouseY;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < RADIUS && dist > 0.1) {
-          const t = Math.pow(1 - dist / RADIUS, 2.5);
+        if (dist < INTERACTION_RADIUS && dist > 0.1) {
+          const t = (1 - dist / INTERACTION_RADIUS) ** 2.5;
 
-          const pushStrength = t * 8;
+          const pushStrength = t * PUSH_DISTANCE;
           const nx = dx / dist;
           const ny = dy / dist;
           const pushCssX = nx * pushStrength * scale;
           const pushCssY = ny * pushStrength * scale;
 
           const s = 1 - t * 0.55;
-          const opacity = 0.03 + t * 0.35;
+          const opacity = BASE_FILL_OPACITY + t * 0.35;
 
           el.style.transform = `translate(${pushCssX}px, ${pushCssY}px) scale(${s})`;
           el.style.fillOpacity = String(opacity);
         } else {
           el.style.transform = "";
-          el.style.fillOpacity = "";
+          el.style.fill = BASE_FILL;
+          el.style.fillOpacity = String(BASE_FILL_OPACITY);
         }
       }
     };
@@ -72,7 +82,8 @@ export function EdgarasDotMatrixInteractive({
     const reset = () => {
       for (const { el } of data) {
         el.style.transform = "";
-        el.style.fillOpacity = "";
+        el.style.fill = BASE_FILL;
+        el.style.fillOpacity = String(BASE_FILL_OPACITY);
       }
     };
 
