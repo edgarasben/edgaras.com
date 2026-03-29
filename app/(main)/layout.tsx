@@ -1,7 +1,47 @@
+import { connection } from "next/server";
 import Link from "next/link";
+import { Suspense } from "react";
 import { EdgarasDotMatrix } from "../components/edgaras-dot-matrix";
 import { FooterSocialLinks } from "../components/footer-social-links";
 import { experiments, projects, publications } from "./content";
+
+const contentGridSections = [
+  {
+    title: "Projects",
+    href: "/projects",
+    items: projects,
+  },
+  {
+    title: "Experiments",
+    href: "/experiments",
+    items: experiments,
+  },
+  {
+    title: "Publications",
+    href: "/publications",
+    items: publications,
+  },
+] as const;
+
+const contentGridSectionClassName = "flex flex-col gap-5 lg:flex-1 lg:gap-6";
+const contentGridHeadingClassName =
+  "font-heading text-lg font-bold uppercase leading-none text-muted-foreground transition-colors hover:text-foreground lg:text-2xl";
+const contentGridListClassName = "flex flex-col gap-4 lg:gap-4";
+const contentGridItemLinkClassName =
+  "font-heading text-xl font-normal leading-none tracking-[0.08em] text-foreground transition-colors hover:text-white lg:text-xl lg:tracking-[0.1em]";
+const footerLinkClassName =
+  "font-heading text-lg font-bold uppercase leading-none text-muted-foreground transition-colors hover:text-foreground lg:flex-1 lg:text-2xl";
+const footerCopyrightClassName =
+  "font-body text-left text-sm text-muted-foreground lg:text-base";
+
+async function FooterCopyright() {
+  await connection();
+  const year = new Date().getFullYear();
+
+  return (
+    <p className={footerCopyrightClassName}>© {year} Edgaras Benediktavičius</p>
+  );
+}
 
 export default function MainLayout({
   children,
@@ -12,128 +52,68 @@ export default function MainLayout({
     <div className="flex flex-col">
       {children}
 
-      {/* ── Divider ── */}
-      <div className="h-px bg-border" />
-
       {/* ── Content Grid ── */}
-      <section className="flex flex-col lg:flex-row gap-14.5 px-4 py-8 lg:px-16 lg:py-16">
-        {/* Projects */}
-        <div className="flex flex-col gap-5 lg:gap-6 lg:flex-1">
-          <h2>
-            <Link
-              href="/projects"
-              className="font-heading font-bold text-lg lg:text-2xl leading-none uppercase text-muted-foreground hover:text-foreground transition-colors"
-            >
-              / Projects
-            </Link>
-          </h2>
-          <ul className="flex flex-col gap-4 lg:gap-3">
-            {projects.map((item) => (
-              <li key={item.name}>
-                <a
-                  href={item.href}
-                  className="font-heading font-normal text-xl leading-none lg:font-body lg:text-lg lg:leading-normal lg:tracking-wider text-foreground hover:text-white transition-colors"
-                >
-                  {item.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Experiments */}
-        <div className="flex flex-col gap-5 lg:gap-6 lg:flex-1">
-          <h2>
-            <Link
-              href="/experiments"
-              className="font-heading font-bold text-lg lg:text-2xl leading-none uppercase text-muted-foreground hover:text-foreground transition-colors"
-            >
-              / Experiments
-            </Link>
-          </h2>
-          <ul className="flex flex-col gap-4 lg:gap-3">
-            {experiments.map((item) => (
-              <li key={item.name}>
-                <a
-                  href={item.href}
-                  className="font-heading font-normal text-xl leading-none lg:font-body lg:text-lg lg:leading-normal lg:tracking-wider text-foreground hover:text-white transition-colors"
-                >
-                  {item.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Publications */}
-        <div className="flex flex-col gap-5 lg:gap-6 lg:flex-[1.3]">
-          <h2>
-            <Link
-              href="/publications"
-              className="font-heading font-bold text-lg lg:text-2xl leading-none uppercase text-muted-foreground hover:text-foreground transition-colors"
-            >
-              / Publications
-            </Link>
-          </h2>
-          <ul className="flex flex-col gap-4 lg:gap-3">
-            {publications.map((item) => (
-              <li key={item.name}>
-                <a
-                  href={item.href}
-                  className="font-body text-base leading-normal lg:text-lg lg:tracking-wider text-foreground hover:text-foreground transition-colors"
-                >
-                  {item.name}
-                </a>
-              </li>
-            ))}
-          </ul>
+      <section className="px-4 py-8 lg:px-16 lg:py-16">
+        <div className="mx-auto flex max-w-[1616px] flex-col gap-14.5 lg:flex-row lg:gap-[58px]">
+          {contentGridSections.map((section) => (
+            <div key={section.title} className={contentGridSectionClassName}>
+              <h2>
+                <Link href={section.href} className={contentGridHeadingClassName}>
+                  / {section.title}
+                </Link>
+              </h2>
+              <ul className={contentGridListClassName}>
+                {section.items.map((item) => (
+                  <li key={item.name}>
+                    <a href={item.href} className={contentGridItemLinkClassName}>
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </section>
-
-      {/* ── Divider ── */}
-      <div className="h-px bg-border" />
 
       {/* ── Footer Links ── */}
-      <footer className="flex flex-col lg:flex-row gap-4 lg:gap-3 px-4 py-8 lg:px-16 lg:py-16">
-        <a
-          href="https://bookmarks.craftled.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-heading font-bold text-lg lg:text-2xl leading-none uppercase text-muted-foreground hover:text-foreground transition-colors lg:flex-1"
-        >
-          / bookmarks
-        </a>
-        <Link
-          href="/now"
-          className="font-heading font-bold text-lg lg:text-2xl leading-none uppercase text-muted-foreground hover:text-foreground transition-colors lg:flex-1"
-        >
-          / now
-        </Link>
+      <footer className="px-4 py-8 lg:px-16 lg:py-16">
+        <div className="mx-auto flex max-w-[1616px] flex-col gap-4 lg:flex-row lg:gap-[58px]">
+          <Link href="/now" className={footerLinkClassName}>
+            / now
+          </Link>
+          <a
+            href="https://bookmarks.craftled.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={footerLinkClassName}
+          >
+            / bookmarks
+          </a>
+        </div>
       </footer>
 
-      {/* ── Divider ── */}
-      <div className="h-px bg-border" />
-
       {/* ── Pre-footer dot-matrix ── */}
-      <section className="px-4 py-8 lg:px-16 lg:py-16 flex items-center justify-center overflow-hidden">
+      <section className="flex items-center justify-center overflow-hidden px-4 py-8 lg:px-16 lg:py-16">
         <EdgarasDotMatrix />
       </section>
-
-      {/* ── Divider ── */}
-      <div className="h-px bg-border" />
 
       {/* ── Tiny site footer ── */}
       <section className="px-4 py-6 lg:px-16 lg:py-8">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-          <p className="font-body text-left text-sm lg:text-base text-muted-foreground">
-            © 2026 Edgaras Benediktavičius
-          </p>
+          <Suspense
+            fallback={
+              <p className={footerCopyrightClassName}>
+                © Edgaras Benediktavičius
+              </p>
+            }
+          >
+            <FooterCopyright />
+          </Suspense>
           <FooterSocialLinks />
         </div>
       </section>
 
-      {/* ── Divider ── */}
-      <div className="h-px bg-border" />
     </div>
   );
 }

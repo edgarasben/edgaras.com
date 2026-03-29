@@ -13,7 +13,7 @@ export default function NowPage() {
 
       {/* ── Content ── */}
       <article className="px-4 py-8 lg:px-16 lg:py-16 max-w-3xl flex flex-col gap-8">
-        <h2 className="font-heading font-bold text-xl lg:text-3xl uppercase text-white leading-none">
+        <h2 className="font-heading font-bold text-2xl lg:text-3xl uppercase text-white leading-none">
           What I&apos;m doing now
         </h2>
 
