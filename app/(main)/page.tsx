@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <main>
       {/* ── Header ── */}
-      <header className="px-4 py-4 lg:px-16 lg:py-12">
+      <header className="border-t border-border px-4 py-4 lg:px-16 lg:py-12">
         <div className="mx-auto flex max-w-[1616px] items-start justify-between gap-4 lg:items-center">
           <h1 className="font-heading text-xl font-bold uppercase leading-none text-white lg:text-[2rem]">
             edgaras.com
