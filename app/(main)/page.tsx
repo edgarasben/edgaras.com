@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <main>
       {/* ── Header ── */}
-      <header className="border-t border-border px-4 py-4 lg:px-16 lg:py-12">
+      <header className="px-4 py-4 lg:px-16 lg:py-12">
         <div className="mx-auto flex max-w-[1616px] items-start justify-between gap-4 lg:items-center">
           <h1 className="font-heading text-xl font-bold uppercase leading-none text-foreground lg:text-[2rem]">
             edgaras.com
@@ -47,7 +47,7 @@ export default function Home() {
                 height={571}
                 priority
                 sizes="(min-width: 1024px) 600px, (min-width: 640px) 420px, 100vw"
-                className="h-auto w-full object-cover grayscale contrast-125 brightness-95"
+                className="h-auto w-full object-cover"
               />
             </div>
           </div>
