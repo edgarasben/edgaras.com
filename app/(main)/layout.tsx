@@ -101,7 +101,7 @@ export default function MainLayout({
       </footer>
 
       {/* ── Pre-footer dot-matrix ── */}
-      <section className="flex items-center justify-center overflow-hidden px-4 py-8 lg:px-16 lg:py-16">
+      <section className="flex items-center justify-center px-4 py-8 lg:px-16 lg:py-16">
         <EdgarasDotMatrix />
       </section>
 

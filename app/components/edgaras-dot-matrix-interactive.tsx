@@ -20,6 +20,7 @@ export function EdgarasDotMatrixInteractive({
     svg.removeAttribute("height");
     svg.style.width = "100%";
     svg.style.height = "auto";
+    svg.style.overflow = "visible";
 
     const vb = svg.getAttribute("viewBox")?.split(" ").map(Number);
     const vbW = vb?.[2] ?? 1616;
@@ -120,7 +121,7 @@ export function EdgarasDotMatrixInteractive({
   return (
     <div
       ref={containerRef}
-      className="w-full max-w-[1616px] [&_svg]:w-full [&_svg]:h-auto"
+      className="w-full max-w-[1616px] [&_svg]:w-full [&_svg]:h-auto [&_svg]:overflow-visible"
     >
       {children}
     </div>
