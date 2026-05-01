@@ -55,6 +55,14 @@ export function FooterSocialLinks() {
         X
       </a>
       <a
+        href="https://figma.com/@edgaras"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-body text-base lg:text-lg tracking-wider text-muted-foreground hover:text-foreground transition-colors"
+      >
+        Figma
+      </a>
+      <a
         href="https://www.linkedin.com/in/edgarasben/"
         target="_blank"
         rel="noopener noreferrer"
