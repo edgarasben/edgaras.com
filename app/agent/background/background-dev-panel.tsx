@@ -1,8 +1,12 @@
 "use client"
 
-import { Check, Copy, RotateCcw, SlidersHorizontal, X } from "lucide-react"
+import { Check, Copy, Dices, Palette, RotateCcw, SlidersHorizontal, X } from "lucide-react"
 import { useState } from "react"
-import type { AgentBackgroundConfig } from "./background-config"
+import {
+  randomizeBackgroundPalette,
+  randomizeBackgroundScene,
+  type AgentBackgroundConfig,
+} from "./background-config"
 
 type NumericKey = {
   [K in keyof AgentBackgroundConfig]: AgentBackgroundConfig[K] extends number
@@ -28,6 +32,7 @@ const controls: Array<{ title: string; items: Control[] }> = [
       { key: "amplitude", label: "Amplitude", min: 0.025, max: 0.2, step: 0.005 },
       { key: "frequency", label: "Frequency", min: 0.5, max: 3, step: 0.05 },
       { key: "distortion", label: "Distortion", min: 0, max: 0.8, step: 0.01 },
+      { key: "perspective", label: "Perspective", min: 0.5, max: 1.7, step: 0.02 },
     ],
   },
   {
@@ -36,6 +41,13 @@ const controls: Array<{ title: string; items: Control[] }> = [
       { key: "horizonGlow", label: "Horizon glow", min: 0, max: 1.5, step: 0.02 },
       { key: "horizonSpread", label: "Glow spread", min: 0.06, max: 0.4, step: 0.01 },
       { key: "rimLight", label: "Rim light", min: 0, max: 1.5, step: 0.02 },
+      { key: "specularStrength", label: "Reflections", min: 0, max: 1.6, step: 0.02 },
+      { key: "specularSharpness", label: "Reflection focus", min: 4, max: 28, step: 0.5 },
+      { key: "lightSpread", label: "Light spread", min: 0.15, max: 1, step: 0.01 },
+      { key: "lineStrength", label: "Contour lines", min: 0, max: 0.8, step: 0.01 },
+      { key: "lineDensity", label: "Line density", min: 2, max: 16, step: 0.5 },
+      { key: "lineWidth", label: "Line width", min: 0.03, max: 0.18, step: 0.005 },
+      { key: "grain", label: "Dither", min: 0, max: 1.2, step: 0.02 },
       { key: "depthFade", label: "Depth fade", min: 0.1, max: 1.2, step: 0.02 },
       { key: "foregroundSoftness", label: "Foreground blur", min: 0.05, max: 1.5, step: 0.02 },
       { key: "exposure", label: "Exposure", min: 0.5, max: 1.8, step: 0.02 },
@@ -54,13 +66,17 @@ const controls: Array<{ title: string; items: Control[] }> = [
 ]
 
 const colorControls: Array<{
-  key: "background" | "highlight" | "midLight" | "foregroundTint"
+  key: "background" | "highlight" | "midLight" | "foregroundTint" | "lightBackground" | "lightHighlight" | "lightMidLight" | "lightForegroundTint"
   label: string
 }> = [
   { key: "background", label: "Background" },
   { key: "highlight", label: "Highlight" },
   { key: "midLight", label: "Mid light" },
-  { key: "foregroundTint", label: "Foreground" },
+  { key: "foregroundTint", label: "Dark foreground" },
+  { key: "lightBackground", label: "Light background" },
+  { key: "lightHighlight", label: "Light highlight" },
+  { key: "lightMidLight", label: "Light mid" },
+  { key: "lightForegroundTint", label: "Light foreground" },
 ]
 
 function formatValue(value: number) {
@@ -110,6 +126,14 @@ export function BackgroundDevPanel({
           </div>
 
           <div className="max-h-[calc(min(70vh,46rem)-7.5rem)] overflow-y-auto px-4 py-3">
+            <div className="mb-5 grid grid-cols-2 gap-2">
+              <button type="button" onClick={() => onChange(randomizeBackgroundPalette(value))} className="flex items-center justify-center gap-1.5 rounded-xl bg-white/[0.07] px-3 py-2 text-xs text-white/70 transition hover:bg-white/[0.12] hover:text-white">
+                <Palette className="size-3.5" /> Palette
+              </button>
+              <button type="button" onClick={() => onChange(randomizeBackgroundScene(value))} className="flex items-center justify-center gap-1.5 rounded-xl bg-white/[0.07] px-3 py-2 text-xs text-white/70 transition hover:bg-white/[0.12] hover:text-white">
+                <Dices className="size-3.5" /> Remix scene
+              </button>
+            </div>
             {controls.map((section) => (
               <div key={section.title} className="mb-5 last:mb-2">
                 <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.12em] text-white/35">

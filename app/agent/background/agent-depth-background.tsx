@@ -33,9 +33,18 @@ uniform float u_spacing;
 uniform float u_amplitude;
 uniform float u_frequency;
 uniform float u_distortion;
+uniform float u_perspective;
 uniform float u_depthFade;
 uniform float u_foregroundSoftness;
 uniform float u_rimLight;
+uniform float u_specularStrength;
+uniform float u_specularSharpness;
+uniform float u_lightSpread;
+uniform float u_lineStrength;
+uniform float u_lineDensity;
+uniform float u_lineWidth;
+uniform float u_grain;
+uniform float u_lightMode;
 uniform float u_exposure;
 uniform float u_speed;
 uniform float u_waveSpeed;
@@ -109,44 +118,70 @@ void main() {
     float far = 1.0 - depth;
 
     float baseY = horizonY - fi * u_spacing + 0.06;
-    float perspective = mix(0.38, 1.2, depth);
-    float freq = u_frequency * mix(0.82, 1.35, far);
-    float speed = u_waveSpeed * mix(0.45, 1.35, far);
+    float depthCurve = pow(depth, max(u_perspective, 0.25));
+    float projection = mix(0.42, 1.34, depthCurve);
+    float freq = u_frequency * mix(1.52, 0.76, depthCurve);
+    float speed = u_waveSpeed * mix(0.52, 1.12, depthCurve);
+    float layerParallax = mix(0.08, 1.0, depthCurve);
+    float layerX = p.x + pointer.x * 0.16 * layerParallax;
+    float layerY = p.y + pointer.y * 0.07 * layerParallax;
 
-    float nx = p.x * freq * perspective + fi * 6.731;
+    float nx = layerX * freq * projection + fi * 6.731;
     float distortion = fbm(vec2(nx * 0.42, fi * 1.73 + t * u_noiseSpeed * 7.0));
     float wave = sin(nx * 1.25 + t * speed * 10.0 + fi * 1.61);
     wave += 0.48 * sin(nx * 2.1 - t * speed * 6.0 + fi * 2.7);
     wave += (distortion - 0.5) * 2.0 * u_distortion;
 
-    float layerAmp = u_amplitude * mix(0.58, 1.2, depth);
+    float layerAmp = u_amplitude * mix(0.42, 1.32, depthCurve);
     float y = baseY + wave * layerAmp;
+    float signedDist = layerY - y;
+    float pixel = fwidth(signedDist);
+    float softness = mix(pixel * 1.1, 0.052 * max(u_foregroundSoftness, 0.05), depthCurve);
+    float body = 1.0 - smoothstep(-softness, softness * 1.35, signedDist);
 
-    float signedDist = p.y - y;
-    float softness = mix(0.007, 0.045 * max(u_foregroundSoftness, 0.05), depth);
-    float body = 1.0 - smoothstep(-softness, softness * 1.4, signedDist);
-    float ridge = exp(-abs(signedDist) / max(softness * 0.7, 0.002));
+    // Perspective-linked ridge width: hairline at the horizon, broad nearby.
+    float rimWidth = mix(max(pixel * 1.15, 0.0012), max(softness * 0.82, 0.003), depthCurve);
+    float ridge = exp(-abs(signedDist) / rimWidth);
+    float fade = mix(1.0, 0.38, depthCurve * u_depthFade);
+    float centerLight = exp(-abs(layerX) * mix(0.32, 0.78, depthCurve));
+    float ridgeLight = ridge * u_rimLight * mix(0.54, 1.0, depthCurve);
+    ridgeLight *= 0.5 + 0.5 * centerLight;
 
-    float fade = mix(1.0, 0.34, depth * u_depthFade);
-    float centerLight = exp(-abs(p.x) * mix(0.28, 0.7, depth));
-    float ridgeLight = ridge * u_rimLight * far * (0.55 + 0.45 * centerLight);
+    float glintCenter = sin(t * (0.45 + fi * 0.035) + fi * 2.17) * 0.72;
+    float glintDistance = (layerX - glintCenter) / max(u_lightSpread, 0.08);
+    float glintMask = exp(-glintDistance * glintDistance * u_specularSharpness * 0.12);
+    float microFacet = 0.58 + 0.42 * noise(vec2(nx * 1.7, fi * 8.3));
+    float specular = ridge * glintMask * microFacet * u_specularStrength;
+    specular *= mix(0.72, 1.0, far);
 
-    vec3 layerColor = hexLayerColor(depth);
-    vec3 bodyColor = layerColor * mix(0.16, 0.52, far);
+    float lineScale = mix(1.45, 0.72, depthCurve);
+    float linePhase = abs(signedDist) / max(layerAmp, 0.008) * u_lineDensity * lineScale;
+    float lineCell = abs(fract(linePhase) - 0.5);
+    float lineAA = fwidth(linePhase) * 0.75;
+    float contour = 1.0 - smoothstep(u_lineWidth + lineAA, u_lineWidth + lineAA * 2.0, lineCell);
+    contour *= body * smoothstep(softness * 1.8, softness * 4.0, -signedDist);
 
-    color = mix(color, bodyColor, body * fade * mix(0.34, 0.86, depth));
-    color += u_highlight * ridgeLight * 0.22 * fade;
+    vec3 layerColor = hexLayerColor(depthCurve);
+    vec3 bodyColor = mix(layerColor * mix(0.18, 0.56, far), layerColor, u_lightMode * 0.66);
+    float bodyOpacity = body * fade * mix(0.3, 0.84, depthCurve);
+
+    color = mix(color, bodyColor, bodyOpacity);
+    color += mix(u_highlight, layerColor, 0.22) * ridgeLight * 0.2 * fade;
+    color += u_highlight * specular * 0.34 * fade;
+    color = mix(color, u_highlight, contour * u_lineStrength * mix(0.11, 0.055, depthCurve));
   }
 
   float centerBloom = exp(-length(vec2(p.x * 0.75, (p.y - horizonY) * 1.7)) * 1.6);
   color += u_highlight * centerBloom * 0.06 * u_horizonGlow;
 
-  color *= mix(0.72, 1.0, vignette);
+  color *= mix(mix(0.72, 0.94, u_lightMode), 1.0, vignette);
   color *= u_exposure;
-  color = color / (color + vec3(0.92));
-  color = pow(color, vec3(0.92));
-
-  outColor = vec4(color, 1.0);
+  vec3 darkMapped = pow(color / (color + vec3(0.92)), vec3(0.92));
+  vec3 lightMapped = pow(clamp(color, 0.0, 1.0), vec3(0.98));
+  color = mix(darkMapped, lightMapped, u_lightMode);
+  float dither = (hash21(gl_FragCoord.xy + fract(u_time) * 91.7) - 0.5) / 255.0;
+  color += dither * u_grain;
+  outColor = vec4(clamp(color, 0.0, 1.0), 1.0);
 }
 `
 
@@ -180,10 +215,20 @@ export function AgentDepthBackground({
   const configRef = useRef<AgentBackgroundConfig>(defaultBackgroundConfig)
   const [config, setConfig] = useState(defaultBackgroundConfig)
   const [reducedMotion, setReducedMotion] = useState(false)
+  const [isLight, setIsLight] = useState(false)
 
   useEffect(() => {
     configRef.current = config
   }, [config])
+
+  useEffect(() => {
+    const root = document.documentElement
+    const updateTheme = () => setIsLight(!root.classList.contains("dark"))
+    updateTheme()
+    const observer = new MutationObserver(updateTheme)
+    observer.observe(root, { attributes: true, attributeFilter: ["class"] })
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)")
@@ -195,9 +240,9 @@ export function AgentDepthBackground({
 
   const cssFallback = useMemo(() => {
     return {
-      background: `radial-gradient(70% 45% at 50% 58%, ${config.midLight}33 0%, transparent 70%), linear-gradient(${config.background}, ${config.background})`,
+      background: `radial-gradient(70% 45% at 50% 58%, ${isLight ? config.lightMidLight : config.midLight}55 0%, transparent 70%), linear-gradient(${isLight ? config.lightBackground : config.background}, ${isLight ? config.lightBackground : config.background})`,
     }
-  }, [config.background, config.midLight])
+  }, [config, isLight])
 
   useEffect(() => {
     if (!visible) return
@@ -254,9 +299,18 @@ export function AgentDepthBackground({
       amplitude: gl.getUniformLocation(program, "u_amplitude"),
       frequency: gl.getUniformLocation(program, "u_frequency"),
       distortion: gl.getUniformLocation(program, "u_distortion"),
+      perspective: gl.getUniformLocation(program, "u_perspective"),
       depthFade: gl.getUniformLocation(program, "u_depthFade"),
       foregroundSoftness: gl.getUniformLocation(program, "u_foregroundSoftness"),
       rimLight: gl.getUniformLocation(program, "u_rimLight"),
+      specularStrength: gl.getUniformLocation(program, "u_specularStrength"),
+      specularSharpness: gl.getUniformLocation(program, "u_specularSharpness"),
+      lightSpread: gl.getUniformLocation(program, "u_lightSpread"),
+      lineStrength: gl.getUniformLocation(program, "u_lineStrength"),
+      lineDensity: gl.getUniformLocation(program, "u_lineDensity"),
+      lineWidth: gl.getUniformLocation(program, "u_lineWidth"),
+      grain: gl.getUniformLocation(program, "u_grain"),
+      lightMode: gl.getUniformLocation(program, "u_lightMode"),
       exposure: gl.getUniformLocation(program, "u_exposure"),
       speed: gl.getUniformLocation(program, "u_speed"),
       waveSpeed: gl.getUniformLocation(program, "u_waveSpeed"),
@@ -310,19 +364,28 @@ export function AgentDepthBackground({
       gl.uniform1f(uniforms.amplitude, cfg.amplitude)
       gl.uniform1f(uniforms.frequency, cfg.frequency)
       gl.uniform1f(uniforms.distortion, cfg.distortion)
+      gl.uniform1f(uniforms.perspective, cfg.perspective)
       gl.uniform1f(uniforms.depthFade, cfg.depthFade)
       gl.uniform1f(uniforms.foregroundSoftness, cfg.foregroundSoftness)
       gl.uniform1f(uniforms.rimLight, cfg.rimLight)
+      gl.uniform1f(uniforms.specularStrength, cfg.specularStrength)
+      gl.uniform1f(uniforms.specularSharpness, cfg.specularSharpness)
+      gl.uniform1f(uniforms.lightSpread, cfg.lightSpread)
+      gl.uniform1f(uniforms.lineStrength, cfg.lineStrength)
+      gl.uniform1f(uniforms.lineDensity, cfg.lineDensity)
+      gl.uniform1f(uniforms.lineWidth, cfg.lineWidth)
+      gl.uniform1f(uniforms.grain, cfg.grain)
+      gl.uniform1f(uniforms.lightMode, isLight ? 1 : 0)
       gl.uniform1f(uniforms.exposure, cfg.exposure)
       gl.uniform1f(uniforms.speed, cfg.speed)
       gl.uniform1f(uniforms.waveSpeed, cfg.waveSpeed)
       gl.uniform1f(uniforms.noiseSpeed, cfg.noiseSpeed)
       gl.uniform1f(uniforms.pointerStrength, reducedMotion ? 0 : cfg.pointerStrength)
 
-      const background = hexToRgb(cfg.background)
-      const highlight = hexToRgb(cfg.highlight)
-      const midLight = hexToRgb(cfg.midLight)
-      const foregroundTint = hexToRgb(cfg.foregroundTint)
+      const background = hexToRgb(isLight ? cfg.lightBackground : cfg.background)
+      const highlight = hexToRgb(isLight ? cfg.lightHighlight : cfg.highlight)
+      const midLight = hexToRgb(isLight ? cfg.lightMidLight : cfg.midLight)
+      const foregroundTint = hexToRgb(isLight ? cfg.lightForegroundTint : cfg.foregroundTint)
       gl.uniform3f(uniforms.background, ...background)
       gl.uniform3f(uniforms.highlight, ...highlight)
       gl.uniform3f(uniforms.midLight, ...midLight)
@@ -343,7 +406,7 @@ export function AgentDepthBackground({
       gl.deleteBuffer(buffer)
       gl.deleteProgram(program)
     }
-  }, [visible, reducedMotion])
+  }, [visible, reducedMotion, isLight])
 
   if (!visible) return null
 
