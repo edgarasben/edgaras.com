@@ -8,85 +8,32 @@ import {
 import { BackgroundDevPanel } from "./background-dev-panel"
 
 const VERTEX_SHADER = `#version 300 es
-precision highp float;
-
-in vec2 a_grid;
-
-uniform vec2 u_resolution;
-uniform float u_time;
-uniform vec2 u_pointer;
-uniform float u_layerCount;
-uniform float u_horizon;
-uniform float u_spacing;
-uniform float u_amplitude;
-uniform float u_frequency;
-uniform float u_distortion;
-uniform float u_perspective;
-uniform float u_speed;
-uniform float u_waveSpeed;
-uniform float u_noiseSpeed;
-uniform float u_pointerStrength;
-
-out float v_depth;
-out float v_height;
-out vec3 v_normal;
-out vec2 v_grid;
-out vec2 v_world;
-
-float heightAt(vec2 p) {
-  float t = u_time * u_speed;
-  float bands = 5.0 + u_layerCount * 0.72;
-  float broad = sin(p.x * u_frequency * 2.3 + p.y * bands - t * u_waveSpeed * 18.0);
-  float crossing = sin(p.x * u_frequency * 4.1 - p.y * (bands * 1.34) + t * u_noiseSpeed * 36.0) * 0.38;
-  float swell = sin((p.x * 0.72 + p.y * 1.35) * u_frequency * 2.0 - t * 0.72) * 0.52;
-  float detail = sin(p.x * u_frequency * 8.2 + p.y * 13.0 + t * 0.44) * 0.14 * u_distortion;
-  return (broad + crossing + swell + detail) / 1.9;
-}
-
+in vec2 a_position;
+out vec2 v_uv;
 void main() {
-  float depth = a_grid.y;
-  float depthCurve = pow(depth, max(u_perspective, 0.3));
-  float aspect = u_resolution.x / max(u_resolution.y, 1.0);
-  vec2 world = vec2(a_grid.x * max(aspect, 1.0), depth);
-  float height = heightAt(world);
-
-  float e = 0.008;
-  float hx = heightAt(world + vec2(e, 0.0));
-  float hz = heightAt(world + vec2(0.0, e));
-  vec3 normal = normalize(vec3(-(hx - height) * u_amplitude / e, 1.0, -(hz - height) * u_amplitude / e));
-
-  float horizonY = mix(-0.55, 0.55, u_horizon);
-  float baseY = mix(-1.3, horizonY, depthCurve);
-  float heightScale = u_amplitude * mix(1.75, 0.3, depthCurve);
-  float perspectiveWidth = mix(1.46, 0.62, depthCurve);
-  float parallax = mix(1.0, 0.08, depthCurve) * u_pointerStrength;
-
-  float screenX = a_grid.x * perspectiveWidth + u_pointer.x * parallax * 0.16;
-  float screenY = baseY + height * heightScale + u_pointer.y * parallax * 0.07;
-  float clipDepth = mix(-0.82, 0.82, depthCurve);
-
-  v_depth = depthCurve;
-  v_height = height;
-  v_normal = normal;
-  v_grid = a_grid;
-  v_world = world;
-  gl_Position = vec4(screenX, screenY, clipDepth, 1.0);
+  v_uv = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
 }
 `
 
 const FRAGMENT_SHADER = `#version 300 es
 precision highp float;
 
-in float v_depth;
-in float v_height;
-in vec3 v_normal;
-in vec2 v_grid;
-in vec2 v_world;
+in vec2 v_uv;
 out vec4 outColor;
 
+uniform vec2 u_resolution;
 uniform float u_time;
+uniform vec2 u_pointer;
+uniform float u_layerCount;
+uniform float u_horizon;
 uniform float u_horizonGlow;
 uniform float u_horizonSpread;
+uniform float u_spacing;
+uniform float u_amplitude;
+uniform float u_frequency;
+uniform float u_distortion;
+uniform float u_perspective;
 uniform float u_depthFade;
 uniform float u_foregroundSoftness;
 uniform float u_rimLight;
@@ -99,6 +46,10 @@ uniform float u_lineWidth;
 uniform float u_grain;
 uniform float u_lightMode;
 uniform float u_exposure;
+uniform float u_speed;
+uniform float u_waveSpeed;
+uniform float u_noiseSpeed;
+uniform float u_pointerStrength;
 uniform vec3 u_background;
 uniform vec3 u_highlight;
 uniform vec3 u_midLight;
@@ -110,56 +61,128 @@ float hash21(vec2 p) {
   return fract(p.x * p.y);
 }
 
-float crispLine(float cell, float width) {
-  float aa = max(fwidth(cell) * 0.42, 0.001);
-  return 1.0 - smoothstep(width, width + aa, cell);
+float noise(vec2 p) {
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+  f = f * f * (3.0 - 2.0 * f);
+  float a = hash21(i);
+  float b = hash21(i + vec2(1.0, 0.0));
+  float c = hash21(i + vec2(0.0, 1.0));
+  float d = hash21(i + vec2(1.0, 1.0));
+  return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+}
+
+float fbm(vec2 p) {
+  float value = 0.0;
+  float amplitude = 0.5;
+  for (int i = 0; i < 4; i++) {
+    value += amplitude * noise(p);
+    p = p * 2.03 + 17.13;
+    amplitude *= 0.5;
+  }
+  return value;
+}
+
+vec3 hexLayerColor(float depth) {
+  vec3 farColor = mix(u_midLight, u_highlight, pow(1.0 - depth, 1.8));
+  vec3 nearColor = mix(u_foregroundTint, u_midLight, 0.24);
+  return mix(farColor, nearColor, depth);
 }
 
 void main() {
-  vec3 n = normalize(v_normal);
-  vec3 lightDir = normalize(vec3(-0.34, 0.82, 0.46));
-  float diffuse = max(dot(n, lightDir), 0.0);
-  float facing = pow(max(dot(n, normalize(vec3(0.0, 0.75, 1.0))), 0.0), 2.0);
-  float rim = pow(1.0 - clamp(n.y, 0.0, 1.0), 2.25) * u_rimLight;
+  vec2 uv = v_uv;
+  vec2 p = uv * 2.0 - 1.0;
+  p.x *= u_resolution.x / max(u_resolution.y, 1.0);
 
-  float glintCenter = sin(u_time * 0.045) * 0.74;
-  float glintDistance = (v_world.x - glintCenter) / max(u_lightSpread, 0.08);
-  float glintMask = exp(-glintDistance * glintDistance * u_specularSharpness * 0.1);
-  float specular = pow(max(dot(reflect(-lightDir, n), vec3(0.0, 0.72, 0.69)), 0.0), max(u_specularSharpness, 2.0));
-  specular *= glintMask * u_specularStrength;
+  vec2 pointer = u_pointer * u_pointerStrength;
+  p.x += pointer.x * 0.18;
+  p.y += pointer.y * 0.08;
 
-  vec3 nearColor = mix(u_foregroundTint, u_midLight, 0.16 + diffuse * 0.22);
-  vec3 farColor = mix(u_midLight, u_highlight, 0.22 + diffuse * 0.32);
-  vec3 surface = mix(nearColor, farColor, pow(v_depth, 0.78));
-  surface *= mix(0.58, 1.08, diffuse);
-  surface += u_highlight * (specular * 0.72 + rim * 0.09 + facing * 0.04);
+  float t = u_time * u_speed;
+  vec3 color = u_background;
 
-  float depthCell = abs(fract(v_grid.y * u_lineDensity) - 0.5);
-  float contourCell = abs(fract((v_height + 1.0) * u_lineDensity * 0.56) - 0.5);
-  float longitudinalCell = abs(fract((v_grid.x + 1.0) * u_lineDensity * 0.28) - 0.5);
-  float lineWidth = u_lineWidth * 0.72;
-  float depthLine = crispLine(depthCell, lineWidth);
-  float contourLine = crispLine(contourCell, lineWidth * 0.72);
-  float longitudinalLine = crispLine(longitudinalCell, lineWidth * 0.5);
-  float meshLine = max(depthLine, max(contourLine * 0.82, longitudinalLine * 0.42));
+  float horizonY = mix(-0.55, 0.55, u_horizon);
+  float glowDist = abs(p.y - horizonY);
+  float glow = exp(-glowDist / max(u_horizonSpread, 0.001)) * u_horizonGlow;
+  glow *= smoothstep(1.8, 0.15, abs(p.x) * 0.45);
+  color += u_midLight * glow * 0.18;
 
-  // Lines are solid surface coloration, never translucent overlays.
-  vec3 lineColor = mix(u_foregroundTint, u_highlight, mix(0.34, 0.72, v_depth));
-  surface = mix(surface, lineColor, clamp(meshLine * u_lineStrength, 0.0, 0.88));
+  float vignette = smoothstep(1.55, 0.22, length(vec2(p.x * 0.7, p.y * 0.95)));
 
-  float horizonHaze = exp(-(1.0 - v_depth) / max(u_horizonSpread, 0.025)) * u_horizonGlow;
-  surface = mix(surface, mix(u_midLight, u_highlight, 0.36), horizonHaze * 0.24);
-  float fog = pow(v_depth, 2.4) * u_depthFade * 0.44;
-  surface = mix(surface, mix(u_background, u_midLight, 0.18), fog);
+  for (int i = 0; i < 8; i++) {
+    if (float(i) >= u_layerCount) break;
 
-  surface *= mix(0.88, 1.02, u_lightMode);
-  surface *= u_exposure;
-  vec3 darkMapped = pow(surface / (surface + vec3(0.88)), vec3(0.92));
-  vec3 lightMapped = pow(clamp(surface, 0.0, 1.0), vec3(0.98));
-  vec3 color = mix(darkMapped, lightMapped, u_lightMode);
-  float dither = (hash21(gl_FragCoord.xy + fract(u_time) * 71.3) - 0.5) / 255.0;
+    float fi = float(i);
+    float denom = max(u_layerCount - 1.0, 1.0);
+    float depth = fi / denom;
+    float far = 1.0 - depth;
+
+    float baseY = horizonY - fi * u_spacing + 0.06;
+    float depthCurve = pow(depth, max(u_perspective, 0.25));
+    float projection = mix(0.42, 1.34, depthCurve);
+    float freq = u_frequency * mix(1.52, 0.76, depthCurve);
+    float speed = u_waveSpeed * mix(0.52, 1.12, depthCurve);
+    float layerParallax = mix(0.08, 1.0, depthCurve);
+    float layerX = p.x + pointer.x * 0.16 * layerParallax;
+    float layerY = p.y + pointer.y * 0.07 * layerParallax;
+
+    float nx = layerX * freq * projection + fi * 6.731;
+    float distortion = fbm(vec2(nx * 0.42, fi * 1.73 + t * u_noiseSpeed * 7.0));
+    float wave = sin(nx * 1.25 + t * speed * 10.0 + fi * 1.61);
+    wave += 0.48 * sin(nx * 2.1 - t * speed * 6.0 + fi * 2.7);
+    wave += (distortion - 0.5) * 2.0 * u_distortion;
+
+    float layerAmp = u_amplitude * mix(0.42, 1.32, depthCurve);
+    float y = baseY + wave * layerAmp;
+    float signedDist = layerY - y;
+    float pixel = fwidth(signedDist);
+    float softness = mix(pixel * 1.1, 0.052 * max(u_foregroundSoftness, 0.05), depthCurve);
+    float body = 1.0 - smoothstep(-softness, softness * 1.35, signedDist);
+
+    // Perspective-linked ridge width: hairline at the horizon, broad nearby.
+    float rimWidth = mix(max(pixel * 1.15, 0.0012), max(softness * 0.82, 0.003), depthCurve);
+    float ridge = exp(-abs(signedDist) / rimWidth);
+    float fade = mix(1.0, 0.38, depthCurve * u_depthFade);
+    float centerLight = exp(-abs(layerX) * mix(0.32, 0.78, depthCurve));
+    float ridgeLight = ridge * u_rimLight * mix(0.54, 1.0, depthCurve);
+    ridgeLight *= 0.5 + 0.5 * centerLight;
+
+    float glintCenter = sin(t * (0.45 + fi * 0.035) + fi * 2.17) * 0.72;
+    float glintDistance = (layerX - glintCenter) / max(u_lightSpread, 0.08);
+    float glintMask = exp(-glintDistance * glintDistance * u_specularSharpness * 0.12);
+    float microFacet = 0.58 + 0.42 * noise(vec2(nx * 1.7, fi * 8.3));
+    float specular = ridge * glintMask * microFacet * u_specularStrength;
+    specular *= mix(0.72, 1.0, far);
+
+    float lineScale = mix(1.45, 0.72, depthCurve);
+    float linePhase = abs(signedDist) / max(layerAmp, 0.008) * u_lineDensity * lineScale;
+    float lineCell = abs(fract(linePhase) - 0.5);
+    // Use derivatives only for a narrow sub-pixel transition. The previous
+    // version added them to the line width itself, causing visible softness.
+    float lineAA = max(fwidth(linePhase) * 0.28, 0.0015);
+    float contour = 1.0 - smoothstep(u_lineWidth, u_lineWidth + lineAA, lineCell);
+    contour *= body * smoothstep(softness * 1.8, softness * 4.0, -signedDist);
+
+    vec3 layerColor = hexLayerColor(depthCurve);
+    vec3 bodyColor = mix(layerColor * mix(0.18, 0.56, far), layerColor, u_lightMode * 0.66);
+    float bodyOpacity = body * fade * mix(0.3, 0.84, depthCurve);
+
+    color = mix(color, bodyColor, bodyOpacity);
+    color += mix(u_highlight, layerColor, 0.22) * ridgeLight * 0.2 * fade;
+    color += u_highlight * specular * 0.34 * fade;
+    color = mix(color, u_highlight, contour * u_lineStrength * mix(0.11, 0.055, depthCurve));
+  }
+
+  float centerBloom = exp(-length(vec2(p.x * 0.75, (p.y - horizonY) * 1.7)) * 1.6);
+  color += u_highlight * centerBloom * 0.06 * u_horizonGlow;
+
+  color *= mix(mix(0.72, 0.94, u_lightMode), 1.0, vignette);
+  color *= u_exposure;
+  vec3 darkMapped = pow(color / (color + vec3(0.92)), vec3(0.92));
+  vec3 lightMapped = pow(clamp(color, 0.0, 1.0), vec3(0.98));
+  color = mix(darkMapped, lightMapped, u_lightMode);
+  float dither = (hash21(gl_FragCoord.xy + fract(u_time) * 91.7) - 0.5) / 255.0;
   color += dither * u_grain;
-
   outColor = vec4(clamp(color, 0.0, 1.0), 1.0);
 }
 `
@@ -230,8 +253,8 @@ export function AgentDepthBackground({
 
     const gl = canvas.getContext("webgl2", {
       alpha: false,
-      antialias: true,
-      depth: true,
+      antialias: false,
+      depth: false,
       stencil: false,
       powerPreference: "high-performance",
     })
@@ -254,46 +277,17 @@ export function AgentDepthBackground({
       return
     }
 
-    const columns = 128
-    const rows = 72
-    const vertices = new Float32Array((columns + 1) * (rows + 1) * 2)
-    let vertexOffset = 0
-    for (let row = 0; row <= rows; row++) {
-      for (let column = 0; column <= columns; column++) {
-        vertices[vertexOffset++] = (column / columns) * 2 - 1
-        vertices[vertexOffset++] = row / rows
-      }
-    }
+    const buffer = gl.createBuffer()
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
+    gl.bufferData(
+      gl.ARRAY_BUFFER,
+      new Float32Array([-1, -1, 3, -1, -1, 3]),
+      gl.STATIC_DRAW,
+    )
 
-    const indices = new Uint32Array(columns * rows * 6)
-    let indexOffset = 0
-    for (let row = 0; row < rows; row++) {
-      for (let column = 0; column < columns; column++) {
-        const a = row * (columns + 1) + column
-        const b = a + 1
-        const c = a + columns + 1
-        const d = c + 1
-        indices[indexOffset++] = a
-        indices[indexOffset++] = c
-        indices[indexOffset++] = b
-        indices[indexOffset++] = b
-        indices[indexOffset++] = c
-        indices[indexOffset++] = d
-      }
-    }
-
-    const vertexBuffer = gl.createBuffer()
-    const indexBuffer = gl.createBuffer()
-    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer)
-    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW)
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer)
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW)
-
-    const position = gl.getAttribLocation(program, "a_grid")
+    const position = gl.getAttribLocation(program, "a_position")
     gl.enableVertexAttribArray(position)
     gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0)
-    gl.enable(gl.DEPTH_TEST)
-    gl.depthFunc(gl.LEQUAL)
 
     const uniforms = {
       resolution: gl.getUniformLocation(program, "u_resolution"),
@@ -399,9 +393,7 @@ export function AgentDepthBackground({
       gl.uniform3f(uniforms.midLight, ...midLight)
       gl.uniform3f(uniforms.foregroundTint, ...foregroundTint)
 
-      gl.clearColor(background[0], background[1], background[2], 1)
-      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
-      gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_INT, 0)
+      gl.drawArrays(gl.TRIANGLES, 0, 3)
       frame = requestAnimationFrame(render)
     }
 
@@ -413,8 +405,7 @@ export function AgentDepthBackground({
       cancelAnimationFrame(frame)
       window.removeEventListener("resize", resize)
       window.removeEventListener("pointermove", onPointerMove)
-      gl.deleteBuffer(vertexBuffer)
-      gl.deleteBuffer(indexBuffer)
+      gl.deleteBuffer(buffer)
       gl.deleteProgram(program)
     }
   }, [visible, reducedMotion, isLight])
