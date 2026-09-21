@@ -7,7 +7,7 @@ import {
 } from "./background-config"
 import { BackgroundDevPanel } from "./background-dev-panel"
 
-const VERTEX_SHADER = \`#version 300 es
+const VERTEX_SHADER = `#version 300 es
 precision highp float;
 
 in vec2 a_grid;
@@ -72,9 +72,9 @@ void main() {
   v_world = world;
   gl_Position = vec4(screenX, screenY, clipDepth, 1.0);
 }
-\`
+`
 
-const FRAGMENT_SHADER = \`#version 300 es
+const FRAGMENT_SHADER = `#version 300 es
 precision highp float;
 
 in float v_depth;
@@ -162,7 +162,7 @@ void main() {
 
   outColor = vec4(clamp(color, 0.0, 1.0), 1.0);
 }
-\`
+`
 
 function hexToRgb(hex: string) {
   const value = hex.replace("#", "")
