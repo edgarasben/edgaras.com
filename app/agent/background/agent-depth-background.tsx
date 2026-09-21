@@ -157,8 +157,10 @@ void main() {
     float lineScale = mix(1.45, 0.72, depthCurve);
     float linePhase = abs(signedDist) / max(layerAmp, 0.008) * u_lineDensity * lineScale;
     float lineCell = abs(fract(linePhase) - 0.5);
-    float lineAA = fwidth(linePhase) * 0.75;
-    float contour = 1.0 - smoothstep(u_lineWidth + lineAA, u_lineWidth + lineAA * 2.0, lineCell);
+    // Use derivatives only for a narrow sub-pixel transition. The previous
+    // version added them to the line width itself, causing visible softness.
+    float lineAA = max(fwidth(linePhase) * 0.28, 0.0015);
+    float contour = 1.0 - smoothstep(u_lineWidth, u_lineWidth + lineAA, lineCell);
     contour *= body * smoothstep(softness * 1.8, softness * 4.0, -signedDist);
 
     vec3 layerColor = hexLayerColor(depthCurve);
