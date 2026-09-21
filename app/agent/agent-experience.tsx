@@ -9,6 +9,7 @@ import {
   openingPrompts,
   replyDelay,
 } from "./agent-content";
+import { AgentDepthBackground } from "./background/agent-depth-background";
 import { AgentAvatar } from "./components/agent-avatar";
 import { Composer } from "./components/composer";
 import { MessageThread } from "./components/message-thread";
@@ -76,6 +77,8 @@ export function AgentExperience() {
 
   return (
     <div className="relative flex h-dvh flex-col overflow-hidden bg-background text-foreground">
+      <AgentDepthBackground visible={!hasConversation} />
+
       {/* ── Ambient background ── */}
       <div
         aria-hidden
